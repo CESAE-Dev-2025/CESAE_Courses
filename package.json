@@ -1,32 +1,41 @@
 {
-  "name": "vite-project",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "CESAE_Mobile",
+  "version": "0.5.1",
+  "description": "A monorepo template built with Bun, Hono, Vite, and React",
+  "author": "Steve Simkins",
+  "license": "MIT",
+  "homepage": "https://github.com/stevedylandev/bhvr",
+  "packageManager": "bun@1.2.4",
+  "workspaces": [
+    "./server",
+    "./client",
+    "./shared"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "dev": "turbo dev",
+    "dev:client": "turbo dev --filter=client",
+    "dev:server": "turbo dev --filter=server",
+    "build": "turbo build",
+    "build:client": "turbo build --filter=client",
+    "build:server": "turbo build --filter=server",
+    "lint": "turbo lint",
+    "type-check": "turbo type-check",
+    "test": "turbo test",
+    "postinstall": "turbo build --filter=shared --filter=server"
   },
-  "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
-  },
+  "keywords": [
+    "bun",
+    "hono",
+    "react",
+    "vite",
+    "monorepo",
+    "turbo"
+  ],
   "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@types/node": "^24.10.1",
-    "@types/react": "^19.2.5",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^5.1.1",
-    "babel-plugin-react-compiler": "^1.0.0",
-    "eslint": "^9.39.1",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-react-refresh": "^0.4.24",
-    "globals": "^16.5.0",
-    "typescript": "~5.9.3",
-    "typescript-eslint": "^8.46.4",
-    "vite": "^7.2.4",
-    "@types/bun": "latest"
+    "bun-types": "latest",
+    "turbo": "^2.6.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5.8.3"
   }
 }
