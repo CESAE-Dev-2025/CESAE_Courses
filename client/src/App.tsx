@@ -76,7 +76,7 @@ function App() {
                     <pre className='response'>
                         <code>
                             Curso: {courseData.name} <br/>
-                            Início: {courseData.startDate.toString()} <br/>
+                            Início: {courseData.startDate} <br/>
                             Horário: {courseData.time} / {courseData.timeDescription}<br/>
                             Duração: {courseData.duration}
                         </code>

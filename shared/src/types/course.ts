@@ -2,8 +2,8 @@ export type Course = {
     id: number;
     name: string;
     coverUrl: string;
-    startDate: Date;
-    endDate: Date;
+    startDate: string;
+    endDate: string;
     time: string;
     timeDescription: string;
     duration: string;
