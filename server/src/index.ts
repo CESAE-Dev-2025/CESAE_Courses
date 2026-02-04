@@ -1,7 +1,6 @@
 import {Hono} from 'hono'
 import {cors} from 'hono/cors'
 import type {ApiResponse} from 'shared/dist'
-import type {Course} from "shared/dist/types/course";
 import { courses } from "./coursesData";
 
 
@@ -28,16 +27,15 @@ app.get('/courses', async (c) => {
     return c.json(courses, {status: 200})
 })
 
-app.get('/courses/:id', async (c) => {
-    //TODO: Validar que id é number
-    const id = c.req.param('id')
-    const course = courses.find(course => course.id.toString() === id)
-
-    if (id == course?.id.toString()){
-        return c.json(course, {status: 200})
-    }
-
-    return c.json(null, {status: 200})
-})
+// app.get('/courses/:id', async (c) => {
+//     const id = c.req.param('id')
+//     const course = courses.find(course => course.id.toString() === id)
+//
+//     if (id == course?.id.toString()){
+//         return c.json(course, {status: 200})
+//     }
+//
+//     return c.json(null, {status: 404})
+// })
 
 export default app
