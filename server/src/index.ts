@@ -2,6 +2,7 @@ import 'dotenv/config';
 
 import {Hono} from 'hono'
 import {cors} from 'hono/cors'
+import { rateLimiter } from "hono-rate-limiter";
 import { drizzle } from 'drizzle-orm/mysql2';
 import {coursesTable} from "./db/schema";
 
@@ -10,6 +11,13 @@ const app = new Hono()
 const db = drizzle(process.env.DATABASE_URL!);
 
 app.use(cors())
+app.use(
+    rateLimiter({
+        windowMs: 60 * 1000, // 1 minuto (60 * 1000 ms)
+        limit: 10, // Limita cada cliente à 10 requests por período (window)
+        keyGenerator: (c) => c.req.header("x-forwarded-for") ?? "", // Usa o IP como key
+    })
+);
 
 app.get('/courses', async (c) => {
     try {
