@@ -1,10 +1,14 @@
+import 'dotenv/config';
+
 import {Hono} from 'hono'
 import {cors} from 'hono/cors'
+import { drizzle } from 'drizzle-orm/mysql2';
+import {coursesTable} from "./db/schema";
 import type {ApiResponse} from 'shared/dist'
-import { jsonCourses } from "./data/jsonCourses";
-
 
 const app = new Hono()
+
+const db = drizzle(process.env.DATABASE_URL!);
 
 app.use(cors())
 
@@ -23,8 +27,14 @@ app.get('/hello', async (c) => {
 })
 
 app.get('/courses', async (c) => {
-    // TODO: Buscar cursos da BD
-    return c.json(jsonCourses, {status: 200})
+    try {
+        const courses = await db.select().from(coursesTable);
+        console.log('Getting all courses from the database: ', courses.length)
+        return c.json(courses, {status: 200})
+    } catch (error) {
+        console.error('Error fetching courses:', error);
+        return c.json({ error: 'Internal Server Error' }, { status: 500 });
+    }
 })
 
 // app.get('/courses/:id', async (c) => {
