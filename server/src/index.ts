@@ -4,27 +4,12 @@ import {Hono} from 'hono'
 import {cors} from 'hono/cors'
 import { drizzle } from 'drizzle-orm/mysql2';
 import {coursesTable} from "./db/schema";
-import type {ApiResponse} from 'shared/dist'
 
 const app = new Hono()
 
 const db = drizzle(process.env.DATABASE_URL!);
 
 app.use(cors())
-
-app.get('/', (c) => {
-    return c.text('Hello Hono!')
-})
-
-app.get('/hello', async (c) => {
-
-    const data: ApiResponse = {
-        message: "Bazinga!",
-        success: true
-    }
-
-    return c.json(data, {status: 200})
-})
 
 app.get('/courses', async (c) => {
     try {
