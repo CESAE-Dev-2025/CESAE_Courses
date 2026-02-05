@@ -1,7 +1,7 @@
 import {Hono} from 'hono'
 import {cors} from 'hono/cors'
 import type {ApiResponse} from 'shared/dist'
-import { courses } from "./coursesData";
+import { jsonCourses } from "./data/jsonCourses";
 
 
 const app = new Hono()
@@ -24,7 +24,7 @@ app.get('/hello', async (c) => {
 
 app.get('/courses', async (c) => {
     // TODO: Buscar cursos da BD
-    return c.json(courses, {status: 200})
+    return c.json(jsonCourses, {status: 200})
 })
 
 // app.get('/courses/:id', async (c) => {

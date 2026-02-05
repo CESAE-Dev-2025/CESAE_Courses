@@ -1,6 +1,6 @@
 import type {Course} from "shared/dist/types/course";
 
-export const courses: Course[] = [
+export const jsonCourses: Course[] = [
     {
         id: 1,
         name: "Gestor/Coordenador da Formação",
