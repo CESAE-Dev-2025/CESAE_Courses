@@ -5,6 +5,7 @@ import {cors} from 'hono/cors'
 import { rateLimiter } from "hono-rate-limiter";
 import { drizzle } from 'drizzle-orm/mysql2';
 import {coursesTable} from "./db/schema";
+import {eq} from "drizzle-orm";
 
 const app = new Hono()
 
@@ -31,14 +32,16 @@ app.get('/courses', async (c) => {
 })
 
 // app.get('/courses/:id', async (c) => {
-//     const id = c.req.param('id')
-//     const course = courses.find(course => course.id.toString() === id)
+//     const id = Number(c.req.param('id'))
+//     const course = await db.select().from(courses).where(eq(courses.id, id));
 //
-//     if (id == course?.id.toString()){
+//     if (course[0] !== undefined) {
+//         customLogger('INFO', `Getting course id ${id} data from the database.`)
 //         return c.json(course, {status: 200})
 //     }
 //
-//     return c.json(null, {status: 404})
+//     customLogger('ERROR', `Course ${id} not found.`)
+//     return c.json({error: 'Course not found'}, {status: 404})
 // })
 
 export default app
