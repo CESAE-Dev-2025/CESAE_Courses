@@ -4,6 +4,8 @@ import {Hono} from 'hono'
 import {logger} from 'hono/logger'
 import {cors} from 'hono/cors'
 import {rateLimiter} from "hono-rate-limiter";
+import {drizzle} from 'drizzle-orm/mysql2';
+import {courses} from "./db/schema";
 import {eq} from "drizzle-orm";
 import * as console from "node:console";
 
@@ -38,12 +40,14 @@ app.use(logger())
 
 app.get('/courses', async (c) => {
     try {
-        const courses = await db.select().from(coursesTable);
-        console.log('Getting all courses from the database: ', courses.length)
-        return c.json(courses, {status: 200})
+        const data = await db.select().from(courses);
+
+        customLogger("INFO", `Getting ${data.length} courses from the database.`)
+        return c.json(data, {status: 200})
+
     } catch (error) {
-        console.error('Error fetching courses:', error);
-        return c.json({ error: 'Internal Server Error' }, { status: 500 });
+        customLogger('ERROR', 'Error fetching courses:', error as string);
+        return c.json({error: 'Internal Server Error HA'}, {status: 500});
     }
 })
 
