@@ -33,9 +33,17 @@
   ],
   "devDependencies": {
     "bun-types": "latest",
+    "drizzle-kit": "^0.31.8",
+    "tsx": "^4.21.0",
     "turbo": "^2.6.3"
   },
   "peerDependencies": {
     "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "drizzle-orm": "^0.45.1",
+    "hono-rate-limiter": "^0.5.3",
+    "mysql2": "^3.16.3"
   }
 }
