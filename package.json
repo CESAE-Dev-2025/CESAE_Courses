@@ -35,7 +35,7 @@
     "bun-types": "latest",
     "drizzle-kit": "^0.31.8",
     "tsx": "^4.21.0",
-    "turbo": "^2.6.3"
+    "turbo": "^2.8.3"
   },
   "peerDependencies": {
     "typescript": "^5.8.3"
