@@ -42,6 +42,9 @@ app.get('/courses', async (c) => {
     try {
         const data = await db.select().from(courses);
 
+        // await db.delete(courses);
+        // await db.insert(courses).values(data);
+
         customLogger("INFO", `Getting ${data.length} courses from the database.`)
         return c.json(data, {status: 200})
 
