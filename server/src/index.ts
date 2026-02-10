@@ -6,8 +6,10 @@ import {cors} from 'hono/cors'
 import {rateLimiter} from "hono-rate-limiter";
 import {drizzle} from 'drizzle-orm/mysql2';
 import {courses} from "./db/schema";
-import {eq} from "drizzle-orm";
-import * as console from "node:console";
+import {scheduleScraper, startScraper} from "./cronJob";
+
+await scheduleScraper();
+
 
 const app = new Hono()
 
@@ -38,6 +40,14 @@ app.use(
 
 app.use(logger())
 
+// TODO: Proteger este endpoint (token, JWT, IP whitelist, etc.)
+app.post('/admin/run-scrape', async c => {
+    await new Promise((resolve) => setTimeout(resolve, 61000))
+    customLogger("INFO", "Scrape requested by admin...")
+    await startScraper();
+    return c.json({ status: 'ok', message: 'Scrape iniciado' });
+});
+
 app.get('/courses', async (c) => {
     try {
         const data = await db.select().from(courses);
@@ -67,4 +77,7 @@ app.get('/courses', async (c) => {
 //     return c.json({error: 'Course not found'}, {status: 404})
 // })
 
-export default app
+export default {
+    fetch: app.fetch,
+    idleTimeout: 15
+}
