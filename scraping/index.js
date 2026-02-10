@@ -54,39 +54,37 @@ const { chromium } = require("playwright");
         await page.goto(url, { waitUntil: "networkidle" });
 
         const data = await page.evaluate(() => ({
-           //titulo: document.querySelector("h1, h2, h3")?.innerText,
-            //texto: document.body.innerText,
-            //imagem: document.querySelector("img")?.src,
-            name: document.querySelector("h1")?.innerText,
+
+            name: document.querySelector("h1")?.innerText ?? null,
             cover_url: document.querySelector("#mainSection_imgCourse")?.src ?? null,
 
-            start_date: document.querySelector("#mainSection_lblDtInicio")?.innerText,
-            end_date: document.querySelector("#mainSection_lblDtFim")?.innerText,
-            time: document.querySelector("#mainSection_lblHorario")?.innerText,
-            time_description: document.querySelector(".breadcrumb")?.innerText,
+            start_date: document.querySelector("#mainSection_lblDtInicio")?.innerText ?? null,
+            end_date: document.querySelector("#mainSection_lblDtFim")?.innerText ?? null,
+            time: document.querySelector("#mainSection_lblHorario")?.innerText ?? null,
+            time_description: document.querySelector(".breadcrumb")?.innerText ?? null,
 
-            duration: document.querySelector("#mainSection_lblDuracao")?.innerText,
-            regime: document.querySelector(".breadcrumb")?.innerText,
-            location: document.querySelector("aside.signup ul li:first-child")?.innerText,
+            duration: document.querySelector("#mainSection_lblDuracao")?.innerText ?? null,
+            regime: document.querySelector("div.bg-secondary span.bold")?.innerText ?? null,
+            location: document.querySelector("aside.signup ul li:first-child")?.innerText ?? null,
 
-            //description: document.querySelector("#66")?.innerText,
-            //audience: document.querySelector("#66")?.innerText,
-            //requirements: document.querySelector("#66")?.innerText,
+            description: document.querySelector("#mainSection_lblLongDesc")?.innerText ?? null,
+            audience: document.querySelector("#mainSection_destinatarios")?.innerText ?? null,
+            requirements: document.querySelector("#mainSection_requisitos")?.innerText ?? null,
 
-            //project: document.querySelector("#66")?.innerText,
-            price: document.querySelector("#mainSection_lblPrice")?.innerText,
-            //benefits: document.querySelector("#66")?.innerText,
-            //goals: document.querySelector("#66")?.innerText,
+            project: document.querySelector("#mainSection_desigProjeto")?.innerText ?? null,
+            price: document.querySelector("#mainSection_lblPrice")?.innerText ?? null,
+            benefits: document.querySelector("#mainSection_divBeneficios a")?.href ?? null,
+            goals: document.querySelector("#mainSection_objetivos")?.innerText ?? null,
 
-            sponsor_img_url: document.querySelector('#mainSection_imgLogoParceiros')?.src ?? null,
-            //course_content: document.querySelector("#66")?.innerText,
-            //enrollment: document.querySelector("#66")?.innerText,
+            sponsor_img_url: document.querySelector("#mainSection_imgLogoParceiros")?.src ?? null,
+            course_content: document.querySelector("h3.title + div.col-12")?.innerText ?? null,
+            enrollment: document.querySelector("#mainSection_btnInsc")?.href ?? null,
 
-            has_download_button: 0,
+            has_download_button: document.querySelector("#mainSection_btnProgm") ? 1 : 0,
         }));
 
         console.log(data);
     }
     await browser.close();
-    
+
 })();
