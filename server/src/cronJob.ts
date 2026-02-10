@@ -1,16 +1,34 @@
-import cron from 'node-cron';
+import {Cron, type CronOptions} from "croner";
+import {customLogger} from "./CustomLogger";
 import {runScrapeAndSave} from "./scraper";
 
-// Executa todos os dias às 03:00
-async function startScraper() {
-    await runScrapeAndSave();
-}
+const dailyAt3: string = '0 0 3 * * *'                                                 // Executa todos os dias às 03:00
+const each5Seconds: string = '*/5 * * * * *'                                         // TESTE: Executa a cada 5 segundos
+const cronOptions: CronOptions = {name: "scraper", timezone: "Europe/Lisbon"}
+let job: Cron;
 
-async function scheduleScraper() {
-    cron.schedule('0 0 3 * * *', async () => {
-        console.log('⏰ Iniciando scrape programado...');
-        await runScrapeAndSave();
+function scheduleScraper() {
+    job = new Cron(dailyAt3, cronOptions, async () => {
+        customLogger("INFO", "⏰ Iniciando scrape programado...");
+        // await runScrapeAndSave();
     });
 }
 
-export {scheduleScraper, startScraper};
+// TODO: Considerar area administrativa para status, triggers e alterações
+// job.nextRun( /*optional*/ startFromDate);                              // Get a Date object representing the next run
+// job.nextRuns(10, /*optional*/ startFromDate);                    // Get an array of Dates, containing the next n runs
+// job.previousRuns(10, /*optional*/ referenceDate);      // Get an array of Dates, containing previous n scheduled runs
+// job.msToNext( /*optional*/ startFromDate);                      // Get the milliseconds left until the next execution
+// job.currentRun();                             // Get a Date object showing when the current (or last) run was started
+// job.previousRun();                                     // Get a Date object showing when the previous job was started
+//
+// job.match(date);                    // Check if a Date object or date string matches the cron pattern (true or false)
+//
+// job.isRunning();                        // Indicates if the job is scheduled and not paused or killed (true or false)
+// job.isStopped();                        // Indicates if the job is permanently stopped using `stop()` (true or false)
+// job.isBusy();                                    // Indicates if the job is currently busy doing work (true or false)
+//
+// job.getPattern();                       // Returns the original cron pattern string, or undefined for date-based jobs
+// job.getOnce();                                                   // Returns the original run-once date (Date or null)
+
+export default scheduleScraper;

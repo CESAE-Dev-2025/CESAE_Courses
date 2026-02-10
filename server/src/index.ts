@@ -6,27 +6,28 @@ import {cors} from 'hono/cors'
 import {rateLimiter} from "hono-rate-limiter";
 import {drizzle} from 'drizzle-orm/mysql2';
 import {courses} from "./db/schema";
-import {scheduleScraper, startScraper} from "./cronJob";
+import scheduleScraper from "./cronJob";
+import {runScrapeAndSave} from "./scraper";
+import {customLogger} from "./CustomLogger";
 
-await scheduleScraper();
-
+scheduleScraper();
 
 const app = new Hono()
 
 const db = drizzle(process.env.DATABASE_URL!);
-const logDate = () => new Date()
-    .toISOString()
-    .replace('Z', '')
-    .replace('T', ' ')
-
-export const customLogger = (logType: string, message: string, ...rest: string[]) => {
-    logType = logType.toUpperCase()
-    if (logType === 'ERROR') {
-        console.error(`${logDate()} | ${logType}:`, message, ...rest)
-    } else {
-        console.log(`${logDate()} | ${logType}:`, message, ...rest)
-    }
-}
+// const logDate = () => new Date()
+//     .toISOString()
+//     .replace('Z', '')
+//     .replace('T', ' ')
+//
+// export const customLogger = (logType: string, message: string, ...rest: string[]) => {
+//     logType = logType.toUpperCase()
+//     if (logType === 'ERROR') {
+//         console.error(`${logDate()} | ${logType}:`, message, ...rest)
+//     } else {
+//         console.log(`${logDate()} | ${logType}:`, message, ...rest)
+//     }
+// }
 
 app.use(cors())
 
@@ -44,7 +45,7 @@ app.use(logger())
 app.post('/admin/run-scrape', async c => {
     await new Promise((resolve) => setTimeout(resolve, 61000))
     customLogger("INFO", "Scrape requested by admin...")
-    await startScraper();
+    await runScrapeAndSave();
     return c.json({ status: 'ok', message: 'Scrape iniciado' });
 });
 
