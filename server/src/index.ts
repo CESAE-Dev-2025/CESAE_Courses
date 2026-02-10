@@ -37,6 +37,7 @@ app.post('/admin/run-scrape', async c => {
     return c.json({ status: 'ok', message: 'Scrape started successfully.' });
 });
 
+// TODO: Proteger este endpoint (token, JWT, IP whitelist, etc.)
 app.get('/admin/scrape-job-status', async c => {
     customLogger("INFO", "Scrape requested by admin...")
 
