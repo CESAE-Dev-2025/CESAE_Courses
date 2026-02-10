@@ -6,7 +6,7 @@ import {cors} from 'hono/cors'
 import {rateLimiter} from "hono-rate-limiter";
 import {drizzle} from 'drizzle-orm/mysql2';
 import {courses} from "./db/schema";
-import scheduleScraper from "./cronJob";
+import {job, scheduleScraper} from "./cronJob";
 import {runScrapeAndSave} from "./scraper";
 import {customLogger} from "./CustomLogger";
 
@@ -30,10 +30,19 @@ scheduleScraper();
 
 // TODO: Proteger este endpoint (token, JWT, IP whitelist, etc.)
 app.post('/admin/run-scrape', async c => {
-    await new Promise((resolve) => setTimeout(resolve, 61000))
     customLogger("INFO", "Scrape requested by admin...")
-    await runScrapeAndSave();
-    return c.json({ status: 'ok', message: 'Scrape iniciado' });
+
+    job?.trigger();
+
+    return c.json({ status: 'ok', message: 'Scrape started successfully.' });
+});
+
+app.get('/admin/scrape-job-status', async c => {
+    customLogger("INFO", "Scrape requested by admin...")
+
+    const isActive = job?.isStopped() ? "inactive" : "active";
+
+    return c.json({ data: isActive, status: 'ok', message: 'Scrape iniciado' });
 });
 
 app.get('/courses', async (c) => {
