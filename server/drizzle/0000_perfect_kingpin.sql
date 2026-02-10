@@ -21,7 +21,7 @@ CREATE TABLE `courses` (
 	`goals` text,
 	`sponsor_img_url` varchar(255),
 	`course_content` text,
-	`enrollment` varchar(100),
+	`enrollment` varchar(255),
 	`has_download_button` tinyint(1),
 	CONSTRAINT `courses_id` PRIMARY KEY(`id`)
 );
