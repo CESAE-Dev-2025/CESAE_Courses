@@ -41,6 +41,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "croner": "^10.0.1",
     "dotenv": "^17.2.3",
     "drizzle-orm": "^0.45.1",
     "hono-rate-limiter": "^0.5.3",
