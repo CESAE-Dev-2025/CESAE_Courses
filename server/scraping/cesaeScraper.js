@@ -1,14 +1,13 @@
-const { chromium } = require("playwright");
+// import 'dotenv/config';
+
+const {chromium} = require("playwright");
 
 async function scrapeCesaeCourses() {
-    const browser = await chromium.launch({ headless: true });
+    const browser = await chromium.launch({headless: true});
     const page = await browser.newPage();
 
     try {
-        await page.goto(
-            "https://cesaedigital.pt/fldrSite/pages/coursesList.aspx",
-            { waitUntil: "networkidle" }
-        );
+        await page.goto("https://cesaedigital.pt/fldrSite/pages/coursesList.aspx", {waitUntil: "networkidle"});
 
         await page.waitForSelector("article");
 
@@ -47,16 +46,16 @@ async function scrapeCesaeCourses() {
         const results = [];
 
         for (const url of courseUrls) {
-            await page.goto(url, { waitUntil: "networkidle" });
+            await page.goto(url, {waitUntil: "networkidle"});
 
             const data = await page.evaluate(() => ({
                 name: document.querySelector("h1")?.innerText ?? null,
-                cover_url: document.querySelector("#mainSection_imgCourse")?.src ?? null,
+                coverUrl: document.querySelector("#mainSection_imgCourse")?.src ?? null,
 
-                start_date: document.querySelector("#mainSection_lblDtInicio")?.innerText ?? null,
-                end_date: document.querySelector("#mainSection_lblDtFim")?.innerText ?? null,
+                startDate: document.querySelector("#mainSection_lblDtInicio")?.innerText ?? null,
+                endDate: document.querySelector("#mainSection_lblDtFim")?.innerText ?? null,
                 time: document.querySelector("#mainSection_lblHorario")?.innerText ?? null,
-                time_description: document.querySelector(".breadcrumb")?.innerText ?? null,
+                timeDescription: document.querySelector(".breadcrumb")?.innerText ?? null,
 
                 duration: document.querySelector("#mainSection_lblDuracao")?.innerText ?? null,
                 regime: document.querySelector("div.bg-secondary span.bold")?.innerText ?? null,
@@ -71,15 +70,15 @@ async function scrapeCesaeCourses() {
                 benefits: document.querySelector("#mainSection_divBeneficios a")?.href ?? null,
                 goals: document.querySelector("#mainSection_objetivos")?.innerText ?? null,
 
-                sponsor_img_url: document.querySelector("#mainSection_imgLogoParceiros")?.src ?? null,
-                course_content: document.querySelector("h3.title + div.col-12")?.innerText ?? null,
+                sponsorImgUrl: document.querySelector("#mainSection_imgLogoParceiros")?.src ?? null,
+                courseContent: document.querySelector("h3.title + div.col-12")?.innerText ?? null,
                 enrollment: document.querySelector("#mainSection_btnInsc")?.href ?? null,
 
-                has_download_button: document.querySelector("#mainSection_btnProgm") ? 1 : 0,
+                hasDownloadButton: document.querySelector("#mainSection_btnProgm") ? 1 : 0,
             }));
 
             results.push(data);
-            console.log(data);
+            // console.log(data);
         }
 
         return results;
