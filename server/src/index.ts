@@ -1,6 +1,8 @@
 import 'dotenv/config';
 
 import {Hono} from 'hono'
+import {jwt, sign} from 'hono/jwt'
+import type {JwtVariables} from 'hono/jwt'
 import {logger} from 'hono/logger'
 import {cors} from 'hono/cors'
 import {rateLimiter} from "hono-rate-limiter";
@@ -10,11 +12,20 @@ import {job, scheduleScraper} from "./cronJob";
 import {runScrapeAndSave} from "./scraper";
 import {customLogger} from "./CustomLogger";
 
-const app = new Hono()
+type Variables = JwtVariables
+
+// const app = new Hono()
+const app = new Hono<{ Variables: Variables }>()
 
 const db = drizzle(process.env.DATABASE_URL!);
+const JWT_SECRET = process.env.JWT_SECRET!;
+const ADMIN_USER = process.env.ADMIN_USER! ?? "admin";
+const ADMIN_PASS = process.env.ADMIN_PASS! ?? "admin";
 
-app.use(cors())
+app.use(cors({
+    origin: '*',
+    allowHeaders: ['Content-Type', 'Authorization'],
+}))
 
 app.use(
     rateLimiter({
@@ -26,7 +37,53 @@ app.use(
 
 app.use(logger())
 
+app.use(
+    '/admin/*',
+    jwt({
+        secret: JWT_SECRET,
+        alg: 'HS256',
+    })
+)
+
 scheduleScraper();
+
+app.get('/auth/page', (c) => {
+    return c.text('You are authorized')
+})
+
+app.post('/auth/login', async (c) => {
+    const {username, password} = await c.req.json()
+
+    if (username !== ADMIN_USER || password !== ADMIN_PASS) {
+        return c.json({error: 'Invalid credentials'}, {status: 401})
+    }
+
+    const token = await sign(
+        {
+            sub: username,
+            role: 'admin',
+            exp: Math.floor(Date.now() / 1000) + 60 * 60,
+        },
+        JWT_SECRET
+    )
+
+    return c.json({token})
+})
+
+app.post('/auth/logout', (c) => {
+    return c.json({ok: true})
+})
+
+app.get(
+    '/auth/me',
+    jwt({
+        secret: JWT_SECRET,
+        alg: 'HS256',
+    }),
+    (c) => {
+        return c.json({ok: true})
+    }
+)
 
 // TODO: Proteger este endpoint (token, JWT, IP whitelist, etc.)
 app.post('/admin/run-scrape', async c => {
@@ -34,7 +91,7 @@ app.post('/admin/run-scrape', async c => {
 
     job?.trigger();
 
-    return c.json({ status: 'ok', message: 'Scrape started successfully.' });
+    return c.json({status: 'ok', message: 'Scrape started successfully.'});
 });
 
 // TODO: Proteger este endpoint (token, JWT, IP whitelist, etc.)
@@ -47,7 +104,7 @@ app.get('/admin/scrape-job-info', async c => {
         isActive: job?.isStopped()
     }
 
-    return c.json({ data: jobData, status: 'ok' });
+    return c.json({data: jobData, status: 'ok'});
 });
 
 app.get('/courses', async (c) => {

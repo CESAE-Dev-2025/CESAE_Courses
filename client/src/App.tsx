@@ -1,77 +1,36 @@
-import {useState} from 'react'
-import beaver from './assets/beaver.svg'
+import type { ReactElement } from 'react'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
-import {Course} from "shared/dist/types/course";
+import { isAuthenticated } from './api/auth'
+import Home from './pages/Home'
+import Login from './pages/Login'
+import AdminDashboard from './pages/AdminDashboard'
 
-const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3000"
+function RequireAuth({ children }: { children: ReactElement }) {
+  if (!isAuthenticated()) {
+    return <Navigate to="/login" replace />
+  }
+  return children
+}
 
 function App() {
-    const [coursesData, setCoursesData] = useState<Course[] | undefined>()
-    // const [courseData, setCourseData] = useState<Course | undefined>()
-
-    async function getCourses() {
-        try {
-            const req = await fetch(`${SERVER_URL}/courses`)
-            const res: Course[] = await req.json()
-            setCoursesData(res)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    /* Função para buscar 1 curso (por id)
-    async function getCourse(courseId: number) {
-
-        try {
-            const req = await fetch(`${SERVER_URL}/courses/${courseId}`)
-            const res: Course = await req.json()
-            setCourseData(res)
-        } catch (error) {
-            console.log(error)
-        }
-    }
-    */
-
-    return (
-        <>
-            <div>
-                <a href="https://github.com/stevedylandev/bhvr" target="_blank">
-                    <img src={beaver} className="logo" alt="beaver logo"/>
-                </a>
-            </div>
-            <h1>bhvr</h1>
-            <h2>Bun + Hono + Vite + React</h2>
-            <p>A typesafe fullstack monorepo</p>
-            <div className="card">
-                <div className='button-container'>
-                    {/*<button onClick={() => getCourse(1)}>*/}
-                    {/*    Call API (curso 1)*/}
-                    {/*</button>*/}
-                    <button onClick={getCourses}>
-                        Call API (cursos)
-                    </button>
-                    <a className='docs-link' target='_blank' href="https://bhvr.dev">Docs</a>
-                </div>
-                {/*{courseData && (*/}
-                {/*    <pre className='response'>*/}
-                {/*        <code>*/}
-                {/*            Curso: {courseData.name} <br/>*/}
-                {/*            Início: {courseData.startDate} <br/>*/}
-                {/*            Horário: {courseData.time} / {courseData.timeDescription}<br/>*/}
-                {/*            Duração: {courseData.duration}*/}
-                {/*        </code>*/}
-                {/*  </pre>*/}
-                {/*)}*/}
-                {coursesData && (
-                    <pre className='response'>
-                        <code>
-                            Número de cursos: {coursesData.length}
-                        </code>
-                  </pre>
-                )}
-            </div>
-        </>
-    )
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/admin/dashboard"
+          element={
+            <RequireAuth>
+              <AdminDashboard />
+            </RequireAuth>
+          }
+        />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App
