@@ -85,7 +85,6 @@ app.get(
     }
 )
 
-// TODO: Proteger este endpoint (token, JWT, IP whitelist, etc.)
 app.post('/admin/run-scrape', async c => {
     customLogger("INFO", "Scrape started by admin request...")
 
@@ -94,7 +93,6 @@ app.post('/admin/run-scrape', async c => {
     return c.json({status: 'ok', message: 'Scrape started successfully.'});
 });
 
-// TODO: Proteger este endpoint (token, JWT, IP whitelist, etc.)
 app.get('/admin/scrape-job-info', async c => {
     customLogger("INFO", "Scrape info requested by admin...")
 
@@ -110,9 +108,6 @@ app.get('/admin/scrape-job-info', async c => {
 app.get('/courses', async (c) => {
     try {
         const data = await db.select().from(courses);
-
-        // await db.delete(courses);
-        // await db.insert(courses).values(data);
 
         customLogger("INFO", `Getting ${data.length} courses from the database.`)
         return c.json(data, {status: 200})
@@ -136,7 +131,4 @@ app.get('/courses', async (c) => {
 //     return c.json({error: 'Course not found'}, {status: 404})
 // })
 
-export default {
-    fetch: app.fetch,
-    idleTimeout: 15
-}
+export default app
