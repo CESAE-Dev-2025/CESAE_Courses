@@ -1,5 +1,5 @@
-const TOKEN_KEY = 'admin_token'
-const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3000"
+const TOKEN_KEY = import.meta.env.VITE_TOKEN_KEY
+const SERVER_URL = import.meta.env.VITE_SERVER_URL
 
 export function getToken() {
     return localStorage.getItem(TOKEN_KEY)
