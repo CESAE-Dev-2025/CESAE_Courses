@@ -19,8 +19,6 @@ const app = new Hono<{ Variables: Variables }>()
 
 const db = drizzle(process.env.DATABASE_URL!);
 const JWT_SECRET = process.env.JWT_SECRET!;
-const ADMIN_USER = process.env.ADMIN_USER! ?? "admin";
-const ADMIN_PASS = process.env.ADMIN_PASS! ?? "admin";
 
 app.use(cors({
     origin: '*',
@@ -54,7 +52,7 @@ app.get('/auth/page', (c) => {
 app.post('/auth/login', async (c) => {
     const {username, password} = await c.req.json()
 
-    if (username !== ADMIN_USER || password !== ADMIN_PASS) {
+    if (username !== process.env.ADMIN_USER || password !== process.env.ADMIN_PASS) {
         return c.json({error: 'Invalid credentials'}, {status: 401})
     }
 

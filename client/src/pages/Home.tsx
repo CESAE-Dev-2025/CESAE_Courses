@@ -30,8 +30,8 @@ function Home() {
       <p>A typesafe fullstack monorepo</p>
       <div className="card">
         <div className="button-container">
-          <Link className="docs-link" to="/login">
-            Admin Login
+          <Link className="docs-link" to="/admin/dashboard">
+            Admin Dashboard
           </Link>
           <button onClick={getCourses}>Call API (cursos)</button>
           <a className="docs-link" target="_blank" href="https://bhvr.dev">
