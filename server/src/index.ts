@@ -30,7 +30,7 @@ scheduleScraper();
 
 // TODO: Proteger este endpoint (token, JWT, IP whitelist, etc.)
 app.post('/admin/run-scrape', async c => {
-    customLogger("INFO", "Scrape requested by admin...")
+    customLogger("INFO", "Scrape started by admin request...")
 
     job?.trigger();
 
@@ -38,12 +38,16 @@ app.post('/admin/run-scrape', async c => {
 });
 
 // TODO: Proteger este endpoint (token, JWT, IP whitelist, etc.)
-app.get('/admin/scrape-job-status', async c => {
-    customLogger("INFO", "Scrape requested by admin...")
+app.get('/admin/scrape-job-info', async c => {
+    customLogger("INFO", "Scrape info requested by admin...")
 
-    const isActive = job?.isStopped() ? "inactive" : "active";
+    const jobData = {
+        lastRun: job?.currentRun(),
+        nextRun: job?.nextRun(),
+        isActive: job?.isStopped()
+    }
 
-    return c.json({ data: isActive, status: 'ok', message: 'Scrape iniciado' });
+    return c.json({ data: jobData, status: 'ok' });
 });
 
 app.get('/courses', async (c) => {
