@@ -14,18 +14,19 @@ const db = drizzle(process.env.DATABASE_URL!);
 
 function scheduleScraper() {
     job = new Cron(dailyAt3, cronOptions, async () => {
-        customLogger("INFO", "⏰ Iniciando scrape programado...");
+        customLogger("INFO", "⏰ Starting programmed scrape...");
 
         const data = await scrapeCesaeCourses();
 
-        customLogger("INFO", `Scrape concluído com sucesso. ${data.length} cursos encontrados.`);
 
-        if (data.length === 0)
+        if (data.length === 0){
+            customLogger("INFO", `Scrape finished. No courses found.`);
             return;
+        }
 
-        // console.log(data[0]);
         await db.delete(courses);
         await db.insert(courses).values(data);
+        customLogger("INFO", `Scrape finished successfully. ${data.length} courses saved to the database.`);
     });
 }
 
