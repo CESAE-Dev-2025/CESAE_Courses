@@ -62,7 +62,7 @@ app.get('/courses', async (c) => {
 
     } catch (error) {
         customLogger('ERROR', 'Error fetching courses:', error as string);
-        return c.json({error: 'Internal Server Error HA'}, {status: 500});
+        return c.json({error: 'Internal Server Error'}, {status: 500});
     }
 })
 
