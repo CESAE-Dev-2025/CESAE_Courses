@@ -1,6 +1,6 @@
 import {Cron, type CronOptions} from "croner";
 import {customLogger} from "./CustomLogger";
-import scrapeCesaeCourses from "../scraping/cesaeScraper";
+import scrapeCesaeCourses from "../scraping";
 import {courses} from "./db/schema";
 import {drizzle} from "drizzle-orm/mysql2";
 
