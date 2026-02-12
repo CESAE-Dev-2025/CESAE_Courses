@@ -6,7 +6,7 @@ import {cors} from 'hono/cors'
 import {rateLimiter} from "hono-rate-limiter";
 import {drizzle} from 'drizzle-orm/mysql2';
 import {courses} from "./db/schema";
-import {job, scheduleScraper} from "./cronJob";
+import {scheduleScraper} from "./cronJob";
 import {customLogger} from "./CustomLogger";
 
 const app = new Hono()
@@ -65,9 +65,6 @@ scheduleScraper();
 app.get('/courses', async (c) => {
     try {
         const data = await db.select().from(courses);
-
-        // await db.delete(courses);
-        // await db.insert(courses).values(data);
 
         customLogger("INFO", `Getting ${data.length} courses from the database.`)
         return c.json(data, {status: 200})

@@ -19,7 +19,6 @@ function scheduleScraper() {
 
         const data: Course[] = await scrapeCesaeCourses();
 
-
         if (data.length === 0){
             customLogger("INFO", `Scrape finished. No courses found.`);
             return;

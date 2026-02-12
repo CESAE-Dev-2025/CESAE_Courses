@@ -46,7 +46,6 @@ export async function scrapeCesaeCourses(): Promise<Course[]> {
 
         for (const url of courseUrls) {
 
-
             await page.goto(url, { waitUntil: "domcontentloaded" });
             await page.waitForTimeout(800);
 
