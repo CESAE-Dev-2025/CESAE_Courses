@@ -7,8 +7,7 @@ export async function scrapeCesaeCourses(): Promise<Course[]> {
     const page: Page = await browser.newPage();
 
     try {
-        console.log(`Page loaded (${process.env.SCRAPPING_BASE_URL!}).`);
-        await page.goto("https://cesaedigital.pt/fldrSite/pages/coursesList.aspx", { waitUntil: "domcontentloaded" });
+        await page.goto(process.env.SCRAPING_BASE_URL!, { waitUntil: "domcontentloaded" });
 
         await page.waitForSelector("article");
 
