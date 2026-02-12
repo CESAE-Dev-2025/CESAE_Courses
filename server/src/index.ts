@@ -9,7 +9,6 @@ import {rateLimiter} from "hono-rate-limiter";
 import {drizzle} from 'drizzle-orm/mysql2';
 import {courses} from "./db/schema";
 import {job, scheduleScraper} from "./cronJob";
-import {runScrapeAndSave} from "./scraper";
 import {customLogger} from "./CustomLogger";
 
 type Variables = JwtVariables
