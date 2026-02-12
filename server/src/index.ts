@@ -89,7 +89,27 @@ app.post('/admin/run-scrape', async c => {
 
     return c.json({status: 'ok', message: 'Scrape started successfully.'});
 });
+// TODO: Proteger este endpoint (token, JWT, IP whitelist, etc.)
+// app.post('/admin/run-scrape', async c => {
+//     customLogger("INFO", "Scrape started by admin request...")
+//
+//     job?.trigger();
+//
+//     return c.json({ status: 'ok', message: 'Scrape started successfully.' });
+// });
 
+// TODO: Proteger este endpoint (token, JWT, IP whitelist, etc.)
+// app.get('/admin/scrape-job-info', async c => {
+//     customLogger("INFO", "Scrape info requested by admin...")
+//
+//     const jobData = {
+//         lastRun: job?.currentRun(),
+//         nextRun: job?.nextRun(),
+//         isActive: job?.isStopped()
+//     }
+//
+//     return c.json({ data: jobData, status: 'ok' });
+// });
 app.get('/admin/scrape-job-info', async c => {
     customLogger("INFO", "Scrape info requested by admin...")
 
@@ -101,6 +121,18 @@ app.get('/admin/scrape-job-info', async c => {
 
     return c.json({data: jobData, status: 'ok'});
 });
+// app.get('/courses/:id', async (c) => {
+//     const id = Number(c.req.param('id'))
+//     const course = await db.select().from(courses).where(eq(courses.id, id));
+//
+//     if (course[0] !== undefined) {
+//         customLogger('INFO', `Getting course id ${id} data from the database.`)
+//         return c.json(course, {status: 200})
+//     }
+//
+//     customLogger('ERROR', `Course ${id} not found.`)
+//     return c.json({error: 'Course not found'}, {status: 404})
+// })
 
 app.get('/courses', async (c) => {
     try {
