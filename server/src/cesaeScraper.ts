@@ -1,11 +1,13 @@
+import 'dotenv/config';
 import { chromium, type Page } from "playwright";
-import type { Course } from "../../shared/src/types";
+import type { Course } from "shared/dist/types";
 
 export async function scrapeCesaeCourses(): Promise<Course[]> {
     const browser = await chromium.launch({ headless: true });
     const page: Page = await browser.newPage();
 
     try {
+        console.log(`Page loaded (${process.env.SCRAPPING_BASE_URL!}).`);
         await page.goto("https://cesaedigital.pt/fldrSite/pages/coursesList.aspx", { waitUntil: "domcontentloaded" });
 
         await page.waitForSelector("article");

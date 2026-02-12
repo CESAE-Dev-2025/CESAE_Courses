@@ -1,4 +1,4 @@
-import { mysqlTable, primaryKey, int, varchar, text, tinyint } from "drizzle-orm/mysql-core"
+import { mysqlTable, primaryKey, int, varchar, text, boolean } from "drizzle-orm/mysql-core"
 
 export const courses = mysqlTable("courses", {
 	id: int().autoincrement().notNull(),
@@ -21,7 +21,7 @@ export const courses = mysqlTable("courses", {
 	sponsorImgUrl: varchar("sponsor_img_url", { length: 255 }),
 	courseContent: text("course_content"),
 	enrollment: varchar({ length: 255 }),
-	hasDownloadButton: tinyint("has_download_button"),
+	hasDownloadButton: boolean("has_download_button"),
 },
 (table) => [
 	primaryKey({ columns: [table.id], name: "courses_id"}),

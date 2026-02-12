@@ -1,8 +1,9 @@
 import {Cron, type CronOptions} from "croner";
 import {customLogger} from "./CustomLogger";
-import scrapeCesaeCourses from "../scraping";
+import {scrapeCesaeCourses} from "./cesaeScraper";
 import {courses} from "./db/schema";
 import {drizzle} from "drizzle-orm/mysql2";
+import type {Course} from "shared/dist/types";
 
 const dailyAt3: string = '0 0 3 * * *'                                                 // Executa todos os dias às 03:00
 const each5Seconds: string = '*/5 * * * * *'                                         // TESTE: Executa a cada 5 segundos
@@ -16,7 +17,7 @@ function scheduleScraper() {
     job = new Cron(dailyAt3, cronOptions, async () => {
         customLogger("INFO", "⏰ Starting programmed scrape...");
 
-        const data = await scrapeCesaeCourses();
+        const data: Course[] = await scrapeCesaeCourses();
 
 
         if (data.length === 0){
