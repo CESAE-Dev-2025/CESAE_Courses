@@ -6,10 +6,10 @@
       "name": "bhvr",
       "dependencies": {
         "croner": "^10.0.1",
-        "dotenv": "^17.2.4",
+        "dotenv": "^17.3.1",
         "drizzle-orm": "^0.45.1",
         "hono-rate-limiter": "^0.5.3",
-        "mysql2": "^3.17.0",
+        "mysql2": "^3.17.1",
         "playwright": "^1.58.2",
       },
       "devDependencies": {
