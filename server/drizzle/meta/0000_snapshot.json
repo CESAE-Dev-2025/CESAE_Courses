@@ -143,7 +143,7 @@
         "enrollment": {
           "autoincrement": false,
           "name": "enrollment",
-          "type": "varchar(100)",
+          "type": "varchar(255)",
           "primaryKey": false,
           "notNull": false
         },

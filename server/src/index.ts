@@ -6,25 +6,12 @@ import {cors} from 'hono/cors'
 import {rateLimiter} from "hono-rate-limiter";
 import {drizzle} from 'drizzle-orm/mysql2';
 import {courses} from "./db/schema";
-import {eq} from "drizzle-orm";
-import * as console from "node:console";
+import {scheduleScraper} from "./cronJob";
+import {customLogger} from "./CustomLogger";
 
 const app = new Hono()
 
 const db = drizzle(process.env.DATABASE_URL!);
-const logDate = () => new Date()
-    .toISOString()
-    .replace('Z', '')
-    .replace('T', ' ')
-
-export const customLogger = (logType: string, message: string, ...rest: string[]) => {
-    logType = logType.toUpperCase()
-    if (logType === 'ERROR') {
-        console.error(`${logDate()} | ${logType}:`, message, ...rest)
-    } else {
-        console.log(`${logDate()} | ${logType}:`, message, ...rest)
-    }
-}
 
 app.use(cors())
 
@@ -38,18 +25,29 @@ app.use(
 
 app.use(logger())
 
-app.get('/courses', async (c) => {
-    try {
-        const data = await db.select().from(courses);
+scheduleScraper();
 
-        customLogger("INFO", `Getting ${data.length} courses from the database.`)
-        return c.json(data, {status: 200})
+// TODO: Proteger este endpoint (token, JWT, IP whitelist, etc.)
+// app.post('/admin/run-scrape', async c => {
+//     customLogger("INFO", "Scrape started by admin request...")
+//
+//     job?.trigger();
+//
+//     return c.json({ status: 'ok', message: 'Scrape started successfully.' });
+// });
 
-    } catch (error) {
-        customLogger('ERROR', 'Error fetching courses:', error as string);
-        return c.json({error: 'Internal Server Error HA'}, {status: 500});
-    }
-})
+// TODO: Proteger este endpoint (token, JWT, IP whitelist, etc.)
+// app.get('/admin/scrape-job-info', async c => {
+//     customLogger("INFO", "Scrape info requested by admin...")
+//
+//     const jobData = {
+//         lastRun: job?.currentRun(),
+//         nextRun: job?.nextRun(),
+//         isActive: job?.isStopped()
+//     }
+//
+//     return c.json({ data: jobData, status: 'ok' });
+// });
 
 // app.get('/courses/:id', async (c) => {
 //     const id = Number(c.req.param('id'))
@@ -64,4 +62,20 @@ app.get('/courses', async (c) => {
 //     return c.json({error: 'Course not found'}, {status: 404})
 // })
 
-export default app
+app.get('/courses', async (c) => {
+    try {
+        const data = await db.select().from(courses);
+
+        customLogger("INFO", `Getting ${data.length} courses from the database.`)
+        return c.json(data, {status: 200})
+
+    } catch (error) {
+        customLogger('ERROR', 'Error fetching courses:', error as string);
+        return c.json({error: 'Internal Server Error'}, {status: 500});
+    }
+})
+
+export default {
+    fetch: app.fetch,
+    idleTimeout: 15
+}
