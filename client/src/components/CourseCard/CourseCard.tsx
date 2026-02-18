@@ -7,8 +7,8 @@ import {
   MDBBtn,
   MDBBadge
 } from 'mdb-react-ui-kit';
-import type { Course } from '@/types/course';
 import styles from './CourseCard.module.css';
+import {Course} from "shared";
 
 interface Props {
   course: Course;
@@ -26,7 +26,7 @@ export default function CourseCard({ course }: Props) {
     >
       <div className={styles.imageContainer}>
         <MDBCardImage
-          src={course.cover_url || 'https://via.placeholder.com/400x250?text=Sem+Imagem'}
+          src={course.coverUrl || 'https://via.placeholder.com/400x250?text=Sem+Imagem'}
           position="top"
           alt={course.name}
           className={styles.image}
@@ -57,10 +57,10 @@ export default function CourseCard({ course }: Props) {
               <small>{course.duration}</small>
             </div>
           )}
-          {course.start_date && (
+          {course.startDate && (
             <div className={styles.infoItem}>
               <i className="fas fa-calendar me-2"></i>
-              <small>{course.start_date}</small>
+              <small>{course.startDate}</small>
             </div>
           )}
         </div>

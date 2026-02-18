@@ -1,7 +1,7 @@
 import { MDBContainer, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import { useState } from 'react';
-import CourseCard from '@/components/CourseCard/CourseCard';
-import type { Course } from '@/types/course';
+import CourseCard from '../CourseCard/CourseCard.tsx';
+import {Course} from "shared";
 import styles from './CourseList.module.css';
 
 interface Props {
