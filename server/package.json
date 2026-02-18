@@ -8,16 +8,16 @@
     "dev": "bun --watch run src/index.ts"
   },
   "dependencies": {
-    "dotenv": "^17.2.4",
+    "dotenv": "^17.3.1",
     "drizzle-orm": "^0.45.1",
-    "hono": "^4.10.8",
-    "mysql2": "^3.16.3",
+    "hono": "^4.11.10",
+    "mysql2": "^3.17.2",
     "shared": "workspace:*",
     "playwright": "^1.58.2"
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "drizzle-kit": "^0.31.8",
+    "drizzle-kit": "^0.31.9",
     "tsx": "^4.21.0"
   }
 }

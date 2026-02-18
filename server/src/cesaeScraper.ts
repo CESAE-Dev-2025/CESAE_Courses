@@ -1,12 +1,13 @@
+import 'dotenv/config';
 import { chromium, type Page } from "playwright";
-import type { Course } from "../../shared/src/types";
+import type { Course } from "shared/dist/types";
 
 export async function scrapeCesaeCourses(): Promise<Course[]> {
     const browser = await chromium.launch({ headless: true });
     const page: Page = await browser.newPage();
 
     try {
-        await page.goto("https://cesaedigital.pt/fldrSite/pages/coursesList.aspx", { waitUntil: "domcontentloaded" });
+        await page.goto(process.env.SCRAPING_BASE_URL!, { waitUntil: "domcontentloaded" });
 
         await page.waitForSelector("article");
 
@@ -44,7 +45,6 @@ export async function scrapeCesaeCourses(): Promise<Course[]> {
         let nextId = 1;
 
         for (const url of courseUrls) {
-
 
             await page.goto(url, { waitUntil: "domcontentloaded" });
             await page.waitForTimeout(800);
