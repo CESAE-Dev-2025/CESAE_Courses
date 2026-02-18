@@ -1,0 +1,22 @@
+:root {
+  /* Cores */
+  --primary-dark: #201544;
+  --primary-purple: #36236a;
+  --primary-pink: #ec008b;
+  --primary-blue: #00adef;
+
+  --text-primary: #222;
+  --text-light: #666;
+
+  /* Espaçamentos */
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+
+  /* Bordas */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+
+  /* Shadow */
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+}
