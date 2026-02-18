@@ -1,0 +1,17 @@
+/* RESET BÁSICO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body, #root {
+    height: 100%;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f8f8f8;
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+}
