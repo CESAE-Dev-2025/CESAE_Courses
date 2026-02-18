@@ -1,12 +1,13 @@
-import {useState} from 'react'
-import beaver from '../assets/beaver.svg'
-// @ts-ignore
-import {Course} from 'shared/dist/types/course'
+import { useState, useEffect } from 'react'
+import { Course } from 'shared/dist/types/course'
+import HeroBanner from "../components/HeroBanner/HeroBanner"
+import heroBg from "@/assets/bg-cesae-hero.jpg"
+import CourseList from "../components/CourseList/CourseList"
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000'
 
 function Home() {
-    const [coursesData, setCoursesData] = useState<Course[] | undefined>()
+    const [coursesData, setCoursesData] = useState<Course[]>([])
 
     async function getCourses() {
         try {
@@ -18,29 +19,17 @@ function Home() {
         }
     }
 
+    useEffect(() => {
+        getCourses()
+    }, [])
+
     return (
         <>
-            <div>
-                <a href="https://github.com/stevedylandev/bhvr" target="_blank">
-                    <img src={beaver} className="logo" alt="beaver logo"/>
-                </a>
-            </div>
-            <h1>bhvr</h1>
-            <h2>Bun + Hono + Vite + React</h2>
-            <p>A typesafe fullstack monorepo</p>
-            <div className="card">
-                <div className="button-container">
-                    <button onClick={getCourses}>Call API (cursos)</button>
-                    <a className="docs-link" target="_blank" href="https://bhvr.dev">
-                        Docs
-                    </a>
-                </div>
-                {coursesData && (
-                    <pre className="response">
-            <code>Numero de cursos: {coursesData.length}</code>
-          </pre>
-                )}
-            </div>
+            <HeroBanner
+                title="Nossos Cursos"
+                backgroundImage={heroBg}
+            />
+            <CourseList courses={coursesData} />
         </>
     )
 }

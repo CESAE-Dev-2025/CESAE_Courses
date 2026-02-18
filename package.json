@@ -46,6 +46,7 @@
     "drizzle-orm": "^0.45.1",
     "hono-rate-limiter": "^0.5.3",
     "mysql2": "^3.17.2",
-    "playwright": "^1.58.2"
+    "playwright": "^1.58.2",
+    "react-router-dom": "^7.13.0"
   }
 }

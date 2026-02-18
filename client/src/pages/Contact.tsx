@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-function AboutMe() {
+function Contact() {
     const [count, setCount] = useState(0);
 
     return (
         <div>
-            <h1>Sobre Mim</h1>
+            <h1>Contato</h1>
             <button onClick={() => setCount(count + 1)}>
                 {count}
             </button>
@@ -13,4 +13,4 @@ function AboutMe() {
     );
 }
 
-export default AboutMe;
+export default Contact;

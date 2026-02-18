@@ -2,6 +2,8 @@ import { useState } from "react";
 import styles from "./Header.module.css";
 import logo from "/src/assets/cesae-digital-logo.svg";
 import menuIcon from "@/assets/menu-hamburger.svg?url";
+import { Link } from "react-router-dom";
+
 
 function Header() {
     const [open, setOpen] = useState(false);
@@ -18,9 +20,9 @@ function Header() {
 
             {/* Menu desktop */}
             <nav className={styles.nav}>
-                <a href="#">Cursos</a>
-                <a href="#">Sobre</a>
-                <a href="#">Contatos</a>
+                <Link to="/home">Cursos</Link>
+                <Link to="/about">Sobre</Link>
+                <Link to="/contact">Contatos</Link>
             </nav>
 
             {/* Menu mobile */}
@@ -34,9 +36,9 @@ function Header() {
                 </button>
                 {open && (
                     <nav className={styles.dropdownMenu}>
-                        <a href="#">Cursos</a>
-                        <a href="#">Sobre</a>
-                        <a href="#">Contatos</a>
+                        <Link to="/home">Cursos</Link>
+                        <Link to="/about">Sobre</Link>
+                        <Link to="/contact">Contatos</Link>
                     </nav>
                 )}
             </div>
