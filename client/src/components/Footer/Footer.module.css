@@ -1,0 +1,40 @@
+.footer {
+    background: var(--primary-dark);
+    color: white;
+    padding: 40px 16px 20px;
+    margin-top: auto;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px;
+}
+
+.column {
+    flex: 1;
+}
+
+.column h4 {
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.column p {
+    font-size: 14px;
+    color: #ddd;
+    margin-bottom: 6px;
+}
+
+.bottom {
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    font-size: 13px;
+    text-align: center;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
