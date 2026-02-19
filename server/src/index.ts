@@ -75,7 +75,4 @@ app.get('/courses', async (c) => {
     }
 })
 
-export default {
-    fetch: app.fetch,
-    idleTimeout: 15
-}
+export default app;
