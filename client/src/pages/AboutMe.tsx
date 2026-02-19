@@ -1,16 +1,19 @@
-import { useState } from "react";
+import HeroBanner from "../components/HeroBanner/HeroBanner";
+import AboutMission from "../components/AboutMission/AboutMission.tsx";
+import AboutHistory from "../components/AboutHistory/AboutHistory.tsx";
+import AboutObjectives from "../components/AboutObjectives/AboutObjectives";
+import heroBg from "@/assets/heroBannerAbout.jpg";
 
-function AboutMe() {
-    const [count, setCount] = useState(0);
-
+function About() {
     return (
         <div>
-            <h1>Sobre Mim</h1>
-            <button onClick={() => setCount(count + 1)}>
-                {count}
-            </button>
+            <HeroBanner title="Sobre Nós" backgroundImage={heroBg}/>
+            <AboutHistory/>
+            <AboutObjectives/>
+            <AboutMission/>
         </div>
     );
 }
 
-export default AboutMe;
+export default About;
+

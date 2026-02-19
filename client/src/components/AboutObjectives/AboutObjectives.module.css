@@ -1,0 +1,66 @@
+.objectivesSection {
+    padding: 80px var(--space-lg);
+    background: linear-gradient(
+            135deg,
+            var(--primary-dark),
+            var(--primary-purple)
+    );
+    color: white;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 60px;
+}
+
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.card {
+    background: white;
+    color: var(--text-primary);
+    padding: 40px 28px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+
+.number {
+    display: block;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary-pink);
+    margin-bottom: 20px;
+}
+
+
+.text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-light);
+}
+
+@media (max-width: 900px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
