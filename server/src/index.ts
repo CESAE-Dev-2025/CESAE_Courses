@@ -1,10 +1,11 @@
 import 'dotenv/config';
 
 import {Hono} from 'hono'
-import {jwt, sign} from 'hono/jwt'
+import {jwt, sign, verify} from 'hono/jwt'
 import type {JwtVariables} from 'hono/jwt'
 import {logger} from 'hono/logger'
 import {cors} from 'hono/cors'
+import {setCookie, getCookie, deleteCookie} from 'hono/cookie'
 import {rateLimiter} from "hono-rate-limiter";
 import {drizzle} from 'drizzle-orm/mysql2';
 import {courses} from "./db/schema";
@@ -17,10 +18,13 @@ const app = new Hono<{ Variables: Variables }>()
 
 const db = drizzle(process.env.DATABASE_URL!);
 const JWT_SECRET = process.env.JWT_SECRET!;
+const JWT_TTL_SECONDS = Number(process.env.JWT_TTL_SECONDS ?? 600) // 10m padrão
+const REFRESH_TOKEN_TTL_SECONDS = Number(process.env.REFRESH_TOKEN_TTL_SECONDS ?? 604800) // 7 dias padrão
 
 app.use(cors({
-    origin: '*',
+    origin: (origin) => origin, // Permite qualquer origem mantendo as credenciais
     allowHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
 }))
 
 app.use(
@@ -64,16 +68,67 @@ app.post('/auth/login', async (c) => {
         return c.json({error: 'Invalid credentials'}, {status: 401})
     }
 
+    const now = Math.floor(Date.now() / 1000)
     const token = await sign(
         {
             sub: username,
             role: 'admin',
-            exp: Math.floor(Date.now() / 1000) + 60 * 60,
+            iat: now,
+            exp: now + JWT_TTL_SECONDS,
         },
         JWT_SECRET
     )
 
+    const refreshToken = await sign(
+        {
+            sub: username,
+            type: 'refresh',
+            iat: now,
+            exp: now + REFRESH_TOKEN_TTL_SECONDS,
+        },
+        JWT_SECRET
+    )
+
+    setCookie(c, 'refresh_token', refreshToken, {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'Strict',
+        maxAge: REFRESH_TOKEN_TTL_SECONDS,
+        path: '/auth/refresh', // Só enviado para a rota de refresh por segurança
+    })
+
     return c.json({token})
+})
+
+app.post('/auth/refresh', async (c) => {
+    const refreshToken = getCookie(c, 'refresh_token')
+
+    if (!refreshToken) {
+        return c.json({error: 'Refresh token missing'}, {status: 401})
+    }
+
+    try {
+        const payload = await verify(refreshToken, JWT_SECRET, { alg: 'HS256' })
+
+        if (payload.type !== 'refresh') {
+            return c.json({error: 'Invalid token type'}, {status: 401})
+        }
+
+        const now = Math.floor(Date.now() / 1000)
+        const newToken = await sign(
+            {
+                sub: payload.sub,
+                role: 'admin',
+                iat: now,
+                exp: now + JWT_TTL_SECONDS,
+            },
+            JWT_SECRET
+        )
+
+        return c.json({token: newToken})
+    } catch (e) {
+        return c.json({error: 'Invalid or expired refresh token'}, {status: 401})
+    }
 })
 
 app.post('/auth/logout', (c) => {
@@ -100,19 +155,6 @@ app.get('/admin/scrape-job-info', async c => {
 
     return c.json({data: jobData, status: 'ok'});
 });
-
-// app.get('/courses/:id', async (c) => {
-//     const id = Number(c.req.param('id'))
-//     const course = await db.select().from(courses).where(eq(courses.id, id));
-//
-//     if (course[0] !== undefined) {
-//         customLogger('INFO', `Getting course id ${id} data from the database.`)
-//         return c.json(course, {status: 200})
-//     }
-//
-//     customLogger('ERROR', `Course ${id} not found.`)
-//     return c.json({error: 'Course not found'}, {status: 404})
-// })
 
 app.get('/courses', async (c) => {
     try {

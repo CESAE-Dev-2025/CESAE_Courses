@@ -29,8 +29,30 @@ export async function login(username: string, password: string) {
     if (!data?.token)
         throw new Error('Missing token');
 
-    localStorage.setItem(TOKEN_KEY, data.token)
+    saveToken(data.token)
     return data.token as string
+}
+
+export function saveToken(token: string) {
+    localStorage.setItem(TOKEN_KEY, token)
+}
+
+export async function refreshToken() {
+    const response = await fetch(`${SERVER_URL}/auth/refresh`, {
+        method: 'POST',
+    });
+
+    if (!response.ok) {
+        clearToken();
+        throw new Error('Session expired');
+    }
+
+    const data = await response.json();
+    if (data.token) {
+        saveToken(data.token);
+        return data.token as string;
+    }
+    throw new Error('Failed to refresh token');
 }
 
 export async function logout() {
