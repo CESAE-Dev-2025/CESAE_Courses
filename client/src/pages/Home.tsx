@@ -9,7 +9,7 @@ import {Course} from "shared";
 const SERVER_URL = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000'
 
 function Home() {
-    const [coursesData, setCoursesData] = useState<Course[] | undefined>()
+    const [coursesData, setCoursesData] = useState<Course[]>([])
 
     async function getCourses() {
         try {
@@ -25,9 +25,6 @@ function Home() {
     useEffect(() => {
         getCourses();
     }, []);
-
-    // if (!coursesData)
-    //     getCourses();
 
     return (
         <>
