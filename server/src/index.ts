@@ -43,6 +43,16 @@ app.use(
 
 scheduleScraper();
 
+app.get('/auth/me',
+    jwt({
+        secret: JWT_SECRET,
+        alg: 'HS256',
+    }),
+    (c) => {
+        return c.json({ok: true})
+    }
+)
+
 app.get('/auth/page', (c) => {
     return c.text('You are authorized')
 })
@@ -67,19 +77,9 @@ app.post('/auth/login', async (c) => {
 })
 
 app.post('/auth/logout', (c) => {
+    deleteCookie(c, 'refresh_token', {path: '/auth/refresh'})
     return c.json({ok: true})
 })
-
-app.get(
-    '/auth/me',
-    jwt({
-        secret: JWT_SECRET,
-        alg: 'HS256',
-    }),
-    (c) => {
-        return c.json({ok: true})
-    }
-)
 
 app.post('/admin/run-scrape', async c => {
     customLogger("INFO", "Scrape started by admin request...")

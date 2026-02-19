@@ -16,7 +16,7 @@ function Login() {
         setIsSubmitting(true)
         try {
             await login(username, password)
-            navigate('/admin/dashboard')
+            navigate('/admin')
         } catch (err) {
             setError((err as Error).message)
         } finally {
