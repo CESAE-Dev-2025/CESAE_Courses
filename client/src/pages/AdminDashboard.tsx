@@ -1,75 +1,89 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { clearToken, logout, withAuth } from '../api/auth'
+import {useEffect, useState} from 'react'
+import {Link, useNavigate} from 'react-router-dom'
+import {clearToken, logout, withAuth, refreshToken} from '../api/auth'
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000'
 
 function AdminDashboard() {
-  const navigate = useNavigate()
-  const [message, setMessage] = useState<string | null>(null)
+    const navigate = useNavigate()
+    const [message, setMessage] = useState<string | null>(null)
 
-  async function handleUnauthorized(res: Response) {
-    if (res.status === 401) {
-      clearToken()
-      navigate('/login')
-      return true
+    async function apiFetch(url: string, options: RequestInit = {}) {
+        let res = await fetch(url, {
+            ...options,
+            headers: withAuth(options.headers || {})
+        })
+
+        if (res.status === 401) {
+            try {
+                // Tenta renovar o token
+                await refreshToken()
+                // Tenta novamente a requisição original com o novo token
+                res = await fetch(url, {
+                    ...options,
+                    headers: withAuth(options.headers || {})
+                })
+            } catch (e) {
+                // Se falhar o refresh, limpa e vai pro login
+                clearToken()
+                navigate('/login')
+                throw e
+            }
+        }
+        return res
     }
-    return false
-  }
 
-  async function runScrape() {
-    setMessage(null)
-    try {
-      const res = await fetch(`${SERVER_URL}/admin/run-scrape`, {
-        method: 'POST',
-        headers: withAuth({ 'Content-Type': 'application/json' })
-      })
-      if (await handleUnauthorized(res)) return
-      const data = await res.json()
-      setMessage(JSON.stringify(data))
-    } catch (error) {
-      setMessage((error as Error).message)
+    async function runScrape() {
+        setMessage(null)
+        try {
+            const res = await apiFetch(`${SERVER_URL}/admin/run-scrape`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'}
+            })
+            const data = await res.json()
+            setMessage(JSON.stringify(data))
+        } catch (error) {
+            setMessage((error as Error).message)
+        }
     }
-  }
 
-  async function getJobInfo() {
-    setMessage(null)
-    try {
-      const res = await fetch(`${SERVER_URL}/admin/scrape-job-info`, {
-        method: 'GET',
-        headers: withAuth()
-      })
-      if (await handleUnauthorized(res)) return
-      const data = await res.json()
-      setMessage(JSON.stringify(data))
-    } catch (error) {
-      setMessage((error as Error).message)
+    async function getJobInfo() {
+        setMessage(null)
+        try {
+            const res = await apiFetch(`${SERVER_URL}/admin/scrape-job-info`, {
+                method: 'GET',
+            })
+            const data = await res.json()
+            setMessage(JSON.stringify(data))
+        } catch (error) {
+            setMessage((error as Error).message)
+        }
     }
-  }
 
-  async function doLogout() {
-    await logout()
-    navigate('/login')
-  }
+    async function doLogout() {
+        await logout()
+        navigate('/')
+    }
 
-  return (
-    <div className="card">
-      <h2>Admin Dashboard</h2>
-      <div className="button-container">
-        <button onClick={runScrape}>Run Scrape</button>
-        <button onClick={getJobInfo}>Get Job Info</button>
-        <button onClick={doLogout}>Logout</button>
-        <Link className="docs-link" to="/">
-          Home
-        </Link>
-      </div>
-      {message && (
-        <pre className="response">
+    useEffect(() => {
+        getJobInfo();
+    }, []);
+
+    return (
+        <div className="card">
+            <h2>Dashboard de administração</h2>
+            <div className="button-container">
+                <button className="btn btn-primary" onClick={runScrape}>Run Scrape</button>
+                <button className="btn btn-outline-primary" onClick={doLogout}>Logout</button>
+                <Link className="btn btn-outline-secondary" to="/">Home</Link>
+            </div>
+            {message && (
+                <pre className="">
           <code>{message}</code>
         </pre>
-      )}
-    </div>
-  )
+            )}
+        </div>
+    )
 }
 
 export default AdminDashboard
