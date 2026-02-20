@@ -8,12 +8,14 @@
     "dev": "bun --watch run src/index.ts"
   },
   "dependencies": {
+    "@types/bcryptjs": "^3.0.0",
+    "bcryptjs": "^3.0.3",
     "dotenv": "^17.2.4",
     "drizzle-orm": "^0.45.1",
     "hono": "^4.11.9",
     "mysql2": "^3.17.0",
-    "shared": "workspace:*",
-    "playwright": "^1.58.2"
+    "playwright": "^1.58.2",
+    "shared": "workspace:*"
   },
   "devDependencies": {
     "@types/bun": "latest",
