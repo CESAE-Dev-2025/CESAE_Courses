@@ -8,6 +8,7 @@ import {drizzle} from 'drizzle-orm/mysql2';
 import {courses} from "./db/schema";
 import {job, scheduleScraper} from "./cronJob";
 import {customLogger} from "./CustomLogger";
+import {serve} from '@hono/node-server'
 
 const app = new Hono()
 
@@ -61,20 +62,13 @@ app.get('/courses', async (c) => {
     }
 })
 
-// app.get('/courses/:id', async (c) => {
-//     const id = Number(c.req.param('id'))
-//     const course = await db.select().from(courses).where(eq(courses.id, id));
-//
-//     if (course[0] !== undefined) {
-//         customLogger('INFO', `Getting course id ${id} data from the database.`)
-//         return c.json(course, {status: 200})
-//     }
-//
-//     customLogger('ERROR', `Course ${id} not found.`)
-//     return c.json({error: 'Course not found'}, {status: 404})
-// })
+const port = Number(process.env.PORT) || 3000
 
-export default {
+customLogger("INFO", `Server is running on port ${port}`)
+
+serve({
     fetch: app.fetch,
-    idleTimeout: 15
-}
+    port
+})
+
+export default app

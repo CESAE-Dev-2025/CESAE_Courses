@@ -1,15 +1,15 @@
 {
-  "name": "CESAE_Mobile",
+  "name": "CESAE-Mobile",
   "version": "0.5.1",
   "description": "A monorepo template built with Bun, Hono, Vite, and React",
   "author": "Steve Simkins",
   "license": "MIT",
   "homepage": "https://github.com/stevedylandev/bhvr",
-  "packageManager": "bun@1.3.8",
+  "packageManager": "pnpm@9.0.0",
   "workspaces": [
-    "./server",
-    "./client",
-    "./shared"
+    "server",
+    "client",
+    "shared"
   ],
   "scripts": {
     "dev": "turbo dev",
@@ -24,7 +24,7 @@
     "postinstall": "turbo build --filter=shared --filter=server"
   },
   "keywords": [
-    "bun",
+    "pnpm",
     "hono",
     "react",
     "vite",
@@ -32,10 +32,10 @@
     "turbo"
   ],
   "devDependencies": {
-    "bun-types": "latest",
     "drizzle-kit": "^0.31.9",
     "tsx": "^4.21.0",
-    "turbo": "^2.8.10"
+    "turbo": "^2.8.10",
+    "@types/node": "^20.0.0"
   },
   "peerDependencies": {
     "typescript": "^5.9.3"
