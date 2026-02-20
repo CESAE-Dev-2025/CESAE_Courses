@@ -1,5 +1,3 @@
-import {job} from "server/dist/cronJob";
-
 export type ApiResponse = {
   message: string;
   success: true;
