@@ -11,6 +11,8 @@ import {drizzle} from 'drizzle-orm/mysql2';
 import {courses} from "./db/schema";
 import {job, scheduleScraper} from "./cronJob";
 import {customLogger} from "./CustomLogger";
+import type {JobInfo} from "shared";
+
 
 type Variables = JwtVariables
 
@@ -147,10 +149,16 @@ app.post('/admin/run-scrape', async c => {
 app.get('/admin/scrape-job-info', async c => {
     customLogger("INFO", "Scrape info requested by admin...")
 
-    const jobData = {
-        lastRun: job?.currentRun(),
-        nextRun: job?.nextRun(),
-        isActive: job?.isStopped()
+    if (!job) {
+        return scheduleScraper();
+    }
+
+    const jobData: JobInfo = {
+        lastRun: job.currentRun(),
+        nextRun: job.nextRun(),
+        isRunning: job.isRunning(),
+        isStopped: job.isStopped(),
+        isBusy: job.isBusy(),
     }
 
     return c.json({data: jobData, status: 'ok'});
