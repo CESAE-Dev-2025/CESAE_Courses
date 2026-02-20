@@ -3,14 +3,16 @@ import AboutMission from "../components/AboutMission/AboutMission.tsx";
 import AboutHistory from "../components/AboutHistory/AboutHistory.tsx";
 import AboutObjectives from "../components/AboutObjectives/AboutObjectives";
 import heroBg from "@/assets/heroBannerAbout.jpg";
+import AboutImpact from "../components/AboutImpact/AboutImpact.tsx";
 
 function About() {
     return (
         <div>
             <HeroBanner title="Sobre Nós" backgroundImage={heroBg}/>
             <AboutHistory/>
-            <AboutObjectives/>
             <AboutMission/>
+            <AboutObjectives/>
+            <AboutImpact/>
         </div>
     );
 }

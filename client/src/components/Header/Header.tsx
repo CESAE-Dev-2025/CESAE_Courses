@@ -20,9 +20,9 @@ function Header() {
 
             {/* Menu desktop */}
             <nav className={styles.nav}>
-                <Link to="/home">Cursos</Link>
-                <Link to="/about">Sobre</Link>
-                <Link to="/contact">Contatos</Link>
+                <Link to="/">Cursos</Link>
+                <Link to="/sobre">Sobre</Link>
+                <Link to="/contacto">Contatos</Link>
             </nav>
 
             {/* Menu mobile */}
@@ -36,9 +36,9 @@ function Header() {
                 </button>
                 {open && (
                     <nav className={styles.dropdownMenu}>
-                        <Link to="/home">Cursos</Link>
-                        <Link to="/about">Sobre</Link>
-                        <Link to="/contact">Contatos</Link>
+                        <Link to="/">Cursos</Link>
+                        <Link to="/sobre">Sobre</Link>
+                        <Link to="/contacto">Contatos</Link>
                     </nav>
                 )}
             </div>
