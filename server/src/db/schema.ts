@@ -26,3 +26,13 @@ export const courses = mysqlTable("courses", {
 (table) => [
 	primaryKey({ columns: [table.id], name: "courses_id"}),
 ]);
+
+export const users = mysqlTable("users", {
+	id: int().autoincrement().notNull(),
+	username: varchar({ length: 255 }).notNull().unique(),
+	password: varchar({ length: 255 }).notNull(),
+	role: varchar({ length: 50 }).notNull().default('admin'),
+},
+(table) => [
+	primaryKey({ columns: [table.id], name: "users_id"}),
+]);

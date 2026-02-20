@@ -98,9 +98,13 @@ function AdminDashboard() {
             <Header/>
             <h1 className="mt-5">Dashboard de administração</h1>
             <div className="mx-auto col col-md-8 col-lg-6 d-flex flex-column justify-content-around align-items-center my-5">
-                <div className="w-100 d-flex gap-3 justify-content-between">
+                <div className="w-100 d-flex gap-3 justify-content-between mb-4">
                     <button className="btn btn-primary" onClick={runScrape}>Run Scrape</button>
-                    <button className="btn btn-link" onClick={doLogout}>Logout</button>
+                    <div className="d-flex gap-2">
+                        <button className="btn btn-outline-primary" onClick={() => navigate('/admin/users')}>Gerenciar Usuários</button>
+                        <button className="btn btn-outline-secondary" onClick={() => navigate('/admin/change-password')}>Alterar Senha</button>
+                    </div>
+                    <button className="btn btn-link text-danger" onClick={doLogout}>Logout</button>
                 </div>
                 <JobInfoCard jobData={jobData!}/>
             </div>

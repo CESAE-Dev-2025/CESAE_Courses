@@ -5,6 +5,8 @@ import { isAuthenticated } from './api/auth'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import AdminDashboard from './pages/AdminDashboard'
+import AdminUsers from './pages/AdminUsers'
+import ChangePassword from './pages/ChangePassword'
 
 function RequireAuth({ children }: { children: ReactElement }) {
   if (!isAuthenticated()) {
@@ -24,6 +26,22 @@ function App() {
           element={
             <RequireAuth>
               <AdminDashboard />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/admin/users"
+          element={
+            <RequireAuth>
+              <AdminUsers />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/admin/change-password"
+          element={
+            <RequireAuth>
+              <ChangePassword />
             </RequireAuth>
           }
         />
