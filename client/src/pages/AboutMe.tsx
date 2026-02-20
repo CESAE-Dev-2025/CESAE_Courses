@@ -8,7 +8,6 @@ import AboutImpact from "../components/AboutImpact/AboutImpact.tsx";
 function About() {
     return (
         <div>
-            <HeroBanner title="Sobre Nós" backgroundImage={heroBg}/>
             <AboutHistory/>
             <AboutMission/>
             <AboutObjectives/>

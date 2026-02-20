@@ -1,7 +1,6 @@
-import React from "react";
 import styles from "./AboutImpact.module.css";
 
-const AboutImpact: React.FC = () => {
+function AboutImpact() {
     return (
         <section className={styles.impactSection}>
             <div className={styles.container}>
@@ -35,6 +34,5 @@ const AboutImpact: React.FC = () => {
             </div>
         </section>
     );
-};
-
-export default AboutImpact;
+}
+export default AboutImpact
