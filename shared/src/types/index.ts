@@ -1,6 +1,16 @@
+import {job} from "server/dist/cronJob";
+
 export type ApiResponse = {
   message: string;
   success: true;
+}
+
+export type JobInfo = {
+  lastRun: Date | null;
+  nextRun: Date | null;
+  isRunning: boolean;
+  isStopped: boolean;
+  isBusy: boolean;
 }
 
 export type Course = {
