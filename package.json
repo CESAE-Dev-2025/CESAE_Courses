@@ -1,5 +1,5 @@
 {
-  "name": "CESAE-Mobile",
+  "name": "CESAE_Mobile",
   "version": "0.5.1",
   "description": "A monorepo template built with Bun, Hono, Vite, and React",
   "author": "Steve Simkins",
