@@ -120,18 +120,7 @@
 
     border-radius: 999px;
 
-    background:
-            radial-gradient(
-                    circle at top left,
-                    rgba(255, 255, 255, 0.08),
-                    transparent 70%
-            ),
-            linear-gradient(
-                    135deg,
-                    #7426AA,
-                    #40155E
-            );
-
+    background-color: #7426AA;
     color: #ffffff;
     text-decoration: none;
 

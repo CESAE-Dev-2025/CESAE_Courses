@@ -2,17 +2,16 @@
     padding: 60px 20px;
     margin: 20px 16px;
 
-    background:
-            radial-gradient(
-                    circle at top left,
-                    rgba(255, 255, 255, 0.05),
-                    transparent 70%
-            ),
-            linear-gradient(
-                    135deg,
-                    #7426AA,
-                    #40155E
-            );
+    background: radial-gradient(
+            circle at top left,
+            rgba(255, 255, 255, 0.05),
+            transparent 70%
+    ),
+    linear-gradient(
+            135deg,
+            #7426AA,
+            #40155E
+    );
 
     color: white;
     position: relative;
@@ -39,7 +38,7 @@
 
 .card {
     position: relative;
-    padding: 36px 20px;
+    padding: 36px 70px 36px 20px;
     border-radius: 18px;
 
     background: rgba(255, 255, 255, 0.16);
@@ -85,10 +84,11 @@
         font-size: 2.4rem;
     }
 
-    .cards {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 40px;
+
+    .card {
+        padding: 60px 100px 60px 32px; /* mais espaço para o número maior */
     }
+
 
     .backgroundNumber {
         font-size: 6.5rem;
@@ -97,4 +97,5 @@
     .card {
         padding: 60px 32px;
     }
+
 }

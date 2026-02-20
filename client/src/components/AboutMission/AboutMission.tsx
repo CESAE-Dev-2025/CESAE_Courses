@@ -5,10 +5,8 @@ const AboutMission: React.FC = () => {
         <section className={styles.missionSection}>
             <div className={styles.container}>
                 <div className={styles.header}>
-                    <span className={styles.line} />
                     <h3 className={styles.title}>A Nossa Missão</h3>
                 </div>
-
                 <p className={styles.description}>
                     Promover a combinação de{" "}
                     <strong>experimentação</strong> com{" "}
