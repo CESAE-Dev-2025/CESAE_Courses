@@ -91,7 +91,7 @@ function AdminDashboard() {
 
     useEffect(() => {
         getJobInfo();
-    }, []);
+    }, [getJobInfo]);
 
     return (
         <>
