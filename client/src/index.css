@@ -11,7 +11,56 @@ html, body, #root {
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #f8f8f8;
+    background-color: var(--surface-bg);
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
+}
+
+.btn {
+    border-radius: 999px !important;
+    font-weight: 400;
+    font-size: 1.06rem;
+    line-height: 1.2;
+    min-height: 40px;
+    padding: 0.6rem 1.9rem;
+    letter-spacing: 0;
+    border-width: 1px;
+    text-transform: none;
+    transition: var(--transition-base);
+    box-shadow: none !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn.btn-brand-primary {
+    background: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+    border-color: var(--btn-primary-bg);
+}
+
+.btn.btn-brand-primary:hover,
+.btn.btn-brand-primary:focus-visible {
+    background: var(--btn-primary-bg-hover);
+    color: var(--btn-primary-text);
+    border-color: var(--btn-primary-bg-hover);
+}
+
+.btn.btn-brand-secondary {
+    background: var(--btn-secondary-bg);
+    color: var(--btn-secondary-text);
+    border-color: var(--btn-secondary-border);
+}
+
+.btn.btn-brand-secondary:hover,
+.btn.btn-brand-secondary:focus-visible {
+    background: var(--btn-secondary-bg-hover);
+    color: var(--btn-secondary-text);
+    border-color: var(--btn-secondary-border);
+}
+
+.btn:disabled,
+.btn.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }

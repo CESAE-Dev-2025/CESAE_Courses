@@ -9,11 +9,13 @@ function Header() {
     return (
         <header className={styles.header}>
             <div className={styles.left}>
-                <img
-                    src={logo}
-                    alt="logo CESAE Digital"
-                    className={styles.logo}
-                />
+                <a href="#/" className={styles.logoLink} aria-label="Voltar para a página inicial">
+                    <img
+                        src={logo}
+                        alt="logo CESAE Digital"
+                        className={styles.logo}
+                    />
+                </a>
             </div>
 
             {/* Menu desktop */}

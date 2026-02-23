@@ -74,7 +74,6 @@ app.get('/courses', async (c) => {
         return c.json({error: 'Internal Server Error'}, {status: 500});
     }
 })
-
 export default {
     fetch: app.fetch,
     idleTimeout: 15
