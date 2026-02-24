@@ -8,6 +8,7 @@ import {scheduleScraper} from "./cronJob";
 import auth from "./routes/auth";
 import admin from "./routes/admin";
 import coursesRoute from "./routes/courses";
+import {customLogger} from "./CustomLogger";
 
 const app = new Hono()
 
@@ -34,11 +35,12 @@ app.route('/admin', admin)
 app.route('/courses', coursesRoute)
 
 const port = Number(process.env.PORT) || 3000
-console.log(`Server is running on port ${port}`)
+
+customLogger("INFO", `Server is running on port ${port}`)
 
 serve({
-  fetch: app.fetch,
-  port
+    fetch: app.fetch,
+    port
 })
 
 export default app
