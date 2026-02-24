@@ -5,7 +5,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "dev": "bun --watch run src/index.ts"
+    "dev": "bun --watch run src/index.ts",
+    "seed": "bun run src/db/seed/user.ts"
   },
   "dependencies": {
     "@types/bcryptjs": "^3.0.0",
