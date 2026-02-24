@@ -5,7 +5,7 @@ import AboutImpact from "../components/AboutImpact/AboutImpact.tsx";
 
 function About() {
     return (
-        <div>
+        <div className="container">
             <AboutHistory/>
             <AboutMission/>
             <AboutObjectives/>
