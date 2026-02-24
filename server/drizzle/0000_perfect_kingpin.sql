@@ -23,6 +23,7 @@ CREATE TABLE `courses` (
 	`course_content` text,
 	`enrollment` varchar(255),
 	`has_download_button` tinyint(1),
+	`download_id` varchar(255),
 	CONSTRAINT `courses_id` PRIMARY KEY(`id`)
 );
 

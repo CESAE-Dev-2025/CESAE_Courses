@@ -153,6 +153,13 @@
           "type": "tinyint(1)",
           "primaryKey": false,
           "notNull": false
+        },
+        "download_id": {
+          "autoincrement": false,
+          "name": "download_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "compositePrimaryKeys": {
