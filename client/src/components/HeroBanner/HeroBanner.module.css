@@ -4,8 +4,6 @@
   align-items: center;
   justify-content: center;
   min-height: clamp(180px, 30vw, 320px);
-  /*min-height: 320px;*/
-  margin-bottom: var(--space-lg);
   background-position: center;
   background-size: cover;
 }

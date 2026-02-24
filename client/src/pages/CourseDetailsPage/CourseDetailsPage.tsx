@@ -35,8 +35,7 @@ function InfoBlock({ title, content, hasLink }: { title: string; content: string
   return (
     <section className={styles.infoSection}>
       <h3>{title}</h3>
-      {hasLink && <p>Consulte <a href={content}>aqui</a> os beneficios inerentes a este curso.</p>}
-      {!hasLink && <p>{content}</p>}
+      <p>{content}</p>
     </section>
   );
 }
