@@ -31,7 +31,7 @@ function DetailItem({ icon, label, value }: { icon: string; label: string; value
   );
 }
 
-function InfoBlock({ title, content, hasLink }: { title: string; content: string; hasLink?: boolean }) {
+function InfoBlock({ title, content }: { title: string; content: string}) {
   return (
     <section className={styles.infoSection}>
       <h3>{title}</h3>
