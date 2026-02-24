@@ -3,8 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: clamp(180px, 30vw, 320px);
-  margin-bottom: var(--space-lg);
+  min-height: clamp(180px, 30vw, 320px);
   background-position: center;
   background-size: cover;
 }

@@ -108,6 +108,9 @@
   margin-top: 1.75rem;
   display: grid;
   gap: 1.25rem;
+  p{
+    overflow-wrap: anywhere;
+  }
 }
 
 @media (min-width: 992px) {

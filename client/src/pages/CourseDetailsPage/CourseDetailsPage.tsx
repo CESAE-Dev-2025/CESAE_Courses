@@ -168,7 +168,7 @@ export default function CourseDetailsPage({ course, isLoading }: Props) {
           {hasText(course.project) && <InfoBlock title="Projeto Final" content={course.project} />}
           {hasText(course.courseContent) && <InfoBlock title="Conteúdos" content={course.courseContent} />}
           {hasText(course.benefits) && <InfoBlock title="Benefícios" content={course.benefits} />}
-          {hasText(course.enrollment) && <InfoBlock title="Inscrição" content={course.enrollment} />}
+
         </div>
       </MDBContainer>
     </section>
