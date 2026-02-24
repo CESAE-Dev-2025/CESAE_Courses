@@ -1,0 +1,158 @@
+.section {
+    padding: 80px 20px;
+    background: #fff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin-bottom: var(--space-sm);
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: var(--text-light);
+    max-width: 620px;
+    margin: 0 auto 60px auto;
+    line-height: 1.6;
+}
+
+/* GRID */
+
+.grid {
+    display: grid;
+    gap: 24px;
+}
+
+/* CARD */
+
+.card {
+    background: #fff;
+    padding: 28px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* HEADER CIDADE */
+
+.city {
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin-bottom: 14px;
+    color: var(--primary-dark);
+}
+
+/* Linha decorativa subtil */
+.city::after {
+    content: "";
+    display: block;
+    width: 36px;
+    height: 3px;
+    background: linear-gradient(
+            90deg,
+            var(--primary-blue),
+            var(--primary-pink)
+    );
+    margin-top: 6px;
+    border-radius: 4px;
+}
+
+/* BLOCO INFO */
+
+.infoBlock {
+    margin-bottom: 18px;
+}
+
+.label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #444;
+    margin-bottom: 4px;
+    display: block;
+    letter-spacing: 0.02em;
+}
+
+.infoBlock p {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.infoBlock a {
+    font-size: 0.95rem;
+    color: var(--primary-dark);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.infoBlock a:hover {
+    text-decoration: underline;
+}
+
+/* BOTÃO DIREÇÕES */
+
+.directionButton {
+    margin-top: auto;
+    align-self: flex-start;
+
+    padding: 7px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    border-radius: 999px;
+
+    background-color: #7426AA;
+    color: #ffffff;
+    text-decoration: none;
+
+    transition: all 0.3s ease;
+}
+
+.directionButton:hover {
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(64, 21, 94, 0.35);
+}
+
+/* ---------- RESPONSIVO ---------- */
+
+/* Tablet */
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop */
+@media (min-width: 1100px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .section {
+        padding: 120px 40px;
+    }
+
+    .title {
+        font-size: 2.4rem;
+    }
+}

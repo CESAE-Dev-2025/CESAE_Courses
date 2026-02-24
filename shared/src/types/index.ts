@@ -33,4 +33,5 @@ export type Course = {
   courseContent: string;
   enrollment: string;
   hasDownloadButton: boolean;
+  downloadId: string;
 }

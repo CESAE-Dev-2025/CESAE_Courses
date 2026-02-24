@@ -4,6 +4,7 @@
   font-weight: bold;
   line-height: 1;
   display: inline-block;
+  color: var(--primary-dark);
 }
 /* Container para o botão e dropdown */
 .menuContainer {
@@ -14,14 +15,15 @@
   position: absolute;
   top: 100%;
   right: 0;
-  background: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  border-radius: 8px;
+  background: var(--surface-card);
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-sm);
   min-width: 140px;
   z-index: 10;
   display: flex;
   flex-direction: column;
   padding: 0.5rem 0;
+  border: 1px solid var(--border-soft);
 }
 
 
@@ -30,19 +32,35 @@
   text-decoration: none;
   color: var(--text-primary);
   font-weight: 500;
+  transition: var(--transition-base);
+}
+
+.dropdownMenu a:hover {
+  background: var(--surface-muted);
 }
 
 .header {
   height: 64px;
-  padding: 0 16px;
+  padding: 0 var(--space-md);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #fff;
-  border-bottom: 1px solid #eee;
+  background: var(--surface-card);
+  border-bottom: 1px solid var(--border-subtle);
   position: sticky;
   top: 0;
   z-index: 100;
+  box-shadow: 0 1px 0 var(--shadow-soft);
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.logoLink {
+  display: inline-flex;
+  align-items: center;
 }
 
 .logo {
@@ -70,6 +88,11 @@
   text-decoration: none;
   color: var(--text-primary);
   font-weight: 500;
+  transition: var(--transition-base);
+}
+
+.nav a:hover {
+  color: var(--primary-pink);
 }
 
 /* Botão mobile */
@@ -78,6 +101,12 @@
   border: none;
   padding: 4px;
   cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+
+.menuBtn:focus-visible {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
 }
 
 .menuBtn img {

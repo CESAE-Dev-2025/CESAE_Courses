@@ -25,7 +25,7 @@ export default function CourseList({ courses }: Props) {
       <MDBContainer className="py-4 py-md-5">
         <div className={styles.header}>
           <p className={styles.subtitle}>Encontre o curso perfeito para você</p>
-          
+
           <div className={styles.filterBar}>
             <select
               value={selectedRegime}
@@ -67,8 +67,8 @@ export default function CourseList({ courses }: Props) {
               {filteredCourses.length} curso{filteredCourses.length !== 1 ? 's' : ''} encontrado{filteredCourses.length !== 1 ? 's' : ''}
             </p>
             <MDBRow className="g-4 g-lg-5">
-              {filteredCourses.map((course, index) => (
-                <MDBCol key={index} xs="12" sm="6" md="4" lg="3">
+              {filteredCourses.map((course) => (
+                <MDBCol key={course.id} xs="12" sm="6" md="4" lg="3">
                   <CourseCard course={course} />
                 </MDBCol>
               ))}
