@@ -58,7 +58,7 @@ export async function scrapeCesaeCourses(): Promise<Course[]> {
                 time: document.querySelector("#mainSection_lblHorario")?.textContent?.trim() ?? "",
                 timeDescription: document.querySelector(".breadcrumb")?.textContent?.trim() ?? "",
                 duration: document.querySelector("#mainSection_lblDuracao")?.textContent?.trim() ?? "",
-                regime: document.querySelector("div.bg-secondary span.bold")?.textContent?.trim() ?? "",
+                regime: document.querySelector("div.extra-info > .row > .col:last-child > span.bold")?.textContent?.trim() ?? "",
                 location: document.querySelector("aside.signup ul li:first-child")?.textContent?.trim() ?? "",
                 description: document.querySelector("#mainSection_lblLongDesc")?.textContent?.trim() ?? "",
                 audience: document.querySelector("#mainSection_destinatarios")?.textContent?.trim() ?? "",
