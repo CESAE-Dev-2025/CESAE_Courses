@@ -1,0 +1,141 @@
+.section {
+  background: linear-gradient(180deg, var(--surface-muted) 0%, var(--white) 100%);
+  flex: 1;
+}
+
+.backBtn {
+  margin-bottom: 1rem;
+}
+
+.card {
+  border: none;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: cover;
+}
+
+.content {
+  padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .content {
+    padding: 2rem;
+  }
+}
+
+.title {
+  font-size: 1.4rem;
+  color: var(--primary-dark);
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 1.9rem;
+  }
+}
+
+.regimeBadge {
+  background: var(--btn-primary-bg);
+  color: var(--white);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.detailList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .detailList {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.detailItem {
+  display: flex;
+  align-items: flex-start;
+  color: var(--text-primary);
+}
+
+.detailItem i {
+  color: var(--primary-blue);
+  margin-top: 0.2rem;
+}
+
+.priceBadge {
+  background: var(--btn-primary-bg);
+  color: var(--white);
+  font-size: 0.9rem;
+}
+
+.actionButtons {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 320px;
+}
+
+@media (min-width: 768px) {
+  .actionButtons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: none;
+  }
+}
+
+.enrollBtn {
+  min-width: 240px;
+}
+
+.downloadBtn {
+  min-width: 240px;
+}
+
+.infoLayout {
+  margin-top: 1.75rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 992px) {
+  .infoLayout {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2.25rem;
+  }
+}
+
+.infoSection {
+  padding-top: 0.25rem;
+  border-top: 1px solid var(--border-soft);
+}
+
+.infoSection h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.6rem;
+  color: var(--primary-dark);
+}
+
+.infoSection p {
+  margin: 0;
+  color: var(--text-light);
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.missingTitle {
+  font-size: 1.25rem;
+  color: var(--primary-dark);
+}

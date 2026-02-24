@@ -16,12 +16,11 @@ interface Props {
 
 export default function CourseCard({ course }: Props) {
   const handleViewDetails = () => {
-    console.log('Ver detalhes do curso:', course.name);
-    // TODO: Navegar para página de detalhes
+    window.location.hash = `/curso/${course.id}`;
   };
 
   return (
-    <MDBCard 
+    <MDBCard
       className={`h-100 ${styles.card}`}
     >
       <div className={styles.imageContainer}>
@@ -77,9 +76,9 @@ export default function CourseCard({ course }: Props) {
               {course.price}
             </MDBBadge>
           )}
-          <MDBBtn 
+          <MDBBtn
             size="sm"
-            className={styles.actionBtn}
+            className={`btn-brand-primary ${styles.actionBtn}`}
             onClick={handleViewDetails}
           >
             Saiba Mais

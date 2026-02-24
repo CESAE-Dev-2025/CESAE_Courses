@@ -20,7 +20,7 @@ export const courses = mysqlTable("courses", {
 	goals: text(),
 	sponsorImgUrl: varchar("sponsor_img_url", { length: 255 }),
 	courseContent: text("course_content"),
-	enrollment: varchar({ length: 255 }),
+	enrollment: text(),
 	hasDownloadButton: boolean("has_download_button"),
 },
 (table) => [
