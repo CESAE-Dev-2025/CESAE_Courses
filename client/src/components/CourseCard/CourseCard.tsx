@@ -2,7 +2,7 @@ import {
   MDBCard,
   MDBCardBody,
   MDBCardTitle,
-  MDBCardText,
+  // MDBCardText,
   MDBCardImage,
   MDBBtn,
   MDBBadge
@@ -16,12 +16,11 @@ interface Props {
 
 export default function CourseCard({ course }: Props) {
   const handleViewDetails = () => {
-    console.log('Ver detalhes do curso:', course.name);
-    // TODO: Navegar para página de detalhes
+    window.location.hash = `/curso/${course.id}`;
   };
 
   return (
-    <MDBCard 
+    <MDBCard
       className={`h-100 ${styles.card}`}
     >
       <div className={styles.imageContainer}>
@@ -65,11 +64,11 @@ export default function CourseCard({ course }: Props) {
           )}
         </div>
 
-        {course.description && (
-          <MDBCardText className={`${styles.description} mb-3 flex-grow-1`}>
-            {course.description.slice(0, 85) + '...'}
-          </MDBCardText>
-        )}
+        {/*{course.description && (*/}
+        {/*  <MDBCardText className={`${styles.description} mb-3 flex-grow-1`}>*/}
+        {/*    {course.description.slice(0, 85) + '...'}*/}
+        {/*  </MDBCardText>*/}
+        {/*)}*/}
 
         <div className="d-flex justify-content-between align-items-center mt-auto gap-2">
           {course.price && (
@@ -77,9 +76,9 @@ export default function CourseCard({ course }: Props) {
               {course.price}
             </MDBBadge>
           )}
-          <MDBBtn 
+          <MDBBtn
             size="sm"
-            className={styles.actionBtn}
+            className={`btn-brand-primary ${styles.actionBtn}`}
             onClick={handleViewDetails}
           >
             Saiba Mais

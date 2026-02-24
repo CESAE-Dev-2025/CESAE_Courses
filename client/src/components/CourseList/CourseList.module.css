@@ -1,5 +1,5 @@
 .section {
-  background: #f8f9fa;
+  background: var(--surface-muted);
   padding: 1rem 0;
 }
 
@@ -10,7 +10,7 @@
 
 .title {
   font-size: 1.75rem;
-  color: #333;
+  color: var(--text-primary);
   font-weight: 700;
   margin-bottom: 0.5rem;
   letter-spacing: -0.5px;
@@ -24,7 +24,7 @@
 
 .subtitle {
   font-size: 1rem;
-  color: #666;
+  color: var(--text-light);
   margin-bottom: 1.5rem;
 }
 
@@ -59,20 +59,20 @@
 .filterSelect {
   padding: 0.75rem 1.2rem;
   font-size: 0.95rem;
-  border: 2px solid #ddd;
+  border: 2px solid var(--border-default);
   border-radius: 0.5rem;
-  background: white;
+  background: var(--surface-card);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: var(--transition-base);
   width: 220px;
   flex-shrink: 0;
 }
 
 .filterSelect:hover,
 .filterSelect:focus {
-  border-color: #5e72e4;
+  border-color: var(--primary-indigo);
   outline: none;
-  box-shadow: 0 0 0 3px rgba(94, 114, 228, 0.1);
+  box-shadow: 0 0 0 3px var(--focus-indigo);
 }
 
 .searchContainer {
@@ -89,29 +89,23 @@
   }
 }
 
-@media (min-width: 576px) {
-  .searchContainer {
-    min-width: 300px;
-  }
-}
-
 .searchInput {
   width: 100%;
   padding: 0.75rem 1rem 0.75rem 2.5rem;
   font-size: 1rem;
-  border: 2px solid #ddd;
+  border: 2px solid var(--border-default);
   border-radius: 0.5rem;
-  transition: all 0.3s ease;
+  transition: var(--transition-base);
 }
 
 .searchInput::placeholder {
-  color: #999;
+  color: var(--text-muted);
 }
 
 .searchInput:focus {
   outline: none;
-  border-color: #0d6efd;
-  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px var(--focus-blue);
 }
 
 .searchContainer i {
@@ -119,12 +113,12 @@
   left: 1rem;
   top: 50%;
   transform: translateY(-50%);
-  color: #999;
+  color: var(--text-muted);
   pointer-events: none;
 }
 
 .loadingSection {
-  background: #f8f9fa;
+  background: var(--surface-muted);
   min-height: 400px;
   display: flex;
   align-items: center;
@@ -139,7 +133,7 @@
 }
 
 .errorSection {
-  background: #f8f9fa;
+  background: var(--surface-muted);
   min-height: 300px;
   display: flex;
   align-items: center;
@@ -147,10 +141,10 @@
 
 .errorAlert {
   padding: 1.5rem;
-  background-color: #f8d7da;
-  border: 1px solid #f5c6cb;
+  background-color: var(--alert-bg);
+  border: 1px solid var(--alert-border);
   border-radius: 0.5rem;
-  color: #721c24;
+  color: var(--alert-text);
   font-size: 0.95rem;
 }
 
@@ -164,9 +158,10 @@
 .emptyState {
   text-align: center;
   padding: 2rem 1rem;
-  background: white;
+  background: var(--surface-card);
   border-radius: 0.5rem;
-  color: #666;
+  color: var(--text-light);
+  box-shadow: var(--shadow-md);
 }
 
 @media (min-width: 768px) {
@@ -177,7 +172,7 @@
 
 .emptyState i {
   font-size: 2.5rem;
-  color: #ddd;
+  color: var(--border-default);
 }
 
 @media (min-width: 768px) {
@@ -198,7 +193,7 @@
 }
 
 .resultCount {
-  color: #666;
+  color: var(--text-light);
   margin-bottom: 1rem;
   font-size: 0.9rem;
 }
