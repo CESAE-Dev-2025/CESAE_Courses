@@ -31,13 +31,52 @@ function DetailItem({ icon, label, value }: { icon: string; label: string; value
   );
 }
 
-function InfoBlock({ title, content }: { title: string; content: string }) {
+function InfoBlock({ title, content, hasLink }: { title: string; content: string; hasLink?: boolean }) {
   return (
     <section className={styles.infoSection}>
       <h3>{title}</h3>
-      <p>{content}</p>
+      {hasLink && <p>Consulte <a href={content}>aqui</a> os beneficios inerentes a este curso.</p>}
+      {!hasLink && <p>{content}</p>}
     </section>
   );
+}
+
+function InfoReferenceBlock({ title, content }: { title: string; content: string }) {
+  return (
+      <section className={styles.infoSection}>
+        <h3>{title}</h3>
+        <p>Consulte <a href={content} target="_blank">aqui</a> os beneficios inerentes a este curso.</p>
+      </section>
+  );
+}
+
+// function downloadDoc(IDDoc) {
+//   var frm = document.getElementById("frmDown");
+//   frm.idDoc.value = IDDoc;
+//   frm.submit();
+// }
+
+function downloadDoc(idDoc: string | number): void {
+  console.log('downloadDoc chamado com:', idDoc);
+  if (!idDoc) {
+    console.warn('downloadId está vazio');
+    return;
+  }
+
+  const form = document.getElementById('frmDown') as HTMLFormElement | null;
+  if (!form) {
+    console.error('Formulário frmDown não encontrado');
+    return;
+  }
+
+  const idDocInput = form.querySelector<HTMLInputElement>('input[name="idDoc"]');
+  if (!idDocInput) {
+    console.error('Input idDoc não encontrado no formulário');
+    return;
+  }
+
+  idDocInput.value = String(idDoc);
+  form.submit();
 }
 
 export default function CourseDetailsPage({ course, isLoading }: Props) {
@@ -142,12 +181,10 @@ export default function CourseDetailsPage({ course, isLoading }: Props) {
                     )}
                     {shouldShowDownloadButton && (
                       <MDBBtn
-                        tag={hasEnrollmentUrl ? 'a' : 'button'}
-                        href={hasEnrollmentUrl ? course.enrollment : undefined}
-                        target={hasEnrollmentUrl ? '_blank' : undefined}
-                        rel={hasEnrollmentUrl ? 'noreferrer' : undefined}
+                        tag="button"
+                        type="button"
                         className={`btn-brand-secondary ${styles.downloadBtn}`}
-                        disabled={!hasEnrollmentUrl}
+                        onClick={() => downloadDoc(course?.downloadId)}
                       >
                         <i className="fas fa-download me-2"></i>
                         Descarregar Programa
@@ -167,10 +204,15 @@ export default function CourseDetailsPage({ course, isLoading }: Props) {
           {hasText(course.requirements) && <InfoBlock title="Requisitos" content={course.requirements} />}
           {hasText(course.project) && <InfoBlock title="Projeto Final" content={course.project} />}
           {hasText(course.courseContent) && <InfoBlock title="Conteúdos" content={course.courseContent} />}
-          {hasText(course.benefits) && <InfoBlock title="Benefícios" content={course.benefits} />}
-          {hasText(course.enrollment) && <InfoBlock title="Inscrição" content={course.enrollment} />}
+          {hasText(course.benefits) && <InfoReferenceBlock title="Benefícios" content={course.benefits} />}
+          {/*{hasText(course.enrollment) && <InfoBlock title="Inscrição" content={course.enrollment} />}*/}
         </div>
       </MDBContainer>
+
+      <form name="frmDown" id="frmDown" method="post" action="https://cesaedigital.pt/ifldr/guestDownloader.aspx" target="_blank">
+        <input type="hidden" id="idDoc" name="idDoc" />
+        <input type="hidden" id="DownMode" name="DownMode" value="TIMED" />
+      </form>
     </section>
   );
 }

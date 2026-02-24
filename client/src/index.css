@@ -10,7 +10,6 @@ html, body, #root {
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
     background-color: var(--surface-bg);
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;

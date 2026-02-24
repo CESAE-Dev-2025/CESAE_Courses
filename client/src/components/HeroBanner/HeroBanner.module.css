@@ -3,7 +3,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: clamp(180px, 30vw, 320px);
+  min-height: clamp(180px, 30vw, 320px);
+  /*min-height: 320px;*/
   margin-bottom: var(--space-lg);
   background-position: center;
   background-size: cover;

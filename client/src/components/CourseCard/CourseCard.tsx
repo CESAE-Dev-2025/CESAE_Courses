@@ -2,7 +2,7 @@ import {
   MDBCard,
   MDBCardBody,
   MDBCardTitle,
-  MDBCardText,
+  // MDBCardText,
   MDBCardImage,
   MDBBtn,
   MDBBadge
@@ -64,11 +64,11 @@ export default function CourseCard({ course }: Props) {
           )}
         </div>
 
-        {course.description && (
-          <MDBCardText className={`${styles.description} mb-3 flex-grow-1`}>
-            {course.description.slice(0, 85) + '...'}
-          </MDBCardText>
-        )}
+        {/*{course.description && (*/}
+        {/*  <MDBCardText className={`${styles.description} mb-3 flex-grow-1`}>*/}
+        {/*    {course.description.slice(0, 85) + '...'}*/}
+        {/*  </MDBCardText>*/}
+        {/*)}*/}
 
         <div className="d-flex justify-content-between align-items-center mt-auto gap-2">
           {course.price && (

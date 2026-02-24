@@ -1,13 +1,13 @@
 import 'dotenv/config';
-import { chromium, type Page } from "playwright";
-import type { Course } from "shared/dist/types";
+import {chromium, type Page} from "playwright";
+import type {Course} from "shared/dist/types";
 
 export async function scrapeCesaeCourses(): Promise<Course[]> {
-    const browser = await chromium.launch({ headless: true });
+    const browser = await chromium.launch({headless: true});
     const page: Page = await browser.newPage();
 
     try {
-        await page.goto(process.env.SCRAPING_BASE_URL!, { waitUntil: "domcontentloaded" });
+        await page.goto(process.env.SCRAPING_BASE_URL!, {waitUntil: "domcontentloaded"});
 
         await page.waitForSelector("article");
 
@@ -22,8 +22,7 @@ export async function scrapeCesaeCourses(): Promise<Course[]> {
 
             const showMoreBtn = page.locator("#mainSection_btnShowMore");
 
-            if ((await showMoreBtn.count()) === 0 || !(await showMoreBtn.isVisible()))
-            {
+            if ((await showMoreBtn.count()) === 0 || !(await showMoreBtn.isVisible())) {
                 break;
             }
 
@@ -46,10 +45,10 @@ export async function scrapeCesaeCourses(): Promise<Course[]> {
 
         for (const url of courseUrls) {
 
-            await page.goto(url, { waitUntil: "domcontentloaded" });
+            await page.goto(url, {waitUntil: "domcontentloaded"});
             await page.waitForTimeout(800);
 
-            const data: Course = await page.evaluate(() => ({
+            const data: Course | any = await page.evaluate(() => ({
                 id: 0,
                 name: document.querySelector("h1")?.textContent?.trim() ?? "",
                 coverUrl: document.querySelector<HTMLImageElement>("#mainSection_imgCourse")?.src ?? "",
@@ -68,12 +67,19 @@ export async function scrapeCesaeCourses(): Promise<Course[]> {
                 benefits: document.querySelector<HTMLAnchorElement>("#mainSection_divBeneficios a")?.href ?? "",
                 goals: document.querySelector("#mainSection_objetivos")?.textContent?.trim() ?? "",
                 sponsorImgUrl: document.querySelector<HTMLImageElement>("#mainSection_imgLogoParceiros")?.src ?? "",
-                courseContent: document.querySelector("h3.title + div.col-12")?.textContent?.trim() ?? "",
+                // courseContent: document.querySelector("#mainSection_divProgram h3.title + div.col-12")?.textContent?.trim() ?? "",
+                courseContent: JSON.stringify(
+                    Array.from(document.querySelectorAll<HTMLLIElement>("#mainSection_divProgram h3.title + ul > li"))
+                        .map(li => li.textContent?.trim() ?? "")
+                        .filter(Boolean)
+                ),
                 enrollment: document.querySelector<HTMLAnchorElement>("#mainSection_btnInsc")?.href ?? "",
                 hasDownloadButton: Boolean(document.querySelector("#mainSection_btnProgm")),
+                downloadId: document.querySelector<HTMLAnchorElement>("#mainSection_btnProgm")?.href.trim() ?? "",
             }));
 
             data.id = nextId++;
+            data.downloadId = data.downloadId.slice(24, data.downloadId.length - 27)
             results.push(data);
         }
 
