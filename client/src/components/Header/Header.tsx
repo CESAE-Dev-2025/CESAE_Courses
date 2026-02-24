@@ -8,8 +8,9 @@ function Header() {
 
     return (
         <header className={styles.header}>
+
             <div className={styles.left}>
-                <a href="#/" className={styles.logoLink} aria-label="Voltar para a página inicial">
+                <a href="/" className={styles.logoLink} aria-label="Voltar para a página inicial">
                     <img
                         src={logo}
                         alt="logo CESAE Digital"
@@ -20,9 +21,9 @@ function Header() {
 
             {/* Menu desktop */}
             <nav className={styles.nav}>
-                <a href="#">Cursos</a>
-                <a href="#">Sobre</a>
-                <a href="#">Contatos</a>
+                <a href="/">Cursos</a>
+                <a href="/sobre">Sobre</a>
+                <a href="/contacto">Contatos</a>
             </nav>
 
             {/* Menu mobile */}
@@ -36,16 +37,16 @@ function Header() {
                 </button>
                 {open && (
                     <nav className={styles.dropdownMenu}>
-                        <a href="#">Cursos</a>
-                        <a href="#">Sobre</a>
-                        <a href="#">Contatos</a>
+                        <a href="/">Cursos</a>
+                        <a href="/sobre">Sobre</a>
+                        <a href="/contacto">Contatos</a>
                     </nav>
                 )}
             </div>
-                   
+
         </header>
-        
-        
+
+
     )
 }
 export default Header
