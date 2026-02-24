@@ -60,6 +60,9 @@ importers:
       react-dom:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
+      react-router-dom:
+        specifier: ^7.13.0
+        version: 7.13.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       server:
         specifier: workspace:*
         version: link:../server
@@ -112,8 +115,14 @@ importers:
       '@hono/node-server':
         specifier: ^1.19.9
         version: 1.19.9(hono@4.12.0)
+      '@types/bcryptjs':
+        specifier: ^3.0.0
+        version: 3.0.0
+      bcryptjs:
+        specifier: ^3.0.3
+        version: 3.0.3
       dotenv:
-        specifier: ^17.3.1
+        specifier: ^17.2.4
         version: 17.3.1
       drizzle-orm:
         specifier: ^0.45.1
@@ -916,6 +925,10 @@ packages:
   '@types/babel__traverse@7.28.0':
     resolution: {integrity: sha512-8PvcXf70gTDZBgt9ptxJ8elBeBjcLOAcOtoO/mPJjtji1+CdGbHgm77om1GrsPxsiE+uXIpNSK64UYaIwQXd4Q==}
 
+  '@types/bcryptjs@3.0.0':
+    resolution: {integrity: sha512-WRZOuCuaz8UcZZE4R5HXTco2goQSI2XxjGY3hbM/xDvwmqFWd4ivooImsMx65OKM6CtNKbnZ5YL+YwAwK7c1dg==}
+    deprecated: This is a stub types definition. bcryptjs provides its own type definitions, so you do not need this installed.
+
   '@types/estree@1.0.8':
     resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
 
@@ -1037,6 +1050,10 @@ packages:
   baseline-browser-mapping@2.10.0:
     resolution: {integrity: sha512-lIyg0szRfYbiy67j9KN8IyeD7q7hcmqnJ1ddWmNt19ItGpNN64mnllmxUNFIOdOm6by97jlL6wfpTTJrmnjWAA==}
     engines: {node: '>=6.0.0'}
+    hasBin: true
+
+  bcryptjs@3.0.3:
+    resolution: {integrity: sha512-GlF5wPWnSa/X5LKM1o0wz0suXIINz1iHRLvTS+sLyi7XPbe5ycmYI3DlZqVGZZtDgl4DmasFg7gOB3JYbphV5g==}
     hasBin: true
 
   brace-expansion@1.1.12:
@@ -2357,6 +2374,10 @@ snapshots:
     dependencies:
       '@babel/types': 7.29.0
 
+  '@types/bcryptjs@3.0.0':
+    dependencies:
+      bcryptjs: 3.0.3
+
   '@types/estree@1.0.8': {}
 
   '@types/json-schema@7.0.15': {}
@@ -2512,6 +2533,8 @@ snapshots:
   balanced-match@1.0.2: {}
 
   baseline-browser-mapping@2.10.0: {}
+
+  bcryptjs@3.0.3: {}
 
   brace-expansion@1.1.12:
     dependencies:
