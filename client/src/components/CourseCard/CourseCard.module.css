@@ -155,12 +155,13 @@
   font-size: clamp(10px, 1.5vw, 10px);
   font-weight: 600;
 
-  padding: 6px 16px; /* 🔥 reduzido */
+  padding: 6px 16px;
 
   line-height: 1.2;
-  color: #fff;
   transition: all 0.2s ease;
   cursor: pointer;
+  --mdb-btn-hover-bg: #7426AA;
+  --mdb-btn-focus-shadow-rgb: 116, 38, 170;
 }
 
 .actionBtn:hover {
