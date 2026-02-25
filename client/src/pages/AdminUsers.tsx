@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { withAuth, refreshToken, clearToken } from '../api/auth';
-import Header from '../components/Header/Header.tsx';
-import Footer from '../components/Footer/Footer.tsx';
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
 
@@ -84,7 +82,6 @@ export default function AdminUsers() {
 
   return (
     <>
-      <Header />
       <div className="container mt-5">
         <h1>Gerenciar Usuários Admin</h1>
         <button className="btn btn-secondary mb-4" onClick={() => navigate('/admin')}>
@@ -136,7 +133,6 @@ export default function AdminUsers() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

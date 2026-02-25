@@ -2,8 +2,6 @@ import {useEffect, useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {clearToken, logout, withAuth, refreshToken} from '../api/auth'
 import {JobInfo} from "shared";
-import Header from "../components/Header/Header.tsx";
-import Footer from "../components/Footer/Footer.tsx";
 import JobInfoCard from "../components/JobInfoCard/JobInfoCard.tsx";
 
 
@@ -95,7 +93,6 @@ function AdminDashboard() {
 
     return (
         <>
-            <Header/>
             <h1 className="mt-5">Dashboard de administração</h1>
             <div className="mx-auto col col-md-8 col-lg-6 d-flex flex-column justify-content-around align-items-center my-5">
                 <div className="w-100 d-flex gap-3 justify-content-between mb-4">
@@ -108,7 +105,6 @@ function AdminDashboard() {
                 </div>
                 <JobInfoCard jobData={jobData!}/>
             </div>
-            <Footer/>
         </>
     )
 }

@@ -2,6 +2,8 @@ import type {ReactElement} from 'react'
 import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom'
 import './App.css'
 import {isAuthenticated} from './api/auth'
+import Header from "./components/Header/Header.tsx";
+import Footer from "./components/Footer/Footer.tsx";
 import Home from './pages/Home'
 import AboutMe from "./pages/AboutMe";
 import Contact from "./pages/Contact.tsx";
@@ -21,6 +23,7 @@ function RequireAuth({children}: { children: ReactElement }) {
 function App() {
     return (
         <BrowserRouter>
+            <Header/>
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/sobre" element={<AboutMe/>}/>
@@ -52,6 +55,7 @@ function App() {
                 />
                 <Route path="*" element={<Navigate to="/" replace/>}/>
             </Routes>
+            <Footer/>
         </BrowserRouter>
     );
 }

@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { withAuth, refreshToken, clearToken } from '../api/auth';
-import Header from '../components/Header/Header.tsx';
-import Footer from '../components/Footer/Footer.tsx';
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
 
@@ -66,7 +64,6 @@ export default function ChangePassword() {
 
   return (
     <>
-      <Header />
       <div className="container mt-5">
         <h1>Alterar Senha</h1>
         <button className="btn btn-secondary mb-4" onClick={() => navigate('/admin')}>
@@ -105,7 +102,6 @@ export default function ChangePassword() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }
