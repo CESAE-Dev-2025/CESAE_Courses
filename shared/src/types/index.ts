@@ -3,6 +3,14 @@ export type ApiResponse = {
   success: true;
 }
 
+export type JobInfo = {
+  lastRun: Date | null;
+  nextRun: Date | null;
+  isRunning: boolean;
+  isStopped: boolean;
+  isBusy: boolean;
+}
+
 export type Course = {
   id: number;
   name: string;
