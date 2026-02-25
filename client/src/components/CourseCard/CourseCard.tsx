@@ -21,7 +21,7 @@ export default function CourseCard({ course }: Props) {
 
   return (
     <MDBCard
-      className={`h-100 ${styles.card}`}
+      className={`${styles.card}`}
     >
       <div className={styles.imageContainer}>
         <MDBCardImage
@@ -32,33 +32,33 @@ export default function CourseCard({ course }: Props) {
         />
       </div>
 
-      <MDBCardBody className="p-3 p-md-4 d-flex flex-column flex-grow-1">
+      <MDBCardBody>
         {course.regime && (
-          <MDBBadge pill className={`${styles.regimeBadge} mb-2`}>
+          <MDBBadge pill className={`${styles.regimeBadge}`}>
             {course.regime}
           </MDBBadge>
         )}
 
-        <MDBCardTitle className={`${styles.title} mb-3`}>
+        <MDBCardTitle className={`${styles.title}`}>
           {course.name}
         </MDBCardTitle>
 
-        <div className={`${styles.infoGrid} mb-3`}>
+        <div className={`${styles.infoGrid}`}>
           {course.location && (
             <div className={styles.infoItem}>
-              <i className="fas fa-map-marker-alt me-2"></i>
+              <i></i>
               <small>{course.location}</small>
             </div>
           )}
           {course.duration && (
             <div className={styles.infoItem}>
-              <i className="fas fa-clock me-2"></i>
+              <i></i>
               <small>{course.duration}</small>
             </div>
           )}
           {course.startDate && (
             <div className={styles.infoItem}>
-              <i className="fas fa-calendar me-2"></i>
+              <i></i>
               <small>{course.startDate}</small>
             </div>
           )}
@@ -70,7 +70,7 @@ export default function CourseCard({ course }: Props) {
         {/*  </MDBCardText>*/}
         {/*)}*/}
 
-        <div className="d-flex justify-content-between align-items-center mt-auto gap-2">
+        <div>
           {course.price && (
             <MDBBadge pill className={styles.priceBadge}>
               {course.price}
@@ -78,7 +78,7 @@ export default function CourseCard({ course }: Props) {
           )}
           <MDBBtn
             size="sm"
-            className={`btn-brand-primary ${styles.actionBtn}`}
+            className={`${styles.actionBtn}`}
             onClick={handleViewDetails}
           >
             Saiba Mais

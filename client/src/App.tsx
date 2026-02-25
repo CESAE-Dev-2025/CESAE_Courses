@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import AboutMe from "./pages/AboutMe";
 import Contact from "./pages/Contact.tsx";
 
+
 function App() {
     return (
         <BrowserRouter>
@@ -14,7 +15,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/sobre" element={<AboutMe />} />
-                <Route path="/contacto" element={<Contact />} />
+                <Route path="/contacto" element={<Contact />}/>
             </Routes>
 
             <Footer />

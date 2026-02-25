@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 /* RESET BÁSICO */
 * {
     margin: 0;
@@ -13,6 +14,7 @@ body {
     background-color: var(--surface-bg);
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .btn {

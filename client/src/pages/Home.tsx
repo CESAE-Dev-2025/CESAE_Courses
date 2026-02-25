@@ -52,7 +52,7 @@ function App() {
                     return
                 }
                 console.error(err)
-                setError("Não foi possível carregar os cursos. Verifique se o backend está ativo.")
+                setError("Não foi possível carregar os cursos.")
             }
         }
 
