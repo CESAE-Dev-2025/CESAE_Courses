@@ -8,45 +8,48 @@ function Header() {
 
     return (
         <header className={styles.header}>
+            <div className={styles.container}>
 
-            <div className={styles.left}>
-                <a href="/" className={styles.logoLink} aria-label="Voltar para a página inicial">
+                {/* Logo */}
+                <a href="/" className={styles.logoLink}>
                     <img
                         src={logo}
                         alt="logo CESAE Digital"
                         className={styles.logo}
                     />
                 </a>
-            </div>
 
-            {/* Menu desktop */}
-            <nav className={styles.nav}>
-                <a href="/">Cursos</a>
-                <a href="/sobre">Sobre</a>
-                <a href="/contacto">Contatos</a>
-            </nav>
+                {/* Desktop Nav */}
+                <nav className={styles.nav}>
+                    <a href="/">Cursos</a>
+                    <a href="/sobre">Sobre</a>
+                    <a href="/contacto">Contatos</a>
+                </nav>
 
-            {/* Menu mobile */}
-            <div className={styles.menuContainer}>
-                <button className={styles.menuBtn} onClick={() => setOpen(!open)}>
+                {/* Mobile Button */}
+                <button
+                    className={styles.menuBtn}
+                    onClick={() => setOpen(!open)}
+                >
                     {open ? (
                         <span className={styles.closeIcon}>&#10005;</span>
                     ) : (
                         <img src={menuIcon} alt="Menu" />
                     )}
                 </button>
-                {open && (
-                    <nav className={styles.dropdownMenu}>
-                        <a href="/">Cursos</a>
-                        <a href="/sobre">Sobre</a>
-                        <a href="/contacto">Contatos</a>
-                    </nav>
-                )}
+
             </div>
 
+            {/* Mobile Dropdown */}
+            {open && (
+                <nav className={styles.dropdownMenu}>
+                    <a href="/">Cursos</a>
+                    <a href="/sobre">Sobre</a>
+                    <a href="/contacto">Contatos</a>
+                </nav>
+            )}
         </header>
-
-
-    )
+    );
 }
-export default Header
+
+export default Header;
