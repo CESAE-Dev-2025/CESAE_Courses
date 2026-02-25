@@ -8,6 +8,10 @@
   box-shadow: 0 6px 16px rgba(0,0,0,.04);
   transition: transform .25s ease, box-shadow .25s ease;
   font-family: 'Montserrat', sans-serif;
+
+  height: 460px; /* ALTURA FIXA */
+  display: flex;
+  flex-direction: column;
 }
 
 .card:hover {
@@ -19,6 +23,7 @@
 
 .imageContainer {
   overflow: hidden;
+  flex: 0 0 auto;
 }
 
 .image {
@@ -36,9 +41,33 @@
 
 .card :global(.card-body) {
   padding: 16px !important;
+
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* ocupa o espaço restante */
 }
 
-/* ========= REGIME (ROXO SIMPLES) ========= */
+.badgeRow {
+  display: flex;
+  justify-content: space-between; /* um vai pra esquerda, outro pra direita */
+  align-items: center;
+  margin-bottom: 8px;
+}
+/* ========= PRICE BADGE ========= */
+
+.priceBadge {
+  background: transparent !important;
+  color: var(--primary-purple) !important;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 0;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  display: inline-block;
+}
+
+/* ========= REGIME ========= */
 
 .regimeBadge {
   background: transparent !important;
@@ -60,6 +89,13 @@
   color: var(--primary-dark) !important;
   margin: 6px 0 10px 0 !important;
   line-height: 1.4;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;     /* máximo 2 linhas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  min-height: 45px; /* mantém padrão mesmo com título pequeno */
 }
 
 /* ========= INFO TEXT ========= */
@@ -69,6 +105,8 @@
   flex-direction: column;
   gap: 4px;
   margin-bottom: 14px;
+
+  flex: 0 0 auto;
 }
 
 .infoItem {
@@ -80,36 +118,27 @@
   display: none;
 }
 
-/* ========= BOTTOM AREA ========= */
+/* ========= ALIGN PRICE + BTN ========= */
 
-.card :global(.btn) {
+.buttonWrapper {
+  margin-top: auto;
+  display: flex;
+  justify-content: center !important;
+}
+.actionBtn {
+  background-color: var(--primary-purple) !important;
+  border: none !important;
   border-radius: 40px !important;
   font-size: 12px !important;
   font-weight: 600 !important;
-  padding: 6px 14px !important;
+  padding: 8px 22px !important;
+  color: #fff !important;
+  transition: all 0.2s ease;
 }
 
-/* ========= PRICE BADGE ========= */
-
-.priceBadge {
-  background: var(--primary-purple) !important;
-  color: var(--white) !important;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 50px;
-  margin-right: 8px;
-}
-
-/* ========= ALIGN PRICE + BTN ========= */
-
-
-.card :global(.card-body) > div:last-of-type {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-top: 14px;
+.actionBtn:hover {
+  background-color: #5b2bd6 !important;
+  transform: translateY(-2px);
 }
 
 /* ========= RESPONSIVO ========= */
@@ -127,4 +156,5 @@
   .infoItem {
     font-size: 14px;
   }
+
 }

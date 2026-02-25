@@ -33,11 +33,18 @@ export default function CourseCard({ course }: Props) {
       </div>
 
       <MDBCardBody>
-        {course.regime && (
-          <MDBBadge pill className={`${styles.regimeBadge}`}>
-            {course.regime}
-          </MDBBadge>
-        )}
+        <div className={styles.badgeRow}>
+          {course.regime && (
+              <MDBBadge pill className={styles.regimeBadge}>
+                {course.regime}
+              </MDBBadge>
+          )}
+          {course.price && (
+              <MDBBadge pill className={styles.priceBadge}>
+                {course.price === "Gratuito" ? course.price : "PAGO"}
+              </MDBBadge>
+              )}
+        </div>
 
         <MDBCardTitle className={`${styles.title}`}>
           {course.name}
@@ -70,16 +77,11 @@ export default function CourseCard({ course }: Props) {
         {/*  </MDBCardText>*/}
         {/*)}*/}
 
-        <div>
-          {course.price && (
-            <MDBBadge pill className={styles.priceBadge}>
-              {course.price}
-            </MDBBadge>
-          )}
+        <div className={styles.buttonWrapper}>
           <MDBBtn
-            size="sm"
-            className={`${styles.actionBtn}`}
-            onClick={handleViewDetails}
+              size="sm"
+              className={styles.actionBtn}
+              onClick={handleViewDetails}
           >
             Saiba Mais
           </MDBBtn>

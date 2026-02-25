@@ -34,13 +34,22 @@ export default function CourseList({ courses }: Props) {
 
           {/* FILTER BAR */}
           <div className={styles.filterBar}>
-
+            <div className={styles.searchContainer}>
+              <input
+                  type="text"
+                  placeholder="Buscar cursos..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className={styles.searchInput}
+              />
+              <i className="fas fa-search"></i>
+            </div>
             <div className={styles.customSelect}>
               <button
                   className={`${styles.selectTrigger} ${open ? styles.open : ''}`}
                   onClick={() => setOpen(prev => !prev)}
               >
-                {selectedRegime || "Todos os Regimes"}
+                {selectedRegime || "Regimes"}
                 <span className={styles.arrow} />
               </button>
 
@@ -53,7 +62,7 @@ export default function CourseList({ courses }: Props) {
                           setOpen(false);
                         }}
                     >
-                      Todos os Regimes
+                      Todos
                     </div>
 
                     {regimes.map(regime => (
@@ -71,18 +80,6 @@ export default function CourseList({ courses }: Props) {
                   </div>
               )}
             </div>
-
-            <div className={styles.searchContainer}>
-              <input
-                  type="text"
-                  placeholder="Buscar cursos..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className={styles.searchInput}
-              />
-              <i className="fas fa-search"></i>
-            </div>
-
           </div>
 
           {/* RESULTADOS */}
@@ -104,7 +101,7 @@ export default function CourseList({ courses }: Props) {
                   {filteredCourses.length !== 1 ? 's' : ''}
                 </p>
 
-                <MDBRow className="g-4 g-lg-5">
+                <MDBRow className="g-3 g-lg-4">
                   {filteredCourses.map(course => (
                       <MDBCol
                           key={course.id}
