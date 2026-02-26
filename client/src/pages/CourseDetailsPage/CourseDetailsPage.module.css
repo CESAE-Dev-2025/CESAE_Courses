@@ -1,6 +1,4 @@
-/* ======================================================
-   🎨 VARIÁVEIS DE COR E BASE
-====================================================== */
+/* ===== BASE ===== */
 
 :root {
   --primary: #7d3db3;
@@ -8,10 +6,8 @@
   --primary-light: #f3ebfa;
 
   --gray-100: #f8f9fa;
-  --gray-200: #eeeeee;
   --gray-300: #e5e7eb;
   --gray-400: #9ca3af;
-  --gray-600: #4b5563;
   --gray-700: #374151;
   --gray-900: #111827;
 
@@ -19,24 +15,13 @@
   --transition: 0.2s ease;
 }
 
-
-/* ======================================================
-   📱 PAGE BASE (Mobile First)
-====================================================== */
-
 .page {
-  background: #ffffff;
-  padding-bottom: 110px; /* Espaço para CTA fixo */
+  background: #fff;
+  padding-bottom: 110px;
 }
 
 
-/* ======================================================
-   🔥 HERO SECTION
-====================================================== */
-
-.hero {
-  position: relative;
-}
+/* ===== HERO ===== */
 
 .heroImage {
   width: 100%;
@@ -57,62 +42,70 @@
 }
 
 .heroBadge {
-  background-color: transparent !important;
   font-size: 1rem;
   padding: 0.4rem 0.75rem;
-  color: #7d3db3;
+  color: var(--primary);
+  background: none !important;
+}
+
+@media (min-width: 768px) {
+  .heroImage { height: 320px; }
+  .heroTitle { font-size: 2rem; }
 }
 
 
-/* ======================================================
-   ⚡ QUICK INFO GRID
-====================================================== */
-
+/* ===== QUICK INFO ===== */
 .quickInfo {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
   padding: 1rem;
 }
 
 .quickItem {
-  display: flex;
-  gap: 0.75rem;
-  align-items: flex-start;
   background: var(--gray-100);
-  padding: 0.9rem;
+  padding: 1rem 1rem;
   border-radius: var(--radius);
+  text-align: center;
   transition: var(--transition);
-}
-
-.quickItem:hover {
-  background: var(--primary-light);
-}
-
-.quickIcon {
-  color: var(--primary);
-  font-size: 1rem;
-  margin-top: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 120px;
 }
 
 .quickLabel {
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: var(--gray-400);
-  margin-bottom: 2px;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .quickValue {
   display: block;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--gray-700);
 }
 
+/* Responsivo */
 
-/* ======================================================
-   📖 COURSE CONTENT (Accordion)
-====================================================== */
+@media (min-width: 768px) {
+  .quickInfo {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .quickInfo {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* ===== COURSE CONTENT ===== */
 
 .contentWrapper {
   padding: 0 1rem 2rem;
@@ -124,10 +117,10 @@
   color: var(--gray-700);
 }
 
-/* Customização leve do MDB Accordion */
+/* MDB custom */
 
 .mdb-accordion-button:not(.collapsed) {
-  background-color: var(--primary-light);
+  background: var(--primary-light);
   color: var(--primary);
 }
 
@@ -140,9 +133,21 @@
   border-bottom: 1px solid var(--gray-300);
 }
 
-/* ======================================================
-   📚 COURSE MODULES (Conteúdo programático formatado)
-====================================================== */
+/* Sponsor */
+
+.sponsorDescription {
+  margin-bottom: 1rem;
+}
+
+.sponsorImage {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* ===== MODULES ===== */
 
 .moduleBlock {
   margin-bottom: 1.5rem;
@@ -166,32 +171,28 @@
   color: var(--gray-700);
 }
 
-/* ======================================================
-   🚀 MOBILE FIXED CTA
-====================================================== */
+
+/* ===== MOBILE CTA ===== */
 
 .mobileCta {
   position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
+  inset-inline: 0;
   padding: 1rem;
-  background: #ffffff;
-  box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.06);
+  background: #fff;
+  box-shadow: 0 -6px 18px rgba(0,0,0,0.06);
   z-index: 1000;
 }
 
-/* Botão principal */
 .mobileCta .btn-brand-primary {
-  background-color: var(--primary);
+  background: var(--primary);
   border-color: var(--primary);
 }
 
 .mobileCta .btn-brand-primary:hover {
-  background-color: var(--primary-dark);
+  background: var(--primary-dark);
 }
 
-/* Botão secundário */
 .mobileCta .btn-brand-secondary {
   border: 1px solid var(--primary);
   color: var(--primary);
@@ -199,39 +200,9 @@
 }
 
 .mobileCta .btn-brand-secondary:hover {
-  background-color: var(--primary-light);
+  background: var(--primary-light);
 }
 
-
-/* ======================================================
-   💻 RESPONSIVO (Tablet + Desktop)
-====================================================== */
-
-@media (min-width: 768px) {
-
-  .heroImage {
-    height: 320px;
-  }
-
-  .heroTitle {
-    font-size: 2rem;
-  }
-
-  .quickInfo {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 1200px) {
-
-  .quickInfo {
-    grid-template-columns: repeat(6, 1fr);
-  }
-}
-
-/* Esconder CTA fixo no desktop */
 @media (min-width: 992px) {
-  .mobileCta {
-    display: none;
-  }
+  .mobileCta { display: none; }
 }

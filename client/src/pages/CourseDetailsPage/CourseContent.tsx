@@ -26,29 +26,18 @@ function AccordionSection({ id, title, content }: SectionProps) {
     );
 }
 
-//função para diagramar o CourseContent
-function renderFormattedString(content: string) {
-    const parts = content.split("\n\n");
+const parsedContent = JSON.parse({course.courseContent});
 
-    const title = parts[0];
-    const bulletsText = parts[1] || "";
-
-    const bullets = bulletsText
-        .split("•")
-        .map(item => item.trim())
-        .filter(Boolean);
+function renderSimpleList(content: string[]) {
+    if (!content || !Array.isArray(content)) return null;
 
     return (
         <div className={styles.moduleBlock}>
-            <h4 className={styles.moduleTitle}>{title}</h4>
-
-            {bullets.length > 0 && (
-                <ul className={styles.moduleList}>
-                    {bullets.map((bullet, index) => (
-                        <li key={index}>{bullet}</li>
-                    ))}
-                </ul>
-            )}
+            <ul className={styles.moduleList}>
+                {content.map((item, index) => (
+                    <li key={index}>{item}</li>
+                ))}
+            </ul>
         </div>
     );
 }
@@ -98,7 +87,7 @@ export default function CourseContent({ course }: Props) {
                     />
                 )}
 
-                {course.courseContent && (
+                {course.courseContent && course.courseContent.trim() !== "[]" && (
                     <MDBAccordionItem collapseId={6} headerTitle="Conteúdos">
                         {renderFormattedString(course.courseContent)}
                     </MDBAccordionItem>
@@ -119,7 +108,25 @@ export default function CourseContent({ course }: Props) {
                         </div>
                     </MDBAccordionItem>
                 )}
+
+                {hasText(course.sponsorImgUrl) && (
+                    <MDBAccordionItem collapseId={8} headerTitle="Curso Financiado">
+                        <div className={styles.sectionContent}>
+                            <p className={styles.sponsorDescription}>
+                                Este curso é financiado por entidades e planos governamentais.
+                            </p>
+
+                            <img
+                                src={course.sponsorImgUrl}
+                                alt="Entidade Financiadora"
+                                className={styles.sponsorImage}
+                            />
+                        </div>
+                    </MDBAccordionItem>
+                )}
+
             </MDBAccordion>
         </div>
+
     );
 }
