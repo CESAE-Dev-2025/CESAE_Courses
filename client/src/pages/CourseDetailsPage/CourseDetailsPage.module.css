@@ -1,145 +1,237 @@
-.section {
-  background: linear-gradient(180deg, var(--surface-muted) 0%, var(--white) 100%);
-  flex: 1;
+/* ======================================================
+   🎨 VARIÁVEIS DE COR E BASE
+====================================================== */
+
+:root {
+  --primary: #7d3db3;
+  --primary-dark: #6a3299;
+  --primary-light: #f3ebfa;
+
+  --gray-100: #f8f9fa;
+  --gray-200: #eeeeee;
+  --gray-300: #e5e7eb;
+  --gray-400: #9ca3af;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-900: #111827;
+
+  --radius: 14px;
+  --transition: 0.2s ease;
 }
 
-.backBtn {
-  margin-bottom: 1rem;
+
+/* ======================================================
+   📱 PAGE BASE (Mobile First)
+====================================================== */
+
+.page {
+  background: #ffffff;
+  padding-bottom: 110px; /* Espaço para CTA fixo */
 }
 
-.card {
-  border: none;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
+
+/* ======================================================
+   🔥 HERO SECTION
+====================================================== */
+
+.hero {
+  position: relative;
 }
 
-.image {
+.heroImage {
   width: 100%;
-  height: 100%;
-  min-height: 320px;
+  height: 220px;
   object-fit: cover;
 }
 
-.content {
-  padding: 1.5rem;
+.heroContent {
+  padding: 1.25rem 1rem 1rem;
 }
 
-@media (min-width: 768px) {
-  .content {
-    padding: 2rem;
-  }
-}
-
-.title {
+.heroTitle {
   font-size: 1.4rem;
-  color: var(--primary-dark);
-  margin-bottom: 1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
 }
 
-@media (min-width: 768px) {
-  .title {
-    font-size: 1.9rem;
-  }
+.heroBadge {
+  background-color: transparent !important;
+  font-size: 1rem;
+  padding: 0.4rem 0.75rem;
+  color: #7d3db3;
 }
 
-.regimeBadge {
-  background: var(--btn-primary-bg);
-  color: var(--white);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-}
 
-.detailList {
+/* ======================================================
+   ⚡ QUICK INFO GRID
+====================================================== */
+
+.quickInfo {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 0.75rem;
-  margin-bottom: 1rem;
+  padding: 1rem;
 }
 
-@media (min-width: 768px) {
-  .detailList {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.detailItem {
+.quickItem {
   display: flex;
+  gap: 0.75rem;
   align-items: flex-start;
-  color: var(--text-primary);
+  background: var(--gray-100);
+  padding: 0.9rem;
+  border-radius: var(--radius);
+  transition: var(--transition);
 }
 
-.detailItem i {
-  color: var(--primary-blue);
-  margin-top: 0.2rem;
+.quickItem:hover {
+  background: var(--primary-light);
 }
 
-.priceBadge {
-  background: var(--btn-primary-bg);
-  color: var(--white);
+.quickIcon {
+  color: var(--primary);
+  font-size: 1rem;
+  margin-top: 3px;
+}
+
+.quickLabel {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--gray-400);
+  margin-bottom: 2px;
+}
+
+.quickValue {
+  display: block;
   font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gray-700);
 }
 
-.actionButtons {
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  max-width: 320px;
+
+/* ======================================================
+   📖 COURSE CONTENT (Accordion)
+====================================================== */
+
+.contentWrapper {
+  padding: 0 1rem 2rem;
 }
+
+.sectionContent {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--gray-700);
+}
+
+/* Customização leve do MDB Accordion */
+
+.mdb-accordion-button:not(.collapsed) {
+  background-color: var(--primary-light);
+  color: var(--primary);
+}
+
+.mdb-accordion-button:focus {
+  box-shadow: none;
+}
+
+.mdb-accordion-item {
+  border: none;
+  border-bottom: 1px solid var(--gray-300);
+}
+
+/* ======================================================
+   📚 COURSE MODULES (Conteúdo programático formatado)
+====================================================== */
+
+.moduleBlock {
+  margin-bottom: 1.5rem;
+}
+
+.moduleTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+
+.moduleList {
+  padding-left: 1rem;
+}
+
+.moduleList li {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+  color: var(--gray-700);
+}
+
+/* ======================================================
+   🚀 MOBILE FIXED CTA
+====================================================== */
+
+.mobileCta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: #ffffff;
+  box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.06);
+  z-index: 1000;
+}
+
+/* Botão principal */
+.mobileCta .btn-brand-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.mobileCta .btn-brand-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+/* Botão secundário */
+.mobileCta .btn-brand-secondary {
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  background: transparent;
+}
+
+.mobileCta .btn-brand-secondary:hover {
+  background-color: var(--primary-light);
+}
+
+
+/* ======================================================
+   💻 RESPONSIVO (Tablet + Desktop)
+====================================================== */
 
 @media (min-width: 768px) {
-  .actionButtons {
-    flex-direction: row;
-    flex-wrap: wrap;
-    max-width: none;
+
+  .heroImage {
+    height: 320px;
+  }
+
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .quickInfo {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-.enrollBtn {
-  min-width: 240px;
-}
+@media (min-width: 1200px) {
 
-.downloadBtn {
-  min-width: 240px;
-}
-
-.infoLayout {
-  margin-top: 1.75rem;
-  display: grid;
-  gap: 1.25rem;
-
-  p{
-    overflow-wrap: anywhere;
+  .quickInfo {
+    grid-template-columns: repeat(6, 1fr);
   }
 }
 
+/* Esconder CTA fixo no desktop */
 @media (min-width: 992px) {
-  .infoLayout {
-    grid-template-columns: 1fr 1fr;
-    column-gap: 2.25rem;
+  .mobileCta {
+    display: none;
   }
-}
-
-.infoSection {
-  padding-top: 0.25rem;
-  border-top: 1px solid var(--border-soft);
-}
-
-.infoSection h3 {
-  font-size: 1.05rem;
-  margin-bottom: 0.6rem;
-  color: var(--primary-dark);
-}
-
-.infoSection p {
-  margin: 0;
-  color: var(--text-light);
-  line-height: 1.6;
-  white-space: pre-line;
-}
-
-.missingTitle {
-  font-size: 1.25rem;
-  color: var(--primary-dark);
 }
