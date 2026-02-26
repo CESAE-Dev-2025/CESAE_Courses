@@ -8,8 +8,6 @@ function sanitizeCourseContent(content: string): string {
 
     if (courseContent.length === 0) return "";
 
-
-
     return JSON.parse(content).length > 0 ? content : "";
 }
 
@@ -27,7 +25,6 @@ export async function scrapeCesaeCourses(): Promise<Course[]> {
         while (true) {
             const currentCount = await page.locator("article").count();
             customLogger("INFO", "Carregando curso: ", String(currentCount))
-            // console.log("Cursos carregados:", currentCount);
 
             if (currentCount === previousCount) break;
             previousCount = currentCount;
@@ -98,9 +95,9 @@ export async function scrapeCesaeCourses(): Promise<Course[]> {
             }));
 
             data.id = nextId++;
-            data.downloadId = data.downloadId.slice(24, data.downloadId.length - 27)
+            data.downloadId = data.downloadId.slice(24, data.downloadId.length - 3)
             data.courseContent = sanitizeCourseContent(data.courseContent);
-            console.log(data.courseContent);
+
             results.push(data);
         }
 
