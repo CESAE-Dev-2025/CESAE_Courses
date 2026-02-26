@@ -1,6 +1,17 @@
 import 'dotenv/config';
 import {chromium, type Page} from "playwright";
 import type {Course} from "shared/dist/types";
+import {customLogger} from "./CustomLogger";
+
+function sanitizeCourseContent(content: string): string {
+    let courseContent = JSON.parse(content);
+
+    if (courseContent.length === 0) return "";
+
+
+
+    return JSON.parse(content).length > 0 ? content : "";
+}
 
 export async function scrapeCesaeCourses(): Promise<Course[]> {
     const browser = await chromium.launch({headless: true});
@@ -15,7 +26,8 @@ export async function scrapeCesaeCourses(): Promise<Course[]> {
 
         while (true) {
             const currentCount = await page.locator("article").count();
-            console.log("Cursos carregados:", currentCount);
+            customLogger("INFO", "Carregando curso: ", String(currentCount))
+            // console.log("Cursos carregados:", currentCount);
 
             if (currentCount === previousCount) break;
             previousCount = currentCount;
@@ -67,7 +79,6 @@ export async function scrapeCesaeCourses(): Promise<Course[]> {
                 benefits: document.querySelector<HTMLAnchorElement>("#mainSection_divBeneficios a")?.href ?? "",
                 goals: document.querySelector("#mainSection_objetivos")?.textContent?.trim() ?? "",
                 sponsorImgUrl: document.querySelector<HTMLImageElement>("#mainSection_imgLogoParceiros")?.src ?? "",
-                // courseContent: document.querySelector("#mainSection_divProgram h3.title + div.col-12")?.textContent?.trim() ?? "",
                 courseContent: JSON.stringify(
                     Array.from(document.querySelectorAll<HTMLLIElement>("#mainSection_divProgram h3.title + ul > li"))
                         .map(li => li.textContent?.trim() ?? "")
@@ -80,12 +91,16 @@ export async function scrapeCesaeCourses(): Promise<Course[]> {
 
             data.id = nextId++;
             data.downloadId = data.downloadId.slice(24, data.downloadId.length - 27)
+            data.courseContent = sanitizeCourseContent(data.courseContent);
+            console.log(data.courseContent);
             results.push(data);
         }
 
         return results;
     } catch (error) {
-        console.error("Erro no scraping:", error);
+        // console.error("Erro no scraping:", error);
+        customLogger("ERROR","Erro no scraping:", error);
+
         throw error;
     } finally {
         await browser.close();
