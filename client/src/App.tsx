@@ -22,6 +22,7 @@ function RequireAuth({children}: { children: ReactElement }) {
 
 function App() {
     return (
+        <div className="appLayout">
         <BrowserRouter>
             <Header/>
             <Routes>
@@ -57,6 +58,7 @@ function App() {
             </Routes>
             <Footer/>
         </BrowserRouter>
+        </div>
     );
 }
 

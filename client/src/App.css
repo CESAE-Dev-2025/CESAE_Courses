@@ -4,3 +4,36 @@
     flex-direction: column;
     font-family: 'Montserrat', sans-serif;
 }
+.appLayout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.appLayout > *:not(.footer) {
+    flex-shrink: 0;
+}
+
+.footer {
+    margin-top: auto;
+}
+
+.load-more-container {
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.load-more-button {
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: montserrat;
+
+    background: transparent;
+    color: #374151;
+    border: 2px solid #d1d5db; /* cinza claro */
+
+    transition: background 0.2s ease, color 0.2s ease;
+}
