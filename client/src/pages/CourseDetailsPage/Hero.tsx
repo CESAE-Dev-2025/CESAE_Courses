@@ -19,14 +19,16 @@ export default function Hero({ course }: Props) {
                 className={styles.heroImage}
             />
 
-            <div className={styles.heroContent}>
-                <h1 className={styles.heroTitle}>{course.name}</h1>
+            <div className="container">
+                <div className={styles.heroContent}>
+                    <h1 className={styles.heroTitle}>{course.name}</h1>
 
-                {hasText(course.regime) && (
-                    <MDBBadge pill className={styles.heroBadge}>
-                        {course.regime}
-                    </MDBBadge>
-                )}
+                    {hasText(course.regime) && (
+                        <MDBBadge pill className={styles.heroBadge}>
+                            {course.regime}
+                        </MDBBadge>
+                    )}
+                </div>
             </div>
         </section>
     );

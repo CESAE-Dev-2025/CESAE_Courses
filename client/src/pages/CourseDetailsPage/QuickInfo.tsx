@@ -30,54 +30,56 @@ function QuickItem({ icon, label, value }: ItemProps) {
 
 export default function QuickInfo({ course }: Props) {
     return (
-        <div className={styles.quickInfo}>
-            {hasText(course.startDate) && (
-                <QuickItem
-                    icon=""
-                    label="Início"
-                    value={course.startDate}
-                />
-            )}
+        <div className="container">
+            <div className={styles.quickInfo}>
+                {hasText(course.startDate) && (
+                    <QuickItem
+                        icon=""
+                        label="Início"
+                        value={course.startDate}
+                    />
+                )}
 
-            {hasText(course.endDate) && (
-                <QuickItem
-                    icon=""
-                    label="Fim"
-                    value={course.endDate}
-                />
-            )}
+                {hasText(course.endDate) && (
+                    <QuickItem
+                        icon=""
+                        label="Fim"
+                        value={course.endDate}
+                    />
+                )}
 
-            {hasText(course.duration) && (
-                <QuickItem
-                    icon=""
-                    label="Duração"
-                    value={course.duration}
-                />
-            )}
+                {hasText(course.duration) && (
+                    <QuickItem
+                        icon=""
+                        label="Duração"
+                        value={course.duration}
+                    />
+                )}
 
-            {hasText(course.time) && (
-                <QuickItem
-                    icon=""
-                    label="Horário"
-                    value={course.time}
-                />
-            )}
+                {hasText(course.time) && (
+                    <QuickItem
+                        icon=""
+                        label="Horário"
+                        value={course.time}
+                    />
+                )}
 
-            {hasText(course.location) && (
-                <QuickItem
-                    icon=""
-                    label="Local"
-                    value={course.location}
-                />
-            )}
+                {hasText(course.location) && (
+                    <QuickItem
+                        icon=""
+                        label="Local"
+                        value={course.location}
+                    />
+                )}
 
-            {hasText(course.price) && (
-                <QuickItem
-                    icon=""
-                    label="Preço"
-                    value={course.price}
-                />
-            )}
+                {hasText(course.price) && (
+                    <QuickItem
+                        icon=""
+                        label="Preço"
+                        value={course.price}
+                    />
+                )}
+            </div>
         </div>
     );
 }

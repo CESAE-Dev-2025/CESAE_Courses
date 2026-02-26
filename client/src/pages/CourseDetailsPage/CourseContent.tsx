@@ -68,88 +68,90 @@ export default function CourseContent({ course }: Props) {
     const parsed = JSON.parse(course.courseContent || "[]");
 
     return (
-        <div className={styles.contentWrapper}>
-            <MDBAccordion alwaysOpen initialActive={1}>
+        <div className="container">
+            <div className={styles.contentWrapper}>
+                <MDBAccordion alwaysOpen initialActive={1}>
 
-                {hasText(course.description) && (
-                    <AccordionSection
-                        id={1}
-                        title="Descrição"
-                        content={course.description}
-                    />
-                )}
+                    {hasText(course.description) && (
+                        <AccordionSection
+                            id={1}
+                            title="Descrição"
+                            content={course.description}
+                        />
+                    )}
 
-                {hasText(course.goals) && (
-                    <AccordionSection
-                        id={2}
-                        title="Objetivos"
-                        content={course.goals}
-                    />
-                )}
+                    {hasText(course.goals) && (
+                        <AccordionSection
+                            id={2}
+                            title="Objetivos"
+                            content={course.goals}
+                        />
+                    )}
 
-                {hasText(course.audience) && (
-                    <AccordionSection
-                        id={3}
-                        title="Público-alvo"
-                        content={course.audience}
-                    />
-                )}
+                    {hasText(course.audience) && (
+                        <AccordionSection
+                            id={3}
+                            title="Público-alvo"
+                            content={course.audience}
+                        />
+                    )}
 
-                {hasText(course.requirements) && (
-                    <AccordionSection
-                        id={4}
-                        title="Requisitos"
-                        content={course.requirements}
-                    />
-                )}
+                    {hasText(course.requirements) && (
+                        <AccordionSection
+                            id={4}
+                            title="Requisitos"
+                            content={course.requirements}
+                        />
+                    )}
 
-                {hasText(course.project) && (
-                    <AccordionSection
-                        id={5}
-                        title="Projeto"
-                        content={course.project}
-                    />
-                )}
+                    {hasText(course.project) && (
+                        <AccordionSection
+                            id={5}
+                            title="Projeto"
+                            content={course.project}
+                        />
+                    )}
 
-                {parsed.length > 0 && (
-                    <MDBAccordionItem collapseId={6} headerTitle="Conteúdos">
-                        {renderCourseContent(parsed)}
-                    </MDBAccordionItem>
-                )}
+                    {parsed.length > 0 && (
+                        <MDBAccordionItem collapseId={6} headerTitle="Conteúdos">
+                            {renderCourseContent(parsed)}
+                        </MDBAccordionItem>
+                    )}
 
-                {hasText(course.benefits) && (
-                    <MDBAccordionItem collapseId={7} headerTitle="Benefícios">
-                        <div className={styles.sectionContent}>
-                            Consulte{" "}
-                            <a
-                                href={course.benefits}
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                aqui
-                            </a>{" "}
-                            os benefícios inerentes a este curso.
-                        </div>
-                    </MDBAccordionItem>
-                )}
+                    {hasText(course.benefits) && (
+                        <MDBAccordionItem collapseId={7} headerTitle="Benefícios">
+                            <div className={styles.sectionContent}>
+                                Consulte{" "}
+                                <a
+                                    href={course.benefits}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    aqui
+                                </a>{" "}
+                                os benefícios inerentes a este curso.
+                            </div>
+                        </MDBAccordionItem>
+                    )}
 
-                {hasText(course.sponsorImgUrl) && (
-                    <MDBAccordionItem collapseId={8} headerTitle="Curso Financiado">
-                        <div className={styles.sectionContent}>
-                            <p className={styles.sponsorDescription}>
-                                Este curso é financiado por entidades e planos governamentais.
-                            </p>
+                    {hasText(course.sponsorImgUrl) && (
+                        <MDBAccordionItem collapseId={8} headerTitle="Curso Financiado">
+                            <div className={styles.sectionContent}>
+                                <p className={styles.sponsorDescription}>
+                                    Este curso é financiado por entidades e planos governamentais.
+                                </p>
 
-                            <img
-                                src={course.sponsorImgUrl}
-                                alt="Entidade Financiadora"
-                                className={styles.sponsorImage}
-                            />
-                        </div>
-                    </MDBAccordionItem>
-                )}
+                                <img
+                                    src={course.sponsorImgUrl}
+                                    alt="Entidade Financiadora"
+                                    className={styles.sponsorImage}
+                                />
+                            </div>
+                        </MDBAccordionItem>
+                    )}
 
-            </MDBAccordion>
+                </MDBAccordion>
+            </div>
         </div>
     );
 }
