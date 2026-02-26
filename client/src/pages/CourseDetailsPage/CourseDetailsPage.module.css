@@ -150,37 +150,55 @@
 /* ===== MODULES ===== */
 
 .moduleBlock {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .moduleTitle {
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--primary-light);
+}
+
+.subModule {
+  background: var(--gray-100);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: var(--transition);
+}
+
+
+.subTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gray-900);
   margin-bottom: 0.75rem;
 }
 
 .moduleList {
-  padding-left: 1rem;
+  padding-left: 1.2rem;
+  margin: 0;
 }
 
 .moduleList li {
   font-size: 0.85rem;
-  line-height: 1.5;
+  line-height: 1.6;
   margin-bottom: 0.5rem;
   color: var(--gray-700);
 }
 
 
+
 /* ===== MOBILE CTA ===== */
 
 .mobileCta {
-  position: fixed;
+  position: sticky;
   bottom: 0;
-  inset-inline: 0;
   padding: 1rem;
   background: #fff;
-  box-shadow: 0 -6px 18px rgba(0,0,0,0.06);
   z-index: 1000;
 }
 

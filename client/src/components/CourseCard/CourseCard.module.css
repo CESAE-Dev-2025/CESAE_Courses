@@ -1,6 +1,4 @@
-/* ========================================
-   GRID RESPONSIVO (MOBILE FIRST)
-======================================== */
+/* ===== GRID ===== */
 
 .cardsGrid {
   display: grid;
@@ -8,34 +6,31 @@
   gap: 16px;
 }
 
-@media (min-width: 768px) {
-  .cardsGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+@media (min-width:768px){
+  .cardsGrid { grid-template-columns: repeat(2,1fr); }
 }
 
-@media (min-width: 1200px) {
-  .cardsGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+@media (min-width:1200px){
+  .cardsGrid { grid-template-columns: repeat(3,1fr); }
 }
 
-/* ========================================
-   CARD BASE
-======================================== */
+
+/* ===== CARD ===== */
 
 .card {
-  border: none;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  background: var(--surface-card);
-  box-shadow: 0 6px 16px rgba(0,0,0,.05);
-  transition: transform .25s ease, box-shadow .25s ease;
-  font-family: 'Montserrat', sans-serif;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   height: 100%;
+  cursor: pointer;
+
+  background: var(--surface-card);
+  border: none;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 0 6px 16px rgba(0,0,0,.05);
+  transition: .25s ease;
 }
 
 .card:hover {
@@ -43,13 +38,12 @@
   box-shadow: 0 12px 28px rgba(0,0,0,.08);
 }
 
-/* ========================================
-   IMAGE (RESPONSIVA COM PROPORÇÃO FIXA)
-======================================== */
+
+/* ===== IMAGE ===== */
 
 .imageContainer {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16/9;
   overflow: hidden;
 }
 
@@ -64,20 +58,18 @@
   transform: scale(1.04);
 }
 
-/* ========================================
-   CARD BODY
-======================================== */
+
+/* ===== BODY ===== */
 
 .card :global(.card-body) {
-  padding: 16px;
   display: flex;
   flex-direction: column;
   flex: 1;
+  padding: 16px;
 }
 
-/* ========================================
-   BADGES (PREÇO / REGIME)
-======================================== */
+
+/* ===== BADGES ===== */
 
 .badgeRow {
   display: flex;
@@ -88,27 +80,22 @@
 
 .priceBadge,
 .regimeBadge {
-  background: transparent !important;
+  font: 600 .75rem/1 'Montserrat', sans-serif;
   color: #7426AA !important;
-  font-size: 0.75rem;
-  font-weight: 600;
+  background: transparent !important;
   padding: 0;
   margin-bottom: 3px;
   text-transform: uppercase;
   letter-spacing: .4px;
-  display: inline-block;
 }
 
-/* ========================================
-   TITLE (FLUIDO E CONTROLADO)
-======================================== */
+
+/* ===== TITLE ===== */
 
 .title {
-  font-size: 1.05rem;
-  font-weight: 600;
+  font: 600 1.05rem/1.4 'Montserrat', sans-serif;
   color: var(--primary-dark);
-  margin: 5px 0 9px 0;
-  line-height: 1.4;
+  margin: 5px 0 9px;
 
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -116,37 +103,32 @@
   overflow: hidden;
 }
 
-/* ========================================
-   INFO GRID
-======================================== */
+
+/* ===== INFO ===== */
 
 .infoItem {
-  font-size: 0.875rem;
+  font-size: .875rem;
   color: var(--text-light);
 }
 
-.infoItem i {
-  display: none;
-}
+.infoItem i { display: none; }
 
-/* ========================================
-   INFO + ARROW ROW
-======================================== */
+
+/* ===== FOOT ROW ===== */
 
 .infoRow {
   margin-top: auto;
   display: flex;
-  align-items: flex-end;
   justify-content: space-between;
+  align-items: flex-end;
 }
 
 .arrow {
   font-size: 1.25rem;
   color: #7426AA;
-  transition: transform .25s ease, opacity .25s ease;
+  transition: .25s ease;
 }
 
-/* animação subtil e moderna */
 .card:hover .arrow {
   transform: translateX(6px);
 }

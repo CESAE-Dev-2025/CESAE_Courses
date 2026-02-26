@@ -18,7 +18,7 @@ export default function CourseCTA({ course }: Props) {
 
     const shouldShowDownloadButton = Boolean(course.hasDownloadButton);
 
-    function downloadDoc(idDoc?: string | number) {
+/*    function downloadDoc(idDoc?: string | number) {
         if (!idDoc) return;
 
         const form = document.getElementById("frmDown") as HTMLFormElement | null;
@@ -30,7 +30,7 @@ export default function CourseCTA({ course }: Props) {
 
         idDocInput.value = String(idDoc);
         form.submit();
-    }
+    }*/
 
     if (!hasEnrollmentUrl && !shouldShowDownloadButton) return null;
 
@@ -52,7 +52,7 @@ export default function CourseCTA({ course }: Props) {
                 <MDBBtn
                     type="button"
                     className="btn-brand-secondary w-100"
-                    onClick={() => downloadDoc(course.downloadId)}
+                   // onClick={() => downloadDoc(course.downloadId)}
                 >
                     Descarregar Programa
                 </MDBBtn>

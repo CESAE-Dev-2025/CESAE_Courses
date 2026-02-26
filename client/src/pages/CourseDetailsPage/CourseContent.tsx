@@ -26,23 +26,47 @@ function AccordionSection({ id, title, content }: SectionProps) {
     );
 }
 
-const parsedContent = JSON.parse({course.courseContent});
+function renderCourseContent(
+    content: { title: string; items: string[] }[]
+) {
+    if (!content?.length) return null;
 
-function renderSimpleList(content: string[]) {
-    if (!content || !Array.isArray(content)) return null;
+    return content
+        .filter(section => section.title !== "Conteúdo programático")
+        .map((section, i) => (
+            <div key={i} className={styles.moduleBlock}>
+                {section.title && (
+                    <h3 className={styles.moduleTitle}>{section.title}</h3>
+                )}
 
-    return (
-        <div className={styles.moduleBlock}>
-            <ul className={styles.moduleList}>
-                {content.map((item, index) => (
-                    <li key={index}>{item}</li>
-                ))}
-            </ul>
-        </div>
-    );
+                {section.items.map((item, j) => {
+                    const parts = item.split("\n\n");
+                    const subTitle = parts[0];
+                    const bullets =
+                        parts[1]?.split("•").map(b => b.trim()).filter(Boolean) || [];
+
+                    return (
+                        <div key={j} className={styles.subModule}>
+                            <h4 className={styles.subTitle}>{subTitle}</h4>
+
+                            {bullets.length > 0 && (
+                                <ul className={styles.moduleList}>
+                                    {bullets.map((b, k) => (
+                                        <li key={k}>{b}</li>
+                                    ))}
+                                </ul>
+                            )}
+                        </div>
+                    );
+                })}
+            </div>
+        ));
 }
 
 export default function CourseContent({ course }: Props) {
+
+    const parsed = JSON.parse(course.courseContent || "[]");
+
     return (
         <div className={styles.contentWrapper}>
             <MDBAccordion alwaysOpen initialActive={1}>
@@ -87,9 +111,9 @@ export default function CourseContent({ course }: Props) {
                     />
                 )}
 
-                {course.courseContent && course.courseContent.trim() !== "[]" && (
+                {parsed.length > 0 && (
                     <MDBAccordionItem collapseId={6} headerTitle="Conteúdos">
-                        {renderFormattedString(course.courseContent)}
+                        {renderCourseContent(parsed)}
                     </MDBAccordionItem>
                 )}
 
@@ -127,6 +151,5 @@ export default function CourseContent({ course }: Props) {
 
             </MDBAccordion>
         </div>
-
     );
 }
