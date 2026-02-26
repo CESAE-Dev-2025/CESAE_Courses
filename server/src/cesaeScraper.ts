@@ -80,9 +80,17 @@ export async function scrapeCesaeCourses(): Promise<Course[]> {
                 goals: document.querySelector("#mainSection_objetivos")?.textContent?.trim() ?? "",
                 sponsorImgUrl: document.querySelector<HTMLImageElement>("#mainSection_imgLogoParceiros")?.src ?? "",
                 courseContent: JSON.stringify(
-                    Array.from(document.querySelectorAll<HTMLLIElement>("#mainSection_divProgram h3.title + ul > li"))
-                        .map(li => li.textContent?.trim() ?? "")
-                        .filter(Boolean)
+                    Array.from(
+                        document.querySelectorAll("#mainSection_divProgram h3.title")
+                    ).map(titleEl => {
+                        const ul = titleEl.nextElementSibling;
+                        const items = ul ? Array.from(ul.querySelectorAll("li"))
+                                .map(li => li.textContent?.trim() ?? "")
+                                .filter(Boolean) : [];
+                        return {
+                            title: titleEl.textContent?.trim() ?? "", items
+                        };
+                    })
                 ),
                 enrollment: document.querySelector<HTMLAnchorElement>("#mainSection_btnInsc")?.href ?? "",
                 hasDownloadButton: Boolean(document.querySelector("#mainSection_btnProgm")),

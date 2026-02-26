@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 /* RESET BÁSICO */
 * {
     margin: 0;
@@ -7,12 +8,16 @@
 
 html, body, #root {
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 body {
     background-color: var(--surface-bg);
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .btn {
