@@ -3,7 +3,7 @@ const logDate = () => new Date()
     .replace('Z', '')
     .replace('T', ' ')
 
-export const customLogger = (logType: string, message: string, ...rest: string[]) => {
+export const customLogger = (logType: string, message: string, ...rest: string[] | unknown[]) => {
     logType = logType.toUpperCase()
     if (logType === 'ERROR') {
         console.error(`${logDate()} | ${logType}:`, message, ...rest)
