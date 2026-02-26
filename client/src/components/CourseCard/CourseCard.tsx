@@ -3,7 +3,6 @@ import {
   MDBCardBody,
   MDBCardTitle,
   MDBCardImage,
-  MDBBtn,
   MDBBadge
 } from 'mdb-react-ui-kit';
 import styles from './CourseCard.module.css';
@@ -55,37 +54,28 @@ export default function CourseCard({ course }: Props) {
           <MDBCardTitle className={styles.title}>
             {course.name}
           </MDBCardTitle>
+          <div className={styles.infoRow}>
+            <div className={styles.infoGrid}>
+              {course.location && (
+                  <div className={styles.infoItem}>
+                    <small>{course.location}</small>
+                  </div>
+              )}
+              {course.duration && (
+                  <div className={styles.infoItem}>
+                    <small>Duração: {course.duration}</small>
+                  </div>
+              )}
+              {course.startDate && (
+                  <div className={styles.infoItem}>
+                    <small>Data de Início: {course.startDate}</small>
+                  </div>
+              )}
+            </div>
 
-          <div className={styles.infoGrid}>
-            {course.location && (
-                <div className={styles.infoItem}>
-                  <small>{course.location}</small>
-                </div>
-            )}
-            {course.duration && (
-                <div className={styles.infoItem}>
-                  <small>{course.duration}</small>
-                </div>
-            )}
-            {course.startDate && (
-                <div className={styles.infoItem}>
-                  <small>{course.startDate}</small>
-                </div>
-            )}
+            <span className={styles.arrow}>→</span>
           </div>
 
-          <div className={styles.buttonWrapper}>
-            <MDBBtn
-                size="sm"
-                className={styles.actionBtn}
-                onClick={(e) => {
-                  e.stopPropagation(); // evita duplo clique
-                  handleViewDetails();
-                }}
-            >
-              Saiba Mais
-            </MDBBtn>
-          </div>
 
         </MDBCardBody>
       </MDBCard>
