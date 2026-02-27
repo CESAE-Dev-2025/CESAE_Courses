@@ -76,7 +76,7 @@ export default function AdminUsers() {
         setError(data.error || 'Erro ao adicionar usuário');
       }
     } catch (err) {
-      setError('Erro de conexão');
+      setError(`Erro de conexão: ${err}`);
     }
   }
 
