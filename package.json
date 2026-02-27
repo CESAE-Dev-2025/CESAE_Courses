@@ -35,7 +35,8 @@
     "@types/node": "^20.0.0",
     "drizzle-kit": "^0.31.9",
     "tsx": "^4.21.0",
-    "turbo": "^2.8.11"
+    "turbo": "^2.8.11",
+    "workbox-window": "^7.4.0"
   },
   "peerDependencies": {
     "typescript": "^5.9.3"

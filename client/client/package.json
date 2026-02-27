@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "workbox-window": "^7.4.0"
+  }
+}
