@@ -20,7 +20,8 @@ auth.get('/me',
         alg: 'HS256',
     }),
     (c) => {
-        return c.json({ok: true})
+        const payload = c.get('jwtPayload');
+        return c.json({ok: true, username: payload.sub, role: payload.role})
     }
 )
 
