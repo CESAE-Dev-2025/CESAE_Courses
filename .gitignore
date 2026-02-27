@@ -42,3 +42,6 @@ bun.lockb
 
 # Turbo
 .turbo
+
+# PWA Dist
+dev-dist
