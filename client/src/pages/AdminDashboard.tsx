@@ -47,9 +47,15 @@ function AdminDashboard() {
             const data = await res.json()
             setMessage(JSON.stringify(data))
             console.log(message)
+
         } catch (error) {
             setMessage((error as Error).message)
         }
+
+        await getJobInfo()
+        setTimeout(() => {
+            getJobInfo()
+        }, 61000)
     }
 
     async function getJobInfo() {
@@ -94,12 +100,17 @@ function AdminDashboard() {
     return (
         <>
             <h1 className="mt-5">Dashboard de administração</h1>
-            <div className="mx-auto col col-md-8 col-lg-6 d-flex flex-column justify-content-around align-items-center my-5">
+            <div
+                className="mx-auto col col-md-8 col-lg-6 d-flex flex-column justify-content-around align-items-center my-5">
                 <div className="w-100 d-flex gap-3 justify-content-between mb-4">
                     <button className="btn btn-primary" onClick={runScrape}>Run Scrape</button>
                     <div className="d-flex gap-2">
-                        <button className="btn btn-outline-primary" onClick={() => navigate('/admin/users')}>Gerenciar Usuários</button>
-                        <button className="btn btn-outline-secondary" onClick={() => navigate('/admin/change-password')}>Alterar Senha</button>
+                        <button className="btn btn-outline-primary" onClick={() => navigate('/admin/users')}>Gerenciar
+                            Usuários
+                        </button>
+                        <button className="btn btn-outline-secondary"
+                                onClick={() => navigate('/admin/change-password')}>Alterar Senha
+                        </button>
                     </div>
                     <button className="btn btn-link text-danger" onClick={doLogout}>Logout</button>
                 </div>
