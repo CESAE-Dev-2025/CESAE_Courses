@@ -21,7 +21,7 @@ function Header() {
 
                 {/* Desktop Nav */}
                 <nav className={styles.nav}>
-                    <a href="/">Cursos</a>
+                    <a href="/">Início</a>
                     <a href="/sobre">Sobre</a>
                     <a href="/contacto">Contatos</a>
                 </nav>
@@ -43,7 +43,7 @@ function Header() {
             {/* Mobile Dropdown */}
             {open && (
                 <nav className={styles.dropdownMenu}>
-                    <a href="/">Cursos</a>
+                    <a href="/">Início</a>
                     <a href="/sobre">Sobre</a>
                     <a href="/contacto">Contatos</a>
                 </nav>
