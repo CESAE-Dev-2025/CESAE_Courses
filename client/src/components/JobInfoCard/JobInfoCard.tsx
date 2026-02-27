@@ -14,38 +14,38 @@ interface Props {
 
 export default function JobInfoCard({ jobData }: Props) {
     return (
-        <MDBCard className="card w-100 my-3 px-0 pb-0">
+        <MDBCard shadow='0' className="card w-100 my-3 px-0 pb-0">
             <MDBCardTitle>Dados do serviço de 'Web Scraping'</MDBCardTitle>
-            <MDBCardBody>
+            <MDBCardBody className="px-0">
                 <MDBListGroup className="text-start" flush>
-                    <MDBListGroupItem><strong>Última execução: </strong> {
+                    <MDBListGroupItem className="px-3 d-flex gap-1 justify-content-between"><strong>Última execução: </strong> {
                         jobData && jobData.lastRun
                             ? new Date(jobData.lastRun).toLocaleString()
                             : 'N/A'
                     }
                     </MDBListGroupItem>
-                    <MDBListGroupItem><strong>Próxima execução: </strong>{
+                    <MDBListGroupItem className="px-3 d-flex gap-1 justify-content-between"><strong>Próxima execução: </strong>{
                         jobData && jobData.nextRun
                             ? new Date(jobData.nextRun).toLocaleString()
                             : 'N/A'
                     }
                     </MDBListGroupItem>
-                    <MDBListGroupItem><strong>Serviço ativo: </strong>{
+                    <MDBListGroupItem className="px-3 d-flex gap-1 justify-content-between"><strong>Serviço ativo: </strong>{
                         jobData && jobData.isRunning
-                            ? <MDBBadge pill className='mx-2' color='success' light>Sim</MDBBadge>
-                            : <MDBBadge pill className='mx-2' color='danger' light>Não</MDBBadge>
+                            ? <MDBBadge pill className='mx-0 my-auto px-3 py-2' color='success' light>Sim</MDBBadge>
+                            : <MDBBadge pill className='mx-0 my-auto px-3 py-2' color='danger' light>Não</MDBBadge>
                     }
                     </MDBListGroupItem>
-                    <MDBListGroupItem><strong>Serviço parado: </strong>{
+                    <MDBListGroupItem className="px-3 d-flex gap-1 justify-content-between"><strong>Serviço parado: </strong>{
                         jobData && jobData.isStopped
-                            ? <MDBBadge pill className='mx-2' color='danger' light>Sim</MDBBadge>
-                            : <MDBBadge pill className='mx-2' color='success' light>Não</MDBBadge>
+                            ? <MDBBadge pill className='mx-0 my-auto px-3 py-2' color='danger' light>Sim</MDBBadge>
+                            : <MDBBadge pill className='mx-0 my-auto px-3 py-2' color='success' light>Não</MDBBadge>
                     }
                     </MDBListGroupItem>
-                    <MDBListGroupItem><strong>Serviço em execução: </strong>{
+                    <MDBListGroupItem className="px-3 d-flex gap-1 justify-content-between"><strong>Serviço em execução: </strong>{
                         jobData && jobData.isBusy
-                            ? <MDBBadge pill className='me-2 text-dark' color='warning' light>Sim</MDBBadge>
-                            : <MDBBadge pill className='me-2 text-dark' color='light' light>Não</MDBBadge>
+                            ? <MDBBadge pill className='mx-0 my-auto px-3 py-2 text-dark' color='warning' light>Sim</MDBBadge>
+                            : <MDBBadge pill className='mx-0 my-auto px-3 py-2 text-dark' color='light' light>Não</MDBBadge>
                     }
                     </MDBListGroupItem>
                 </MDBListGroup>

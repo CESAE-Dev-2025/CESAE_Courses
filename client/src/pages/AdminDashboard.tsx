@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import {clearToken, logout, withAuth, refreshToken} from '../api/auth'
 import {JobInfo} from "shared";
 import JobInfoCard from "../components/JobInfoCard/JobInfoCard.tsx";
-
+import {MDBDropdown, MDBDropdownMenu, MDBDropdownToggle, MDBDropdownItem} from 'mdb-react-ui-kit';
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000'
 
@@ -99,22 +99,37 @@ function AdminDashboard() {
 
     return (
         <>
-            <h1 className="mt-5">Dashboard de administração</h1>
-            <div
-                className="mx-auto col col-md-8 col-lg-6 d-flex flex-column justify-content-around align-items-center my-5">
-                <div className="w-100 d-flex gap-3 justify-content-between mb-4">
-                    <button className="btn btn-primary" onClick={runScrape}>Run Scrape</button>
-                    <div className="d-flex gap-2">
-                        <button className="btn btn-outline-primary" onClick={() => navigate('/admin/users')}>Gerenciar
-                            Usuários
-                        </button>
-                        <button className="btn btn-outline-secondary"
-                                onClick={() => navigate('/admin/change-password')}>Alterar Senha
-                        </button>
+            <div className="container">
+                <h1 className="mt-5 text-center">Dashboard de administração</h1>
+                <div
+                    className="mx-auto col col-md-8 col-lg-6 d-flex flex-column justify-content-around align-items-center my-5">
+                    <div className="w-100 d-flex gap-3 justify-content-between mb-4">
+                        <button className="btn btn-primary" onClick={runScrape}>Run Scrape</button>
+
+
+                        <MDBDropdown>
+                            <MDBDropdownToggle>Ações</MDBDropdownToggle>
+                            <MDBDropdownMenu color='link'>
+                                <MDBDropdownItem link onClick={() => navigate('/admin/users')}>Gerenciar Usuários</MDBDropdownItem>
+                                <MDBDropdownItem link onClick={() => navigate('/admin/change-password')}>Alterar Senha</MDBDropdownItem>
+                                <MDBDropdownItem link className='text-danger' onClick={doLogout}>Logout</MDBDropdownItem>
+                            </MDBDropdownMenu>
+                        </MDBDropdown>
+
+
+
+                        {/*<div className="d-flex gap-2">*/}
+                        {/*    <button className="btn btn-outline-primary"*/}
+                        {/*            onClick={() => navigate('/admin/users')}>Gerenciar Usuários*/}
+                        {/*    </button>*/}
+                        {/*    <button className="btn btn-outline-secondary"*/}
+                        {/*            onClick={() => navigate('/admin/change-password')}>Alterar Senha*/}
+                        {/*    </button>*/}
+                        {/*</div>*/}
+                        {/*<button className="btn btn-link text-danger" onClick={doLogout}>Logout</button>*/}
                     </div>
-                    <button className="btn btn-link text-danger" onClick={doLogout}>Logout</button>
+                    <JobInfoCard jobData={jobData!}/>
                 </div>
-                <JobInfoCard jobData={jobData!}/>
             </div>
         </>
     )
