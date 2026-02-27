@@ -15,6 +15,7 @@ interface User {
 export default function AdminUsers() {
     const navigate = useNavigate();
     const [users, setUsers] = useState<User[]>([]);
+    const [currentUser, setCurrentUser] = useState<string | null>(null);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
@@ -44,10 +45,19 @@ export default function AdminUsers() {
 
     async function fetchUsers() {
         try {
-            const res = await apiFetch(`${SERVER_URL}/admin/users`);
-            if (res.ok) {
-                const data = await res.json();
+            const [resUsers, resMe] = await Promise.all([
+                apiFetch(`${SERVER_URL}/admin/users`),
+                apiFetch(`${SERVER_URL}/auth/me`)
+            ]);
+
+            if (resUsers.ok) {
+                const data = await resUsers.json();
                 setUsers(data);
+            }
+
+            if (resMe.ok) {
+                const data = await resMe.json();
+                setCurrentUser(data.username);
             }
         } catch (err) {
             console.error('Falha ao recuperar dados de utilizadores', err);
@@ -158,16 +168,28 @@ export default function AdminUsers() {
                                         <div className="d-flex align-items-center">
                                             <span className="badge bg-info rounded-pill me-3">{user.role}</span>
 
-                                            <MDBTooltip tag='a' wrapperProps={{href: '#'}}
-                                                        title={`Remover utilizador '${user.username}'`}>
-                                                <button
-                                                    type="button"
-                                                    className="btn btn-link text-danger px-4"
-                                                    onClick={() => handleRemoveUser(user.id)}
-                                                >
-                                                    <MDBIcon fas icon="times"/>
-                                                </button>
-                                            </MDBTooltip>
+                                            {currentUser !== user.username && (
+                                                <MDBTooltip tag='a' wrapperProps={{href: '#'}}
+                                                            title={`Remover utilizador '${user.username}'`}>
+                                                    <button type="button"
+                                                            className="btn btn-link text-danger px-4"
+                                                            onClick={() => handleRemoveUser(user.id)}
+                                                    >
+                                                        <MDBIcon fas icon="times"/>
+                                                    </button>
+                                                </MDBTooltip>
+                                            )}
+
+                                            {currentUser === user.username && (
+                                                <MDBTooltip tag='a' wrapperProps={{href: '#'}}
+                                                            title="Proibido remover a si mesmo">
+                                                    <button type="button"
+                                                            className="btn btn-link text-danger px-4" disabled
+                                                    >
+                                                        <MDBIcon fas icon="minus-circle"/>
+                                                    </button>
+                                                </MDBTooltip>
+                                            )}
 
                                         </div>
                                     </li>
