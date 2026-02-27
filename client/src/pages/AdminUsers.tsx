@@ -91,7 +91,7 @@ export default function AdminUsers() {
         <div className="row">
           <div className="col-12 col-md-9 row mx-auto mb-4">
             <div className="col-md-8 my-4">
-              <h3>Adicionar Novo Admin</h3>
+              <h3>Adicionar novo administrador</h3>
               <form onSubmit={handleAddUser} className="card p-4">
                 <div className="mb-3">
                   <label className="form-label">Username</label>
