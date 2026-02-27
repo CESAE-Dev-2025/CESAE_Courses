@@ -1,5 +1,5 @@
 import type {ReactElement} from 'react'
-import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom'
+import {BrowserRouter, Navigate, Outlet, Route, Routes} from 'react-router-dom'
 import './App.css'
 import {isAuthenticated} from './api/auth'
 import Header from "./components/Header/Header.tsx";
@@ -19,45 +19,55 @@ function RequireAuth({children}: { children: ReactElement }) {
     return children
 }
 
+function Layout() {
+    return (
+        <>
+            <Header/>
+            <Outlet/>
+            <Footer/>
+        </>
+    )
+}
+
 
 function App() {
     return (
         <div className="appLayout">
-        <BrowserRouter>
-            <Header/>
-            <Routes>
-                <Route path="/" element={<Home/>}/>
-                <Route path="/sobre" element={<AboutMe/>}/>
-                <Route path="/contacto" element={<Contact/>}/>
-                <Route path="/login" element={<Login/>}/>
-                <Route
-                    path="/admin"
-                    element={
-                        <RequireAuth>
-                            <AdminDashboard/>
-                        </RequireAuth>
-                    }
-                />
-                <Route
-                    path="/admin/users"
-                    element={
-                        <RequireAuth>
-                            <AdminUsers/>
-                        </RequireAuth>
-                    }
-                />
-                <Route
-                    path="/admin/change-password"
-                    element={
-                        <RequireAuth>
-                            <ChangePassword/>
-                        </RequireAuth>
-                    }
-                />
-                <Route path="*" element={<Navigate to="/" replace/>}/>
-            </Routes>
-            <Footer/>
-        </BrowserRouter>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/login" element={<Login/>}/>
+                    <Route element={<Layout/>}>
+                        <Route path="/" element={<Home/>}/>
+                        <Route path="/sobre" element={<AboutMe/>}/>
+                        <Route path="/contacto" element={<Contact/>}/>
+                        <Route
+                            path="/admin"
+                            element={
+                                <RequireAuth>
+                                    <AdminDashboard/>
+                                </RequireAuth>
+                            }
+                        />
+                        <Route
+                            path="/admin/users"
+                            element={
+                                <RequireAuth>
+                                    <AdminUsers/>
+                                </RequireAuth>
+                            }
+                        />
+                        <Route
+                            path="/admin/change-password"
+                            element={
+                                <RequireAuth>
+                                    <ChangePassword/>
+                                </RequireAuth>
+                            }
+                        />
+                        <Route path="*" element={<Navigate to="/" replace/>}/>
+                    </Route>
+                </Routes>
+            </BrowserRouter>
         </div>
     );
 }
