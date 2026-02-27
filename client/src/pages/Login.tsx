@@ -41,14 +41,14 @@ function Login() {
 
                         <form onSubmit={handleSubmit}>
                             <div className="form-group pb-5">
-                                <label htmlFor="username" className="pb-1">NIF*</label>
+                                <label htmlFor="username" className="pb-1">Utilzador*</label>
                                 <input
                                     type="text"
                                     className="form-control"
                                     id="username"
                                     name="username"
                                     value={username}
-                                    placeholder="Conta (NIF)"
+                                    placeholder="Utilizador"
                                     max-length="15"
                                     onChange={(e) => setUsername(e.target.value)}
 
@@ -62,7 +62,7 @@ function Login() {
                                     className="form-control"
                                     id="password"
                                     name="password"
-                                    placeholder="Senha"
+                                    placeholder="Palavra-passe"
                                     value={password}
 
                                     onChange={(e) => setPassword(e.target.value)}
