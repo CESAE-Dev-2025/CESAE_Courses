@@ -1,0 +1,29 @@
+.btn-primary{
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--primary-light);
+
+    &:hover {
+        background-color: var(--primary-dark);
+        border-color: var(--primary-dark);
+    }
+}
+
+
+.btn-outline-primary {
+    background-color: #fff;
+    border-color: var(--primary);
+    color: var(--primary);
+
+    &:focus {
+        background-color: #fff;
+        border-color: var(--primary);
+        color: var(--primary);
+    }
+
+    &:hover {
+        background-color: var(--primary-dark);
+        border-color: var(--primary-dark) !important;
+        color: var(--primary-light);
+    }
+}

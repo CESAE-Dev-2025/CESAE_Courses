@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import {clearToken, logout, withAuth, refreshToken} from '../api/auth'
 import {JobInfo} from "shared";
 import JobInfoCard from "../components/JobInfoCard/JobInfoCard.tsx";
+import './AdminDashboard.css'
 import {MDBDropdown, MDBDropdownMenu, MDBDropdownToggle, MDBDropdownItem} from 'mdb-react-ui-kit';
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000'
@@ -107,11 +108,14 @@ function AdminDashboard() {
                         <button className="btn btn-primary" onClick={runScrape}>Run Scrape</button>
 
                         <MDBDropdown>
-                            <MDBDropdownToggle className="btn-outline-primary">Ações</MDBDropdownToggle>
+                            <MDBDropdownToggle className="btn btn-outline-primary">Ações</MDBDropdownToggle>
                             <MDBDropdownMenu color='link'>
-                                <MDBDropdownItem link onClick={() => navigate('/admin/users')}>Gerenciar Usuários</MDBDropdownItem>
-                                <MDBDropdownItem link onClick={() => navigate('/admin/change-password')}>Alterar Senha</MDBDropdownItem>
-                                <MDBDropdownItem link className='text-danger' onClick={doLogout}>Logout</MDBDropdownItem>
+                                <MDBDropdownItem link onClick={() => navigate('/admin/users')}>Gerenciar
+                                    Usuários</MDBDropdownItem>
+                                <MDBDropdownItem link onClick={() => navigate('/admin/change-password')}>Alterar
+                                    Senha</MDBDropdownItem>
+                                <MDBDropdownItem link className='text-danger'
+                                                 onClick={doLogout}>Logout</MDBDropdownItem>
                             </MDBDropdownMenu>
                         </MDBDropdown>
                     </div>
