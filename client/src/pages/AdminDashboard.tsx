@@ -106,27 +106,14 @@ function AdminDashboard() {
                     <div className="w-100 d-flex gap-3 justify-content-between mb-4">
                         <button className="btn btn-primary" onClick={runScrape}>Run Scrape</button>
 
-
                         <MDBDropdown>
-                            <MDBDropdownToggle>Ações</MDBDropdownToggle>
+                            <MDBDropdownToggle className="btn-outline-primary">Ações</MDBDropdownToggle>
                             <MDBDropdownMenu color='link'>
                                 <MDBDropdownItem link onClick={() => navigate('/admin/users')}>Gerenciar Usuários</MDBDropdownItem>
                                 <MDBDropdownItem link onClick={() => navigate('/admin/change-password')}>Alterar Senha</MDBDropdownItem>
                                 <MDBDropdownItem link className='text-danger' onClick={doLogout}>Logout</MDBDropdownItem>
                             </MDBDropdownMenu>
                         </MDBDropdown>
-
-
-
-                        {/*<div className="d-flex gap-2">*/}
-                        {/*    <button className="btn btn-outline-primary"*/}
-                        {/*            onClick={() => navigate('/admin/users')}>Gerenciar Usuários*/}
-                        {/*    </button>*/}
-                        {/*    <button className="btn btn-outline-secondary"*/}
-                        {/*            onClick={() => navigate('/admin/change-password')}>Alterar Senha*/}
-                        {/*    </button>*/}
-                        {/*</div>*/}
-                        {/*<button className="btn btn-link text-danger" onClick={doLogout}>Logout</button>*/}
                     </div>
                     <JobInfoCard jobData={jobData!}/>
                 </div>
