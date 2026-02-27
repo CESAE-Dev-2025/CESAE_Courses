@@ -84,52 +84,54 @@ export default function AdminUsers() {
     <>
       <div className="container mt-5">
         <h1>Gerenciar Usuários Admin</h1>
-        <button className="btn btn-secondary mb-4" onClick={() => navigate('/admin')}>
+        <button className="btn btn-outline-primary mb-4" onClick={() => navigate('/admin')}>
           Voltar ao Dashboard
         </button>
 
         <div className="row">
-          <div className="col-md-6">
-            <h3>Adicionar Novo Admin</h3>
-            <form onSubmit={handleAddUser} className="card p-4">
-              <div className="mb-3">
-                <label className="form-label">Username</label>
-                <input
-                  type="text"
-                  className="form-label form-control"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <label className="form-label">Senha</label>
-                <input
-                  type="password"
-                  className="form-label form-control"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-              <button type="submit" className="btn btn-primary">
-                Adicionar
-              </button>
-              {message && <div className="alert alert-success mt-3">{message}</div>}
-              {error && <div className="alert alert-danger mt-3">{error}</div>}
-            </form>
-          </div>
+          <div className="col-12 col-md-9 row mx-auto mb-4">
+            <div className="col-md-8 my-4">
+              <h3>Adicionar Novo Admin</h3>
+              <form onSubmit={handleAddUser} className="card p-4">
+                <div className="mb-3">
+                  <label className="form-label">Username</label>
+                  <input
+                      type="text"
+                      className="form-label form-control"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label className="form-label">Senha</label>
+                  <input
+                      type="password"
+                      className="form-label form-control"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                  />
+                </div>
+                <button type="submit" className="btn btn-primary">
+                  Adicionar
+                </button>
+                {message && <div className="alert alert-success mt-3">{message}</div>}
+                {error && <div className="alert alert-danger mt-3">{error}</div>}
+              </form>
+            </div>
 
-          <div className="col-md-6">
-            <h3>Usuários Atuais</h3>
-            <ul className="list-group">
-              {users.map((user) => (
-                <li key={user.id} className="list-group-item d-flex justify-content-between align-items-center">
-                  {user.username}
-                  <span className="badge bg-info rounded-pill">{user.role}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="col-md-4 my-4">
+              <h3>Usuários Atuais</h3>
+              <ul className="list-group">
+                {users.map((user) => (
+                    <li key={user.id} className="list-group-item d-flex justify-content-between align-items-center">
+                      {user.username}
+                      <span className="badge bg-info rounded-pill">{user.role}</span>
+                    </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
