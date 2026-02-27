@@ -42,6 +42,10 @@
             text-align: left;
         }
 
+        .btn-primary{
+            background-color: var(--primary);
+        }
+
         .links {
             font-weight: 500;
             font-size: 16px;
