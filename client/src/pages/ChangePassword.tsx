@@ -64,9 +64,9 @@ export default function ChangePassword() {
 
   return (
     <>
-      <div className="container mt-5">
+      <div className="container my-4">
         <h1>Alterar Senha</h1>
-        <button className="btn btn-secondary mb-4" onClick={() => navigate('/admin')}>
+        <button className="btn btn-outline-primary mb-4" onClick={() => navigate('/admin')}>
           Voltar ao Dashboard
         </button>
 
