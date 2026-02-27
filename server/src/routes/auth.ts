@@ -25,7 +25,7 @@ auth.get('/me',
 )
 
 auth.get('/page', (c) => {
-    return c.text('You are authorized')
+    return c.text('Você está autorizado')
 })
 
 auth.post('/login', async (c) => {
@@ -34,7 +34,7 @@ auth.post('/login', async (c) => {
     const [user] = await db.select().from(users).where(eq(users.username, username)).limit(1);
 
     if (!user || !(await bcrypt.compare(password, user.password))) {
-        return c.json({error: 'Invalid credentials'}, {status: 401})
+        return c.json({error: 'Credenciais inválidas'}, {status: 401})
     }
 
     const now = Math.floor(Date.now() / 1000)
@@ -73,14 +73,14 @@ auth.post('/refresh', async (c) => {
     const refreshToken = getCookie(c, 'refresh_token')
 
     if (!refreshToken) {
-        return c.json({error: 'Refresh token missing'}, {status: 401})
+        return c.json({error: 'Refresh token ausente'}, {status: 401})
     }
 
     try {
         const payload = await verify(refreshToken, JWT_SECRET, { alg: 'HS256' })
 
         if (payload.type !== 'refresh') {
-            return c.json({error: 'Invalid token type'}, {status: 401})
+            return c.json({error: 'Tipo de token inválido'}, {status: 401})
         }
 
         const now = Math.floor(Date.now() / 1000)
@@ -96,7 +96,7 @@ auth.post('/refresh', async (c) => {
 
         return c.json({token: newToken})
     } catch (e) {
-        return c.json({error: 'Invalid or expired refresh token'}, {status: 401})
+        return c.json({error: 'Refresh token inválido ou expirado'}, {status: 401})
     }
 })
 

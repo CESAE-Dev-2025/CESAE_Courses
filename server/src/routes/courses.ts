@@ -11,12 +11,12 @@ coursesRoute.get('/', async (c) => {
     try {
         const data = await db.select().from(courses);
 
-        customLogger("INFO", `Getting ${data.length} courses from the database.`)
+        customLogger("INFO", `Recuperando ${data.length} cursos da base de dados.`)
         return c.json(data, {status: 200})
 
     } catch (error) {
-        customLogger('ERROR', 'Error fetching courses:', error as string);
-        return c.json({error: 'Internal Server Error'}, {status: 500});
+        customLogger('ERROR', 'Erro recuperando cursos:', error as string);
+        return c.json({error: 'Erro interno do servidor'}, {status: 500});
     }
 })
 

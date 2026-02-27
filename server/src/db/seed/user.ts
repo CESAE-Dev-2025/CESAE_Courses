@@ -26,7 +26,7 @@ async function main() {
         .update(users)
         .set({ password: hashed, role })
         .where(eq(users.username, username))
-      console.log('Usuário admin já existia. Password/role atualizados.')
+      console.log('Usuário admin já existia. Palavra-passe/\'role\' atualizados.')
     } else {
       console.log('Usuário admin já existe com as mesmas credenciais. Nada a fazer.')
     }

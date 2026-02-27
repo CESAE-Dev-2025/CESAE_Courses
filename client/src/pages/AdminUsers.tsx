@@ -48,7 +48,7 @@ export default function AdminUsers() {
         setUsers(data);
       }
     } catch (err) {
-      console.error('Failed to fetch users', err);
+      console.error('Falha ao recuperar dados de utilizadores', err);
     }
   }
 

@@ -23,15 +23,15 @@ admin.use(
 )
 
 admin.post('/run-scrape', async c => {
-    customLogger("INFO", "Scrape started by admin request...")
+    customLogger("INFO", "Scrape iniciado por solicitação do administrador...")
 
     job?.trigger();
 
-    return c.json({status: 'ok', message: 'Scrape started successfully.'});
+    return c.json({status: 'ok', message: 'Scrape inicado com sucesso.'});
 });
 
 admin.get('/scrape-job-info', async c => {
-    customLogger("INFO", "Scrape info requested by admin...")
+    customLogger("INFO", "Informação do scrape solicitada pelo administrador...")
 
     if (!job) {
         return scheduleScraper();
@@ -61,7 +61,7 @@ admin.post('/users', async (c) => {
     const {username, password} = await c.req.json();
     
     if (!username || !password) {
-        return c.json({error: 'Username and password are required'}, {status: 400});
+        return c.json({error: 'Nome de utilizador e palava-passe são obrigatórios'}, {status: 400});
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -72,9 +72,9 @@ admin.post('/users', async (c) => {
             password: hashedPassword,
             role: 'admin',
         });
-        return c.json({status: 'ok', message: 'User created successfully'});
+        return c.json({status: 'ok', message: 'Utilizador criado com sucesso'});
     } catch (error) {
-        return c.json({error: 'User already exists or database error'}, {status: 400});
+        return c.json({error: 'Utilizador já existe ou erro na base de dados'}, {status: 400});
     }
 });
 
@@ -84,7 +84,7 @@ admin.post('/change-password', async (c) => {
     const username = payload.sub;
 
     if (!newPassword) {
-        return c.json({error: 'New password is required'}, {status: 400});
+        return c.json({error: 'Nova palavra passe é obrigatória'}, {status: 400});
     }
 
     const hashedPassword = await bcrypt.hash(newPassword, 10);
@@ -93,7 +93,7 @@ admin.post('/change-password', async (c) => {
         .set({password: hashedPassword})
         .where(eq(users.username, username));
 
-    return c.json({status: 'ok', message: 'Password updated successfully'});
+    return c.json({status: 'ok', message: 'Palavra-passe atualizada com sucesso'});
 });
 
 export default admin;

@@ -36,7 +36,7 @@ app.route('/courses', coursesRoute)
 
 const port = Number(process.env.PORT) || 3000
 
-customLogger("INFO", `Server is running on port ${port}`)
+customLogger("INFO", `Servidor em execução na porta ${port}`)
 
 serve({
     fetch: app.fetch,

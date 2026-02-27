@@ -24,7 +24,7 @@ export async function scrapeCesaeCourses(): Promise<Course[]> {
 
         while (true) {
             const currentCount = await page.locator("article").count();
-            customLogger("INFO", "Carregando curso: ", String(currentCount))
+            customLogger("INFO", "Carregando cursos: ", String(currentCount))
 
             if (currentCount === previousCount) break;
             previousCount = currentCount;
@@ -103,10 +103,9 @@ export async function scrapeCesaeCourses(): Promise<Course[]> {
 
         return results;
     } catch (error) {
-        // console.error("Erro no scraping:", error);
-        customLogger("ERROR","Erro no scraping:", error);
-
+        customLogger("ERROR","Erro no scrape:", error);
         throw error;
+
     } finally {
         await browser.close();
     }
