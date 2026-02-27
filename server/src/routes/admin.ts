@@ -78,6 +78,21 @@ admin.post('/users', async (c) => {
     }
 });
 
+admin.delete('/users', async (c) => {
+    const {id} = await c.req.json();
+
+    if (!id) {
+        return c.json({error: 'ID do utilizador é obrigatório'}, {status: 400});
+    }
+
+    try {
+        await db.delete(users).where(eq(users.id, id));
+        return c.json({status: 'ok', message: 'Utilizador removido com sucesso'});
+    } catch (error) {
+        return c.json({error: 'Utilizador não existe ou erro na base de dados'}, {status: 400});
+    }
+});
+
 admin.post('/change-password', async (c) => {
     const {newPassword} = await c.req.json();
     const payload = c.get('jwtPayload');
