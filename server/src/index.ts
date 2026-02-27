@@ -21,7 +21,7 @@ app.use(cors({
 app.use(
     rateLimiter({
         windowMs: 60 * 1000,                                                                  // 1 minuto (60 * 1000 ms)
-        limit: 10,                                             // Limita cada cliente à 10 requests por período (window)
+        limit: 100,                                             // Limita cada cliente à 10 requests por período (window)
         keyGenerator: (c) => c.req.header("x-forwarded-for") ?? "", // Usa o IP como key
     })
 );
