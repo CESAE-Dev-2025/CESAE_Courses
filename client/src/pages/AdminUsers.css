@@ -1,0 +1,6 @@
+#remove-user-form > .btn{
+    &:hover, &:focus{
+        background-color: rgba(var(--mdb-danger-rgb), var(--mdb-text-opacity));
+        color: var(--primary-light) !important;
+    }
+}

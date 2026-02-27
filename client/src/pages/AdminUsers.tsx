@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {withAuth, refreshToken, clearToken} from '../api/auth';
 import {MDBIcon, MDBTooltip} from "mdb-react-ui-kit";
+import './AdminUsers.css';
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
 
@@ -81,6 +82,31 @@ export default function AdminUsers() {
         }
     }
 
+    async function handleRemoveUser(id: number) {
+        if (!window.confirm('Tem certeza que deseja remover este utilizador?')) {
+            return;
+        }
+
+        setMessage('');
+        setError('');
+        try {
+            const res = await apiFetch(`${SERVER_URL}/admin/users`, {
+                method: 'DELETE',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({id}),
+            });
+            const data = await res.json();
+            if (res.ok) {
+                setMessage('Usuário removido com sucesso!');
+                fetchUsers();
+            } else {
+                setError(data.error || 'Erro ao remover usuário');
+            }
+        } catch (err) {
+            setError(`Erro de conexão: ${err}`);
+        }
+    }
+
     return (
         <>
             <div className="container mt-5">
@@ -129,18 +155,18 @@ export default function AdminUsers() {
                                     <li key={user.id}
                                         className="list-group-item d-flex justify-content-between align-items-center">
                                         {user.username}
-                                        <div className="">
+                                        <div className="d-flex align-items-center">
                                             <span className="badge bg-info rounded-pill me-3">{user.role}</span>
 
                                             <MDBTooltip tag='a' wrapperProps={{href: '#'}}
                                                         title={`Remover utilizador '${user.username}'`}>
-                                                <a href="#" className="text-decoration-none text-danger p-2"
-                                                   data-bs-toggle="tooltip" data-bs-title="Default tooltip"
-                                                   onClick={() => {
-                                                       console.log(user.id);
-                                                   }}>
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-link text-danger px-4"
+                                                    onClick={() => handleRemoveUser(user.id)}
+                                                >
                                                     <MDBIcon fas icon="times"/>
-                                                </a>
+                                                </button>
                                             </MDBTooltip>
 
                                         </div>
