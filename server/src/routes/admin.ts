@@ -80,16 +80,30 @@ admin.post('/users', async (c) => {
 
 admin.delete('/users', async (c) => {
     const {id} = await c.req.json();
+    const payload = c.get('jwtPayload');
+    const authUsername = payload.sub;
 
     if (!id) {
         return c.json({error: 'ID do utilizador é obrigatório'}, {status: 400});
     }
 
     try {
+        // Obter o utilizador que está a ser removido
+        const [userToRemove] = await db.select().from(users).where(eq(users.id, id)).limit(1);
+
+        if (!userToRemove) {
+            return c.json({error: 'Utilizador não encontrado'}, {status: 404});
+        }
+
+        // Impedir que o utilizador remova a si próprio
+        if (userToRemove.username === authUsername) {
+            return c.json({error: 'Não pode remover a si próprio'}, {status: 403});
+        }
+
         await db.delete(users).where(eq(users.id, id));
         return c.json({status: 'ok', message: 'Utilizador removido com sucesso'});
     } catch (error) {
-        return c.json({error: 'Utilizador não existe ou erro na base de dados'}, {status: 400});
+        return c.json({error: 'Erro na base de dados ao remover utilizador'}, {status: 500});
     }
 });
 
