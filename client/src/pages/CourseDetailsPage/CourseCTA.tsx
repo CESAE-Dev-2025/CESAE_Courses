@@ -35,6 +35,7 @@ export default function CourseCTA({course}: Props) {
 
     return (
         <div className={styles.mobileCta}>
+            <div className="d-grid container">
             <form
                 name="frmDown"
                 id="frmDown"
@@ -46,12 +47,13 @@ export default function CourseCTA({course}: Props) {
                 <input type="hidden" id="DownMode" name="DownMode" value="TIMED"/>
             </form>
             {hasEnrollmentUrl && (
+
                 <MDBBtn
                     tag="a"
                     href={course.enrollment}
                     target="_blank"
                     rel="noreferrer"
-                    className="btn-brand-primary w-100 mb-2"
+                    className="btn-brand-primary w-sm-100 mb-2"
                 >
                     Quero-me inscrever
                 </MDBBtn>
@@ -66,26 +68,8 @@ export default function CourseCTA({course}: Props) {
                     Descarregar Programa
                 </MDBBtn>
 
-                // <button
-                //     className="btn btn-brand-secondary w-100"
-                //     onClick={(event) => {
-                //         event.preventDefault()
-                //         const frm = document.getElementById("frmDown");
-                //
-                //         const idDocInput = frm!.querySelector<HTMLInputElement>('input[name="idDoc"]');
-                //
-                //         idDocInput!.value = course.downloadId
-                //
-                //         console.log(course.downloadId)
-                //         console.log(idDocInput!.value)
-                //
-                //         frm!.submit();
-                //     }}
-                // >
-                //     Descarregar Programa TESTE
-                // </button>
-
             )}
+            </div>
         </div>
     );
 }

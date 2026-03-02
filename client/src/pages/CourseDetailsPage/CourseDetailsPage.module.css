@@ -43,7 +43,7 @@
 
 .heroBadge {
   font-size: 1rem;
-  padding: 0.4rem 0.75rem;
+  padding: 0.4rem 0;
   color: var(--primary);
   background: none !important;
 }
@@ -144,6 +144,7 @@
   margin: 0 auto;
   max-width: 100%;
   height: auto;
+  max-height: 100px;
 }
 
 
@@ -200,6 +201,9 @@
   padding: 1rem;
   background: #fff;
   z-index: 1000;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .mobileCta .btn-brand-primary {
@@ -219,8 +223,4 @@
 
 .mobileCta .btn-brand-secondary:hover {
   background: var(--primary-light);
-}
-
-@media (min-width: 992px) {
-  .mobileCta { display: none; }
 }
