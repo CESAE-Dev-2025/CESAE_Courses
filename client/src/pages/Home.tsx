@@ -25,9 +25,6 @@ function App() {
         getCourseIdFromHash(window.location.hash)
     );
 
-    //controla quantos cursos aparecem
-    const [visibleCount, setVisibleCount] = useState(9);
-
     useEffect(() => {
         const onHashChange = () => {
             setSelectedCourseId(getCourseIdFromHash(window.location.hash));
@@ -71,22 +68,12 @@ function App() {
         };
     }, []);
 
-    //cursos visíveis
-    const visibleCourses = coursesData.slice(0, visibleCount);
-
     const selectedCourse =
         selectedCourseId === null
             ? null
             : coursesData.find((course) => course.id === selectedCourseId) || null;
 
     const isLoadingCourses = !error && coursesData.length === 0;
-
-    // 👉 NOVO: reseta para 9 quando volta para listagem
-    useEffect(() => {
-        if (selectedCourseId === null) {
-            setVisibleCount(9);
-        }
-    }, [selectedCourseId]);
 
     return (
         <>
@@ -96,18 +83,7 @@ function App() {
 
                     {error && <p>{error}</p>}
 
-                    <CourseList courses={visibleCourses} />
-
-                    {visibleCount < coursesData.length && (
-                        <div className="load-more-container">
-                            <button
-                                className="load-more-button"
-                                onClick={() => setVisibleCount((prev) => prev + 9)}
-                            >
-                                Ver mais cursos
-                            </button>
-                        </div>
-                    )}
+                    <CourseList courses={coursesData} />
                 </>
             ) : (
                 <CourseDetailsPage

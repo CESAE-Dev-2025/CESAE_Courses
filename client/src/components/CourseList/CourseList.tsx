@@ -12,12 +12,15 @@ export default function CourseList({ courses }: Props) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRegime, setSelectedRegime] = useState('');
   const [open, setOpen] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(9);
+
 
   const regimes = Array.from(
       new Set(courses.map(c => c.regime).filter(Boolean))
   );
 
   const filteredCourses = courses.filter(course => {
+
     const matchesSearch = course.name
         .toLowerCase()
         .includes(searchTerm.toLowerCase());
@@ -27,6 +30,8 @@ export default function CourseList({ courses }: Props) {
 
     return matchesSearch && matchesRegime;
   });
+
+  const visibleCourses = filteredCourses.slice(0, visibleCount);
 
   return (
       <section className={styles.section}>
@@ -39,7 +44,10 @@ export default function CourseList({ courses }: Props) {
                   type="text"
                   placeholder="Buscar cursos..."
                   value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onChange={(e) => {
+                    setSearchTerm(e.target.value);
+                    setVisibleCount(9);
+                  }}
                   className={styles.searchInput}
               />
               <i className="fas fa-search"></i>
@@ -71,6 +79,7 @@ export default function CourseList({ courses }: Props) {
                             className={styles.option}
                             onClick={() => {
                               setSelectedRegime(regime);
+                              setVisibleCount(9);
                               setOpen(false);
                             }}
                         >
@@ -102,7 +111,7 @@ export default function CourseList({ courses }: Props) {
                 </p>
 
                 <MDBRow className="g-3 g-lg-4">
-                  {filteredCourses.map(course => (
+                  {visibleCourses.map(course => (
                       <MDBCol
                           key={course.id}
                           xs="12"
@@ -118,6 +127,16 @@ export default function CourseList({ courses }: Props) {
           )}
 
         </MDBContainer>
+        {visibleCount < filteredCourses.length && (
+            <div className="load-more-container">
+              <button
+                  className="load-more-button"
+                  onClick={() => setVisibleCount((prev) => prev + 9)}
+              >
+                Ver mais cursos
+              </button>
+            </div>
+        )}
       </section>
   );
 }
