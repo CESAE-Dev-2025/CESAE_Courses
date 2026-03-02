@@ -1,4 +1,4 @@
-#remove-user-form > .btn {
+.list-group-item .btn {
 
     &:hover, &:focus {
         background-color: rgba(var(--mdb-danger-rgb), var(--mdb-text-opacity));

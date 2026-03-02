@@ -163,35 +163,33 @@ export default function AdminUsers() {
                             <ul className="list-group">
                                 {users.map((user) => (
                                     <li key={user.id}
-                                        className="list-group-item d-flex justify-content-between align-items-center">
-                                        {user.username}
-                                        <div className="d-flex align-items-center">
-                                            <span className="badge bg-info rounded-pill me-3">{user.role}</span>
+                                        className="list-group-item d-flex align-items-center justify-content-between">
+                                        <span className="fw-bold px-2">{user.username}</span>
 
-                                            {currentUser !== user.username && (
-                                                <MDBTooltip tag='a' wrapperProps={{href: '#'}}
-                                                            title={`Remover utilizador '${user.username}'`}>
-                                                    <button type="button"
-                                                            className="btn btn-link text-danger px-4"
-                                                            onClick={() => handleRemoveUser(user.id)}
-                                                    >
-                                                        <MDBIcon fas icon="times"/>
-                                                    </button>
-                                                </MDBTooltip>
-                                            )}
 
-                                            {currentUser === user.username && (
-                                                <MDBTooltip tag='a' wrapperProps={{href: '#'}}
-                                                            title="Proibido remover a si mesmo">
-                                                    <button type="button"
-                                                            className="btn btn-link text-danger px-4" disabled
-                                                    >
-                                                        <MDBIcon fas icon="minus-circle"/>
-                                                    </button>
-                                                </MDBTooltip>
-                                            )}
+                                        {currentUser !== user.username && (
+                                            <MDBTooltip tag='a' wrapperProps={{href: '#'}}
+                                                        title={`Remover utilizador '${user.username}'`}>
+                                                <button type="button"
+                                                        className="btn btn-link text-danger px-4"
+                                                        onClick={() => handleRemoveUser(user.id)}
+                                                >
+                                                    <MDBIcon fas icon="times"/>
+                                                </button>
+                                            </MDBTooltip>
+                                        )}
 
-                                        </div>
+                                        {currentUser === user.username && (
+                                            <MDBTooltip tag='a' wrapperProps={{href: '#'}}
+                                                        title="Proibido remover a si mesmo">
+                                                <button type="button"
+                                                        className="btn btn-link text-danger px-4" disabled
+                                                >
+                                                    <MDBIcon fas icon="minus-circle"/>
+                                                </button>
+                                            </MDBTooltip>
+                                        )}
+
                                     </li>
                                 ))}
                             </ul>
