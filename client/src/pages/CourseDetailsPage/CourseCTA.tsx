@@ -50,6 +50,7 @@ export default function CourseCTA({course}: Props) {
 
                 <MDBBtn
                     tag="a"
+                    color="muted"
                     href={course.enrollment}
                     target="_blank"
                     rel="noreferrer"
@@ -62,6 +63,7 @@ export default function CourseCTA({course}: Props) {
             {shouldShowDownloadButton && (
                 <MDBBtn
                     type="button"
+                    color="muted"
                     className="btn-brand-secondary w-100"
                     onClick={() => downloadDoc(course.downloadId)}
                 >
