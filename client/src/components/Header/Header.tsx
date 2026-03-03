@@ -8,7 +8,7 @@ function Header() {
 
     return (
         <header className={styles.header}>
-            <div className={styles.container}>
+            <div className="container d-flex align-items-center justify-content-between my-3">
 
                 {/* Logo */}
                 <a href="/" className={styles.logoLink}>
