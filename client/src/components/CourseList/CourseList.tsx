@@ -12,7 +12,7 @@ export default function CourseList({ courses }: Props) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRegime, setSelectedRegime] = useState('');
   const [open, setOpen] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(9);
+  const [visibleCount, setVisibleCount] = useState(8);
 
 
   const regimes = Array.from(
@@ -46,7 +46,7 @@ export default function CourseList({ courses }: Props) {
                   value={searchTerm}
                   onChange={(e) => {
                     setSearchTerm(e.target.value);
-                    setVisibleCount(9);
+                    setVisibleCount(8);
                   }}
                   className={styles.searchInput}
               />
@@ -79,7 +79,7 @@ export default function CourseList({ courses }: Props) {
                             className={styles.option}
                             onClick={() => {
                               setSelectedRegime(regime);
-                              setVisibleCount(9);
+                              setVisibleCount(8);
                               setOpen(false);
                             }}
                         >
@@ -110,13 +110,13 @@ export default function CourseList({ courses }: Props) {
                   {filteredCourses.length !== 1 ? 's' : ''}
                 </p>
 
-                <MDBRow className="g-3 g-lg-4">
+                <MDBRow className="g-3 g-md-4 g-lg-4">
                   {visibleCourses.map(course => (
                       <MDBCol
                           key={course.id}
                           xs="12"
                           sm="6"
-                          md="4"
+                          md="6"
                           lg="3"
                       >
                         <CourseCard course={course} />
@@ -131,7 +131,7 @@ export default function CourseList({ courses }: Props) {
             <div className="load-more-container">
               <button
                   className="load-more-button"
-                  onClick={() => setVisibleCount((prev) => prev + 9)}
+                  onClick={() => setVisibleCount((prev) => prev + 8)}
               >
                 Ver mais cursos
               </button>
