@@ -41,7 +41,7 @@ function Login() {
 
                         <form onSubmit={handleSubmit}>
                             <div className="form-group pb-5">
-                                <label htmlFor="username" className="pb-1">Utilzador*</label>
+                                <label htmlFor="username" className="pb-1">Utilizador*</label>
                                 <input
                                     type="text"
                                     className="form-control"
