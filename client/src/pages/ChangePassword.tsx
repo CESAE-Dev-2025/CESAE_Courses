@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { withAuth, refreshToken, clearToken } from '../api/auth';
+import './ChangePassword.css';
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
 
@@ -64,9 +65,9 @@ export default function ChangePassword() {
 
   return (
     <>
-      <div className="container my-4">
-        <h1>Alterar Senha</h1>
-        <button className="btn btn-outline-primary mb-4" onClick={() => navigate('/admin')}>
+      <div className="container position-relative">
+        <h1 className="mt-5 text-center">Alterar Senha</h1>
+        <button className="btn btn-outline-primary my-5" onClick={() => navigate('/admin')}>
           Voltar ao Dashboard
         </button>
 

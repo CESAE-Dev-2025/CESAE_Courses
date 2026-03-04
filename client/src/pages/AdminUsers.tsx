@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+    import {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {withAuth, refreshToken, clearToken} from '../api/auth';
 import {MDBIcon, MDBTooltip} from "mdb-react-ui-kit";
@@ -119,9 +119,9 @@ export default function AdminUsers() {
 
     return (
         <>
-            <div className="container mt-5">
-                <h1>Gerenciar Usuários Admin</h1>
-                <button className="btn btn-outline-primary mb-4" onClick={() => navigate('/admin')}>
+            <div className="container position-relative">
+                <h1 className="mt-5 text-center">Gerenciar Usuários Admin</h1>
+                <button className="btn btn-outline-primary my-5" onClick={() => navigate('/admin')}>
                     Voltar ao Dashboard
                 </button>
 

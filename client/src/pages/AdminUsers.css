@@ -1,3 +1,7 @@
+.container {
+    margin-top: 82px;
+}
+
 .list-group-item .btn {
 
     &:hover, &:focus {
@@ -7,5 +11,41 @@
 
     .disabled {
         cursor: default !important;
+    }
+}
+
+.btn-primary{
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--primary-light);
+
+    &:active, &:focus, &:focus-visible {
+        background-color: var(--primary) !important;
+        border-color: var(--primary) !important;
+        color: var(--primary-light) !important;
+    }
+
+    &:hover {
+        background-color: var(--primary-dark);
+        border-color: var(--primary-dark);
+    }
+}
+
+
+.btn-outline-primary {
+    background-color: #fff;
+    border-color: var(--primary);
+    color: var(--primary);
+
+    &:active, &:focus, &:focus-visible {
+        background-color: #fff;
+        border-color: var(--primary) !important;
+        color: var(--primary) !important;
+    }
+
+    &:hover {
+        background-color: var(--primary-dark);
+        border-color: var(--primary-dark) !important;
+        color: var(--primary-light);
     }
 }

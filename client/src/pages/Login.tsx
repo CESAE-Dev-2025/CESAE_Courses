@@ -32,7 +32,7 @@ function Login() {
         <div className="container-fluid auth">
             <div className="row">
                 <div className="col-12 col-md-6 position-relative vh-100 overflow-hidden">
-                    <div className="container px-0">
+                    <div className="container px-0 my-0">
                         <a className="navbar-brand text-center d-block pb-5" href="#">
                             <img src={cesaeLogo} alt="Cesae Digital"/>
                         </a>
