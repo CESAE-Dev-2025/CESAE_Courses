@@ -1,7 +1,8 @@
 import { useState } from "react";
 import styles from "./Header.module.css";
 import logo from "/src/assets/cesae-digital-logo.svg";
-import menuIcon from "@/assets/menu-hamburger.svg?url";
+// import menuIcon from "@/assets/menu-hamburger.svg?url";
+import {MDBIcon} from "mdb-react-ui-kit";
 
 function Header() {
     const [open, setOpen] = useState(false);
@@ -32,9 +33,9 @@ function Header() {
                     onClick={() => setOpen(!open)}
                 >
                     {open ? (
-                        <span className={styles.closeIcon}>&#10005;</span>
+                        <span className={styles.headerIcon}><MDBIcon fas icon="times" /></span>
                     ) : (
-                        <img src={menuIcon} alt="Menu" />
+                        <span className={styles.headerIcon}><MDBIcon fas icon="bars" /></span>
                     )}
                 </button>
 
