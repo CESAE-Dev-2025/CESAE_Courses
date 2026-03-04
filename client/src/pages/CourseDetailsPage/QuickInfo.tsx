@@ -1,4 +1,4 @@
-import { Course } from "shared";
+import {Course} from "shared";
 import styles from "./CourseDetailsPage.module.css";
 
 interface Props {
@@ -10,31 +10,35 @@ function hasText(value?: string | null) {
 }
 
 interface ItemProps {
-    icon: string;
+    // icon: string;
     label: string;
     value: string;
 }
 
-function QuickItem({ icon, label, value }: ItemProps) {
+// function QuickItem({ icon, label, value }: ItemProps) {
+function QuickItem({label, value}: ItemProps) {
+    let valueArray = value.replace('(', '|(').split('|')
+
     return (
         <div className={styles.quickItem}>
-            <i className={`fas ${icon} ${styles.quickIcon}`}></i>
+            {/*<i className={`fas ${icon} ${styles.quickIcon}`}></i>*/}
 
-            <div>
-                <span className={styles.quickLabel}>{label}</span>
-                <span className={styles.quickValue}>{value}</span>
-            </div>
+            <span className={styles.quickLabel}>{label}</span>
+            <span className={styles.quickValue}>{valueArray[0]}</span>
+            {valueArray.length > 1 && (
+                <span className={styles.quickValue}>{valueArray[1]}</span>
+            )}
         </div>
     );
 }
 
-export default function QuickInfo({ course }: Props) {
+export default function QuickInfo({course}: Props) {
     return (
         <div className="container">
             <div className={styles.quickInfo}>
                 {hasText(course.startDate) && (
                     <QuickItem
-                        icon=""
+                        // icon=""
                         label="Início"
                         value={course.startDate}
                     />
@@ -42,7 +46,7 @@ export default function QuickInfo({ course }: Props) {
 
                 {hasText(course.endDate) && (
                     <QuickItem
-                        icon=""
+                        // icon=""
                         label="Fim"
                         value={course.endDate}
                     />
@@ -50,7 +54,7 @@ export default function QuickInfo({ course }: Props) {
 
                 {hasText(course.duration) && (
                     <QuickItem
-                        icon=""
+                        // icon=""
                         label="Duração"
                         value={course.duration}
                     />
@@ -58,7 +62,7 @@ export default function QuickInfo({ course }: Props) {
 
                 {hasText(course.time) && (
                     <QuickItem
-                        icon=""
+                        // icon=""
                         label="Horário"
                         value={course.time}
                     />
@@ -66,7 +70,7 @@ export default function QuickInfo({ course }: Props) {
 
                 {hasText(course.location) && (
                     <QuickItem
-                        icon=""
+                        // icon=""
                         label="Local"
                         value={course.location}
                     />
@@ -74,7 +78,7 @@ export default function QuickInfo({ course }: Props) {
 
                 {hasText(course.price) && (
                     <QuickItem
-                        icon=""
+                        // icon=""
                         label="Preço"
                         value={course.price}
                     />
