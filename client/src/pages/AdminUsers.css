@@ -1,3 +1,7 @@
+#users{
+    margin-top: 75px;
+}
+
 .list-group-item .btn {
 
     &:hover, &:focus {
@@ -28,20 +32,20 @@
 }
 
 
-.btn-outline-primary {
-    background-color: #fff;
-    border-color: var(--primary);
-    color: var(--primary);
+/*.btn-outline-primary {*/
+/*    background-color: #fff;*/
+/*    border-color: var(--primary);*/
+/*    color: var(--primary);*/
 
-    &:active, &:focus, &:focus-visible {
-        background-color: #fff;
-        border-color: var(--primary) !important;
-        color: var(--primary) !important;
-    }
+/*    &:active, &:focus, &:focus-visible {*/
+/*        background-color: #fff;*/
+/*        border-color: var(--primary) !important;*/
+/*        color: var(--primary) !important;*/
+/*    }*/
 
-    &:hover {
-        background-color: var(--primary-dark);
-        border-color: var(--primary-dark) !important;
-        color: var(--primary-light);
-    }
-}
+/*    &:hover {*/
+/*        background-color: var(--primary-dark);*/
+/*        border-color: var(--primary-dark) !important;*/
+/*        color: var(--primary-light);*/
+/*    }*/
+/*}*/

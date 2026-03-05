@@ -1,3 +1,7 @@
+#dashboard{
+    padding-top: 75px;
+}
+
 .btn-primary{
     background-color: var(--primary);
     border-color: var(--primary);
@@ -17,20 +21,20 @@
 
 
 .btn-outline-primary {
-    background-color: #fff;
-    border-color: var(--primary);
-    color: var(--primary);
+    background-color: #ffffff !important;
+    border-color: var(--primary) !important;
+    color: var(--primary) !important;
 
     &:active, &:focus, &:focus-visible {
-        background-color: #fff;
-        border-color: var(--primary);
-        color: var(--primary);
+        background-color: var(--primary-dark) !important;
+        border-color: var(--primary-dark) !important;
+        color: var(--primary-light) !important;
     }
 
     &:hover {
-        background-color: var(--primary-dark);
+        background-color: var(--primary-dark) !important;
         border-color: var(--primary-dark) !important;
-        color: var(--primary-light);
+        color: var(--primary-light) !important;
     }
 }
 

@@ -99,8 +99,8 @@ function AdminDashboard() {
     }, []);
 
     return (
-        <>
-            <div className="container position-relative">
+        <div id="dashboard">
+            <div className="container">
                 <h1 className="mt-5 text-center">Dashboard de administração</h1>
                 <div
                     className="mx-auto col col-md-8 col-lg-6 d-flex flex-column justify-content-around align-items-center my-5">
@@ -111,18 +111,18 @@ function AdminDashboard() {
                             <MDBDropdownToggle className="btn btn-outline-primary">Ações</MDBDropdownToggle>
                             <MDBDropdownMenu color='link'>
                                 <MDBDropdownItem link onClick={() => navigate('/admin/users')}>Gerenciar
-                                    Usuários</MDBDropdownItem>
+                                    Utilizadores</MDBDropdownItem>
                                 <MDBDropdownItem link onClick={() => navigate('/admin/change-password')}>Alterar
-                                    Senha</MDBDropdownItem>
+                                    Palavra-passe</MDBDropdownItem>
                                 <MDBDropdownItem link className='text-danger'
-                                                 onClick={doLogout}>Logout</MDBDropdownItem>
+                                                 onClick={doLogout}>Sair</MDBDropdownItem>
                             </MDBDropdownMenu>
                         </MDBDropdown>
                     </div>
                     <JobInfoCard jobData={jobData!}/>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

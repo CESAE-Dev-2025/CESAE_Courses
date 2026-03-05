@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { withAuth, refreshToken, clearToken } from '../api/auth';
+import './ChangePassword.css';
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
 
@@ -63,9 +64,10 @@ export default function ChangePassword() {
   }
 
   return (
-    <>
+    <div id="change-password">
       <div className="container position-relative">
-        <h1 className="mt-5 text-center">Alterar Senha</h1>
+        <h1 className="mt-5 text-center">Alterar Palavra-passe</h1>
+
         <button className="btn btn-outline-primary my-5" onClick={() => navigate('/admin')}>
           Voltar ao Dashboard
         </button>
@@ -74,7 +76,7 @@ export default function ChangePassword() {
           <div className="col-md-6">
             <form onSubmit={handleChangePassword} className="card p-4">
               <div className="mb-3">
-                <label className="form-label">Nova Senha</label>
+                <label className="form-label">Nova Palavra-passe</label>
                 <input
                   type="password"
                   className="form-label form-control"
@@ -84,7 +86,7 @@ export default function ChangePassword() {
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">Confirmar Nova Senha</label>
+                <label className="form-label">Confirmar Nova Palavra-passe</label>
                 <input
                   type="password"
                   className="form-label form-control"
@@ -94,7 +96,7 @@ export default function ChangePassword() {
                 />
               </div>
               <button type="submit" className="btn btn-primary">
-                Alterar Senha
+                Alterar
               </button>
               {message && <div className="alert alert-success mt-3">{message}</div>}
               {error && <div className="alert alert-danger mt-3">{error}</div>}
@@ -102,6 +104,6 @@ export default function ChangePassword() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

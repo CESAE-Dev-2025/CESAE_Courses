@@ -118,9 +118,9 @@ export default function AdminUsers() {
     }
 
     return (
-        <>
-            <div className="container position-relative">
-                <h1 className="mt-5 text-center">Gerenciar Usuários Admin</h1>
+        <div id="users">
+            <div className="container">
+                <h1 className="mt-5 text-center">Gerenciar Administradores</h1>
                 <button className="btn btn-outline-primary my-5" onClick={() => navigate('/admin')}>
                     Voltar ao Dashboard
                 </button>
@@ -131,7 +131,7 @@ export default function AdminUsers() {
                             <h3>Adicionar novo administrador</h3>
                             <form onSubmit={handleAddUser} className="card p-4">
                                 <div className="mb-3">
-                                    <label className="form-label">Username</label>
+                                    <label className="form-label">Utilizador</label>
                                     <input
                                         type="text"
                                         className="form-label form-control"
@@ -141,7 +141,7 @@ export default function AdminUsers() {
                                     />
                                 </div>
                                 <div className="mb-3">
-                                    <label className="form-label">Senha</label>
+                                    <label className="form-label">Palavra-passe</label>
                                     <input
                                         type="password"
                                         className="form-label form-control"
@@ -197,6 +197,6 @@ export default function AdminUsers() {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
