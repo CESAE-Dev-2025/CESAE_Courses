@@ -30,16 +30,10 @@ export default function JobInfoCard({ jobData }: Props) {
                             : 'N/A'
                     }
                     </MDBListGroupItem>
-                    <MDBListGroupItem className="px-3 d-flex gap-1 justify-content-between"><strong>Serviço ativo: </strong>{
+                    <MDBListGroupItem className="px-3 d-flex gap-1 justify-content-between"><strong>Estado do serviço: </strong>{
                         jobData && jobData.isRunning
-                            ? <MDBBadge pill className='mx-0 my-auto px-3 py-2' color='success' light>Sim</MDBBadge>
-                            : <MDBBadge pill className='mx-0 my-auto px-3 py-2' color='danger' light>Não</MDBBadge>
-                    }
-                    </MDBListGroupItem>
-                    <MDBListGroupItem className="px-3 d-flex gap-1 justify-content-between"><strong>Serviço parado: </strong>{
-                        jobData && jobData.isStopped
-                            ? <MDBBadge pill className='mx-0 my-auto px-3 py-2' color='danger' light>Sim</MDBBadge>
-                            : <MDBBadge pill className='mx-0 my-auto px-3 py-2' color='success' light>Não</MDBBadge>
+                            ? <MDBBadge pill className='mx-0 my-auto px-3 py-2' color='success' light>Ativo</MDBBadge>
+                            : <MDBBadge pill className='mx-0 my-auto px-3 py-2' color='danger' light>Inativo</MDBBadge>
                     }
                     </MDBListGroupItem>
                     <MDBListGroupItem className="px-3 d-flex gap-1 justify-content-between"><strong>Serviço em execução: </strong>{
