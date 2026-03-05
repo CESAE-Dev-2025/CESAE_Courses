@@ -49,7 +49,7 @@ const polos: Polo[] = [
 function PolosSection() {
   return (
     <section className={styles.section}>
-      <div className={styles.container}>
+      <div className="container">
         <h2 className={styles.title}>Os Nossos Polos</h2>
         <p className={styles.subtitle}>
           Saiba onde nos pode encontrar e como entrar em contacto connosco.

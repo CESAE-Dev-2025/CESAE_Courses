@@ -1,12 +1,7 @@
 .section {
-    padding: 80px 20px;
+    margin-top: 75px;
+    padding: 64px 0;
     background: #fff;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
 }
 
 .title {
@@ -15,6 +10,7 @@
     color: var(--primary-dark);
     margin-bottom: var(--space-sm);
     letter-spacing: -0.5px;
+    text-align: center;
 }
 
 .subtitle {
@@ -23,6 +19,7 @@
     max-width: 620px;
     margin: 0 auto 60px auto;
     line-height: 1.6;
+    text-align: center;
 }
 
 /* GRID */
@@ -148,9 +145,9 @@
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .section {
-        padding: 120px 40px;
-    }
+    /*.section {*/
+    /*    padding: 120px 40px;*/
+    /*}*/
 
     .title {
         font-size: 2.4rem;

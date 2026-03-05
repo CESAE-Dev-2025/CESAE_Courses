@@ -6,7 +6,7 @@
   min-height: clamp(180px, 30vw, 320px);
   background-position: center;
   background-size: cover;
-  margin-top: 82px;
+  margin-top: 75px;
 }
 
 .overlay {
