@@ -105,7 +105,7 @@ function AdminDashboard() {
                 <div
                     className="mx-auto col col-md-8 col-lg-6 d-flex flex-column justify-content-around align-items-center my-5">
                     <div className="w-100 d-flex gap-3 justify-content-between mb-4">
-                        <button className="btn btn-primary" onClick={runScrape}>Run Scrape</button>
+                        <button className="btn btn-primary" onClick={runScrape}>Executar Scrape</button>
 
                         <MDBDropdown>
                             <MDBDropdownToggle className="btn btn-outline-primary">Ações</MDBDropdownToggle>
