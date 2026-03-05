@@ -1,6 +1,6 @@
 .objectivesSection {
     padding: 60px 20px;
-    margin: 20px 16px;
+    margin: 20px 0;
 
     background: radial-gradient(
             circle at top left,
@@ -19,15 +19,12 @@
     border-radius: 18px;
 }
 
-.container {
-    text-align: center;
-}
-
 .title {
     font-size: 1.8rem;
     font-weight: 800;
     margin-bottom: 40px;
     letter-spacing: -0.3px;
+    text-align: center;
 }
 
 .cards {

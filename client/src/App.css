@@ -14,6 +14,11 @@
     flex-shrink: 0;
 }
 
+.container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
 .footer {
     margin-top: auto;
 }
@@ -29,7 +34,7 @@
     font-weight: 600;
     border-radius: 6px;
     cursor: pointer;
-    font-family: montserrat;
+    font-family: montserrat, sans-serif;
 
     background: transparent;
     color: #374151;

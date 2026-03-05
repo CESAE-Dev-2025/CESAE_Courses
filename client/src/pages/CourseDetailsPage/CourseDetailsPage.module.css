@@ -17,7 +17,7 @@
 
 .page {
     background: #fff;
-    padding-bottom: 110px;
+    padding-bottom: 32px;
     margin-top: 75px;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .heroContent {
-    padding: 1.25rem 1rem 1rem;
+    padding: 1.25rem 0 1rem;
 }
 
 .heroTitle {
@@ -65,7 +65,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-    padding: 1rem;
+    padding: 1rem 0;
 }
 
 .quickItem {
@@ -114,7 +114,7 @@
 /* ===== COURSE CONTENT ===== */
 
 .contentWrapper {
-    padding: 0 1rem 2rem;
+    padding: 2rem 0;
 }
 
 .sectionContent {
@@ -204,33 +204,31 @@
 .mobileCta {
     position: sticky;
     bottom: 0;
-    padding: 1rem;
+    padding: 1rem 0;
     background: #fff;
     z-index: 1000;
     max-width: 540px;
     margin-left: auto;
     margin-right: auto;
-}
 
-.mobileCta {
     .btn-primary,
     .btn-primary:active,
     .btn-primary:focus {
         background: var(--primary) !important;
         border-color: var(--primary) !important;
     }
-}
 
-.mobileCta .btn-primary:hover {
-    background: var(--primary-dark);
-}
+    .btn-primary:hover {
+        background: var(--primary-dark);
+    }
 
-.mobileCta .btn-brand-secondary {
-    border: 1px solid var(--primary);
-    color: var(--primary);
-    background: transparent;
-}
+    .btn-brand-secondary {
+        border: 1px solid var(--primary);
+        color: var(--primary);
+        background: transparent;
+    }
 
-.mobileCta .btn-brand-secondary:hover {
-    background: var(--primary-light);
+    .btn-brand-secondary:hover {
+        background: var(--primary-light);
+    }
 }
