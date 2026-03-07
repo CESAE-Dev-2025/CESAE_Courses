@@ -58,11 +58,11 @@
 - **Tipos partilhados**: Definição de tipos comuns partilhadas entre 'client' e 'server'
 - **Etrutura Monorepo**: Organizado como um monorepo baseado em 'workspaces' com Turbo para build automatizado
 - **Stack Moderna**:
-    - [pnpm](https://bun.sh) como runtime e gestor de pacotes
+    - [pnpm](https://pnpm.io/) como runtime e gestor de pacotes
     - [Hono](https://hono.dev) como framework backend
     - [Vite](https://vitejs.dev) para 'bundling' e 'hot-reloading' do frontend
     - [React](https://react.dev) para a UI do frontend moderna
-    - [Playwright]() como ferramenta de scraper para extrair dados dos cursos
+    - [Playwright](https://playwright.dev/) como ferramenta de scraper para extrair dados dos cursos
     - [Turbo](https://turbo.build) para automatizar tarefas de build
 - **PWA**: Experiência 'mobile-friendly' e capacidade de uso 'offline' com Progressive Web App (PWA)
 
