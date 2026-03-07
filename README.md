@@ -1,290 +1,273 @@
-# bhvr 🦫
+<a id="readme-top"></a>
 
-![cover](https://cdn.stevedylan.dev/ipfs/bafybeievx27ar5qfqyqyud7kemnb5n2p4rzt2matogi6qttwkpxonqhra4)
+[![MIT License][license-shield]][license-url]
 
-A full-stack TypeScript monorepo starter with shared types, using Bun, Hono, Vite, and React.
 
-## Why bhvr?
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+    <a href="https://github.com/cesae-dev-2025/CESAE_Courses/">
+        <img src="client/public/icon_192.png" alt="Logo" height="70">
+    </a>
 
-While there are plenty of existing app building stacks out there, many of them are either bloated, outdated, or have too much of a vendor lock-in. bhvr is built with the opinion that you should be able to deploy your client or server in any environment while also keeping type safety.
 
-## Quickstart
+  <p align="center">O CESAE promove transformação digital através de diversos cursos, que podem ser encontrados no seu site. No entanto, para tornar a oferta formativa mais acessível, desenvolvemos uma aplicação PWA que pode ser instalada em qualquer dicpositivo.</p>
 
-Make sure [bun](https://bun.sh) is installed
+[//]: # (  <p><a href="https://cesae-dev-2025.github.io/SmartTasks/"><strong>Veja a Demo</strong></a></p>)
+</div>
 
-```bash
-bun --version
-```
 
-Run the command below to make a new bhvr project
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Índice</summary>
+  <ol>
+    <li>
+      <a href="#sobre-o-projecto">Sobre o Projecto</a>
+      <ul>
+        <li><a href="#caracteristicas">Características</a></li>
+        <li><a href="#estrutura-do-projeto">Estrutura do projeto</a></li>
+        <li><a href="#funcionalidades">Funcionalidades</a></li>
+        <li><a href="#tecnologias-utilizadas">Tecnologias utilizadas</a></li>
+        <li><a href="#capturas-de-ecrã">Capturas de ecrã</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#como-utilizar">Como utilizar</a>
+      <ul>
+        <li><a href="#pré-requisitos">Pré-requisitos</a></li>
+        <li><a href="#instalação">Instalação</a></li>
+      </ul>
+    </li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#licença">Licença</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#agradecimentos">Agradecimentos</a></li>
+  </ol>
+</details>
 
-```bash
-bun create bhvr@latest my-app
-```
 
-Once complete run the dev server
+<!-- ABOUT THE PROJECT -->
 
-```bash
-cd my-app
-bun dev
-```
+## Sobre o Projecto
 
-> [!NOTE]
-> Visit [bhvr.dev](https://bhvr.dev) for the full documentation!
+<p align="center"><img src="docs/screenshot_cover.png" style="width: 100%; max-width: 900px" alt="CESAE Cursos Screenshot"></p>
 
-## Features
+### Características
 
-- **Full-Stack TypeScript**: End-to-end type safety between client and server
-- **Shared Types**: Common type definitions shared between client and server
-- **Monorepo Structure**: Organized as a workspaces-based monorepo with Turbo for build orchestration
-- **Modern Stack**:
-  - [Bun](https://bun.sh) as the JavaScript runtime and package manager
-  - [Hono](https://hono.dev) as the backend framework
-  - [Vite](https://vitejs.dev) for frontend bundling
-  - [React](https://react.dev) for the frontend UI
-  - [Turbo](https://turbo.build) for monorepo build orchestration and caching
+- **Full-Stack TypeScript**: 'Type safety' entre cliente and servidor
+- **Tipos partilhados**: Definição de tipos comuns partilhadas entre 'client' e 'server'
+- **Etrutura Monorepo**: Organizado como um monorepo baseado em 'workspaces' com Turbo para build automatizado
+- **Stack Moderna**:
+    - [pnpm](https://bun.sh) como runtime e gestor de pacotes
+    - [Hono](https://hono.dev) como framework backend
+    - [Vite](https://vitejs.dev) para 'bundling' e 'hot-reloading' do frontend
+    - [React](https://react.dev) para a UI do frontend moderna
+    - [Playwright]() como ferramenta de scraper para extrair dados dos cursos
+    - [Turbo](https://turbo.build) para automatizar tarefas de build
+- **PWA**: Experiência 'mobile-friendly' e capacidade de uso 'offline' com Progressive Web App (PWA)
 
-## Project Structure
+### Estrutura do projeto
 
 ```
 .
-├── client/               # React frontend
-├── server/               # Hono backend
-├── shared/               # Shared TypeScript definitions
-│   └── src/types/        # Type definitions used by both client and server
-├── package.json          # Root package.json with workspaces
-└── turbo.json            # Turbo configuration for build orchestration
+├── client/               # Frontend React
+├── server/               # Backend Hono
+├── shared/               # Definições TypeScript partilhadas
+│   └── src/types/        # Definições de tipos (Type) usados tanto pelo 'client' como pelo 'server'
+├── package.json          # package.json raiz, com 'workspaces'
+└── turbo.json            # Configurações Turbo para 'build'
 ```
 
-### Server
+### Funcionalidades
 
-bhvr uses Hono as a backend API for its simplicity and massive ecosystem of plugins. If you have ever used Express then it might feel familiar. Declaring routes and returning data is easy.
+- Listagem de cursos
+- Buscar instantânea
+- Filtro por regime do curso
+- WebScraper para atualizar os cursos com base nos cursos disponíveis na página Web do CESAE
+- Serviço de tarefa automatizado com 'cronjob' para execução automática do webscraper diariamente
 
-```
-server
-├── bun.lock
-├── package.json
-├── README.md
-├── src
-│   └── index.ts
-└── tsconfig.json
-```
+### Tecnologias utilizadas
 
-```typescript src/index.ts
-import { Hono } from 'hono'
-import { cors } from 'hono/cors'
-import type { ApiResponse } from 'shared/dist'
+Este projeto foi desenvolvido com uso das tecnologias listadas abaixo.
 
-const app = new Hono()
+<p align="center">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5">
+  <img src="https://img.shields.io/badge/CSS3-663399?style=for-the-badge&logo=css&logoColor=white" alt="CSS3">
+  <img src="https://img.shields.io/badge/MDBootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap">
+  <img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="Typescript">
+  <img src="https://img.shields.io/badge/NodeJS-5FA04E?style=for-the-badge&logo=node.js&logoColor=white" alt="NodeJS">
+  <img src="https://img.shields.io/badge/PNPM-F69220?style=for-the-badge&logo=pnpm&logoColor=white" alt="PNPM">
+  <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React">
+</p>
+<p align="center">
+  <img src="https://img.shields.io/badge/PWA-5A0FC8?style=for-the-badge&logo=pwa&logoColor=white" alt="PWA">
+  <img src="https://img.shields.io/badge/Hono-E36002?style=for-the-badge&logo=hono&logoColor=white" alt="Hono">
+  <img src="https://img.shields.io/badge/Playwright-45ba4b?style=for-the-badge&logo=playwright&logoColor=white" alt="Playwright">
+  <img src="https://img.shields.io/badge/WebStorm-0CC0F6?style=for-the-badge&logo=WebStorm&logoColor=white" alt="WebStorm">
+  <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white" alt="Postman">
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
+  <img src="https://img.shields.io/badge/JIRA-0052CC?style=for-the-badge&logo=jira&logoColor=white" alt="JIRA">
+</p>
 
-app.use(cors())
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
-})
+### Capturas de ecrã
 
-app.get('/hello', async (c) => {
+<p>
+  <img src="docs/home.png" style="width: 390px" alt="Início">
+    &nbsp;&nbsp;&nbsp;
+  <img src="docs/details.png" style="width: 390px" alt="Detalhes do curso">
+</p>
 
-  const data: ApiResponse = {
-    message: "Hello BHVR!",
-    success: true
-  }
+<p>
+  <img src="docs/about.png" style="width: 390px" alt="Sobre">
+    &nbsp;&nbsp;&nbsp;
+  <img src="docs/contact.png" style="width: 390px" alt="COntactos">
+</p>
 
-  return c.json(data, { status: 200 })
-})
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
-export default app
-```
 
-If you wanted to add a database to Hono you can do so with a multitude of Typescript libraries like [Supabase](https://supabase.com), or ORMs like [Drizzle](https://orm.drizzle.team/docs/get-started) or [Prisma](https://www.prisma.io/orm)
+<!-- GETTING STARTED -->
 
-### Client
+## Como utilizar
 
-bhvr uses Vite + React Typescript template, which means you can build your frontend just as you would with any other React app. This makes it flexible to add UI components like [shadcn/ui](https://ui.shadcn.com) or routing using [React Router](https://reactrouter.com/start/declarative/installation).
+Para utilizar este projeto, basta clonar o repositório, garantir que tem os pré-requisitos instalados e seguir as instruções abaixo.
 
-```
-client
-├── eslint.config.js
-├── index.html
-├── package.json
-├── public
-│   └── vite.svg
-├── README.md
-├── src
-│   ├── App.css
-│   ├── App.tsx
-│   ├── assets
-│   ├── index.css
-│   ├── main.tsx
-│   └── vite-env.d.ts
-├── tsconfig.app.json
-├── tsconfig.json
-├── tsconfig.node.json
-└── vite.config.ts
-```
+### Pré-requisitos
 
-```typescript src/App.tsx
-import { useState } from 'react'
-import beaver from './assets/beaver.svg'
-import { ApiResponse } from 'shared'
-import './App.css'
+É preciso ter o instalados o Git e o Node.js (versão 20 ou superior).
 
-const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3000"
+### Instalação
 
-function App() {
-  const [data, setData] = useState<ApiResponse | undefined>()
+1. Clone o repositório
+   ```sh
+   git clone https://github.com/CESAE-Dev-2025/CESAE_Courses.git
+   ```
+2. Modifique a URL do git remote para evitar `pushes` acidentais para o projeto base
+   ```sh
+   git remote set-url origin github_username/repo_name
+   git remote -v # confirma as alterações
+   ```
+3. Instale as dependências na raiz do repositório
+   ```sh
+   pnpm install
+   ```
+4. Certifique de ter o plywright instalado no projeto server
+   ```sh
+   cd server
+   npx plywright install --force
+   cd ..
+   ```
+5. Inicie os projetos (`client` e `server`)
+   ```sh
+   pnpm dev
+   ```
+6. Para iniciar apenas um dos projetos, adicione um filtro ao comando acima,
+   ```sh
+   pnpm dev:client
+   pnpm dev:server
+   ```
 
-  async function sendRequest() {
-    try {
-      const req = await fetch(`${SERVER_URL}/hello`)
-      const res: ApiResponse = await req.json()
-      setData(res)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
-  return (
-    <>
-      <div>
-        <a href="https://github.com/stevedylandev/bhvr" target="_blank">
-          <img src={beaver} className="logo" alt="beaver logo" />
-        </a>
-      </div>
-      <h1>bhvr</h1>
-      <h2>Bun + Hono + Vite + React</h2>
-      <p>A typesafe fullstack monorepo</p>
-      <div className="card">
-        <button onClick={sendRequest}>
-          Call API
-        </button>
-        {data && (
-          <pre className='response'>
-            <code>
-            Message: {data.message} <br />
-            Success: {data.success.toString()}
-            </code>
-          </pre>
-        )}
-      </div>
-      <p className="read-the-docs">
-        Click the beaver to learn more
-      </p>
-    </>
-  )
-}
 
-export default App
-```
+<!-- ROADMAP -->
 
-### Shared
+## Roadmap
 
-The Shared package is used for anything you want to share between the Server and Client. This could be types or libraries that you use in both environments.
+- [ ] Adicionar mais filtros
+- [ ] Revisar funcionalidades offline
+- [ ] Revisar 'componentização' do frontend
 
-```
-shared
-├── package.json
-├── src
-│   ├── index.ts
-│   └── types
-│       └── index.ts
-└── tsconfig.json
-```
+Veja os ['issues' abertos](https://github.com/cesae-dev-2025/CESAE_Courses/issues) para obter uma lista completa e
+atualizadas das funcionalidades propostas e bugs conhecidos.
 
-Inside the `src/index.ts` we export any of our code from the folders so it's usable in other parts of the monorepo
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
-```typescript
-export * from "./types"
-```
 
-By running `bun run dev` or `bun run build` it will compile and export the packages from `shared` so it can be used in either `client` or `server`
+<!-- LICENSE -->
 
-```typescript
-import { ApiResponse } from 'shared'
-```
+## Licença
 
-## Getting Started
+Distribuido sob a Licença MIT. veja `LICENSE.txt` para mais informações.
 
-### Quick Start
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
-You can start a new bhvr project using the [CLI](https://github.com/stevedylandev/create-bhvr)
 
-```bash
-bun create bhvr
-```
+<!-- CONTACT -->
 
-### Installation
+## Contacto
 
-```bash
-# Install dependencies for all workspaces
-bun install
-```
+<ul>
+    <li>Arícia Lima<br/>
+        <a href = "https://github.com/AriciaLima" target="_blank"><img src="https://img.shields.io/badge/github-E3E3E3?style=for-the-badge&logo=github&logoColor=black"></a>
+        <a href = "https://www.linkedin.com/in/ariciafariaslima/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>
+    </li>
+    <li>Leandro Gabriel<br/>
+        <a href = "https://github.com/lassisg" target="_blank"><img src="https://img.shields.io/badge/github-E3E3E3?style=for-the-badge&logo=github&logoColor=black"></a>
+        <a href = "https://www.linkedin.com/in/leandro-assis-gabriel/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>
+    </li>
+    <li>Sandro Draeger<br/>
+        <a href = "https://github.com/Sandro-Draeger" target="_blank"><img src="https://img.shields.io/badge/github-E3E3E3?style=for-the-badge&logo=github&logoColor=black"></a>
+        <a href = "https://www.linkedin.com/in/sandrodraeger/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>
+    </li>
+</ul>
 
-### Development
 
-```bash
-# Run all workspaces in development mode with Turbo
-bun run dev
+Link do Projeto: [https://github.com/CESAE-Dev-2025/CESAE_Courses](https://github.com/CESAE-Dev-2025/CESAE_Courses)
 
-# Or run individual workspaces directly
-bun run dev:client    # Run the Vite dev server for React
-bun run dev:server    # Run the Hono backend
-```
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
-### Building
 
-```bash
-# Build all workspaces with Turbo
-bun run build
+<!-- ACKNOWLEDGMENTS -->
 
-# Or build individual workspaces directly
-bun run build:client  # Build the React frontend
-bun run build:server  # Build the Hono backend
-```
+## Agradecimentos
 
-### Additional Commands
+Agradeçemos ao [CESAE](https://cesaedigital.pt/fldrSite/default.aspx) pela oportunidade de crescimento e
+à [Vitor Santos](https://github.com/Vmvs007) por todo o apoio e suporte durante o desenvolvimento deste projeto e de outros.
 
-```bash
-# Lint all workspaces
-bun run lint
+Agradeço também aos mantenedores dos projetos listados abaixo:
 
-# Type check all workspaces
-bun run type-check
+* [Choose an Open Source License](https://choosealicense.com)
+* [Best README Template](https://github.com/othneildrew/Best-README-Template)
+* [Img Shields](https://shields.io)
 
-# Run tests across all workspaces
-bun run test
-```
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
-### Deployment
 
-Deplying each piece is very versatile and can be done numerous ways, and exploration into automating these will happen at a later date. Here are some references in the meantime.
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-**Client**
-- [Orbiter](https://bhvr.dev/deployment/client/orbiter)
-- [GitHub Pages](https://bhvr.dev/deployment/client/github-pages)
-- [Netlify](https://bhvr.dev/deployment/client/netlify)
-- [Cloudflare Pages](https://bhvr.dev/deployment/client/cloudflare-pages)
+[product-screenshot]: ./images/screenshot_cover.png
 
-**Server**
-- [Orbiter](https://bhvr.dev/deployment/server/orbiter)
-- [Cloudflare Worker](https://bhvr.dev/deployment/server/cloudflare-workers)
-- [Bun](https://bhvr.dev/deployment/server/railway)
-- [Node.js](https://bhvr.dev/deployment/server/railway)
+[license-shield]: https://img.shields.io/github/license/CESAE-Dev-2025/SmartTasks.svg?style=for-the-badge
 
-## Type Sharing
+[license-url]: https://github.com/CESAE-Dev-2025/CESAE_Courses/blob/master/LICENSE
 
-Types are automatically shared between the client and server thanks to the shared package and TypeScript path aliases. You can import them in your code using:
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=blue
 
-```typescript
-import { ApiResponse } from 'shared/types';
-```
+[linkedin-url]: https://linkedin.com/in/leandro-assis-gabriel
 
-## Learn More
+[github-jose-url]:https://github.com/josepinho22
 
-- [bhvr Documentation](https://bhvr.dev)
-- [Bun Documentation](https://bun.sh/docs)
-- [Vite Documentation](https://vitejs.dev/guide/)
-- [React Documentation](https://react.dev/learn)
-- [Hono Documentation](https://hono.dev/docs)
-- [Turbo Documentation](https://turbo.build/docs)
-- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
+[github-leandro-url]:https://github.com/lassisg
+
+[github-ricardo-url]:https://github.com/RicardoBu
+
+[HTML5]: https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white
+
+[HTML5-url]: https://developer.mozilla.org/pt-BR/docs/Web/HTML
+
+[CSS3]: https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white
+
+[CSS3-url]: https://developer.mozilla.org/pt-BR/docs/Web/HTML
+
+[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
+
+[Bootstrap-url]: https://getbootstrap.com
+
+[Javascript]: https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
+
+[Javascript-url]: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript
