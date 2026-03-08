@@ -135,7 +135,8 @@ Para utilizar este projeto, basta clonar o repositório, garantir que tem os pr�
 
 ### Pré-requisitos
 
-É preciso ter o instalados o Git e o Node.js (versão 20 ou superior).
+1. É preciso ter o instalados o Git e o Node.js (versão 20 ou superior).
+2. É preciso ter um base de dados MySQL com uma base de dados.
 
 ### Instalação
 
@@ -152,17 +153,31 @@ Para utilizar este projeto, basta clonar o repositório, garantir que tem os pr�
    ```sh
    pnpm install
    ```
-4. Certifique de ter o plywright instalado no projeto server
+4. Crie os ficheiros `.env` nos projetos `client` e `server` com as variáveis de ambiente necessárias para o funcionamento do projeto, conforme os respetivos ficheiros `.env.example`.
+5. Certifique-se de modificar o `DATABASE_URL` no ficheiro `.env` do projeto `server` para o seu servidor de base de dados.
+6. Certifique-se de que o servidor de base de dados está em execução e que as credenciais de acesso estão corretas.
+7. Execute as migrações para criação das tabelas do projeto `server`
    ```sh
    cd server
-   npx plywright install --force
-   cd ..
+   drizzle-kit push
    ```
-5. Inicie os projetos (`client` e `server`)
+8. Execute o `seed` da tabela de utilizadores, no projeto `server`, para que haja ao menos 1 utilizador administrador
+   ```sh
+   tsx src/db/seed/user.ts 
+   ```
+9. Certifique de ter o playwright instalado no projeto server
+   ```sh
+   npx plywright install --force
+   ```
+10. Volte para a raiz do repositório
+   ```sh
+   cd ..
+   ``` 
+11. Inicie os projetos (`client` e `server`)
    ```sh
    pnpm dev
    ```
-6. Para iniciar apenas um dos projetos, adicione um filtro ao comando acima,
+12. Para iniciar apenas um dos projetos, adicione um filtro ao comando acima
    ```sh
    pnpm dev:client
    pnpm dev:server
